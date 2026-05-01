@@ -1,0 +1,50 @@
+<div class="hero-section">
+  <div class="hero-section-content">
+    <div class="services">
+      <ng-template ngFor let-service [ngForOf]="services">
+        <span class="flex-center">
+          <mat-icon>fiber_manual_record</mat-icon> {{ service | uppercase }}
+        </span>
+      </ng-template>
+    </div>
+
+    <h1 class="super-header">
+      Awaken to <br />
+      <span class="italic">radiance.</span>
+    </h1>
+
+    <p class="details">
+      A Sanctuary for the modern bride. Bespoke makeup, nurturing skin rituals, heirloom mehendi,
+      and heritage saree draping -- thoughtfully composed for the most luminous you.
+    </p>
+
+    <div class="book-and-explore">
+      <button type="button" class="btn-book">Book an Appointment</button>
+      <a href="#">EXPLOR SERVICES</a>
+    </div>
+
+    <div class="experiance-and-count">
+      <div>
+        <h1>12 <span>+</span></h1>
+        <p>YEARS OF ARTISTRY</p>
+      </div>
+
+      <hr />
+
+      <div>
+        <h1>400 <span>+</span></h1>
+        <p>BRIDES ADORNED</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero-section-photos">
+    <!-- <div> -->
+    <div class="img-inner">
+      <img src="../../../../assets/images/hero-bride-portrait.jpg" alt="bride portraite" />
+    </div>
+    <div class="img-outer">
+      <img src="../../../../assets/images/service-mehendi.jpg" alt="mehendi" />
+    </div>
+    <!-- </div> -->
+  </div>
+</div>

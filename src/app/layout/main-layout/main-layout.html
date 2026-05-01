@@ -1,3 +1,70 @@
-<header></header>
-    <router-outlet />
-<footer></footer>
+<!-- <div class="header p-4 border_bottom">
+    <h3 class="logo heading_color">Glow <span class="primary_color italic">by </span> Rishi</h3>
+    <mat-icon mat-icon-button [matMenuTriggerFor]="menu">menu</mat-icon>
+</div>
+
+<mat-menu #menu="matMenu" class="menu-list">
+    <button mat-menu-item>
+        Portfolio
+    </button>
+    <button mat-menu-item>
+        Services
+    </button>
+    <button mat-menu-item>
+        Aboust Us
+    </button>
+    <button mat-menu-item>
+        Contact Us
+    </button>
+    <button mat-menu-item>
+        Book Now
+    </button>
+</mat-menu> -->
+
+<mat-sidenav-container class="sidenav-container">
+  <!-- Side Drawer -->
+  <mat-sidenav #drawer mode="over" position="end">
+    <div class="d-flex justify-between align-center p-3">
+      <h3>Menu</h3>
+
+      <button mat-icon-button (click)="drawer.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="p-4 d-flex flex-column gap-3">
+      <a routerLink="/portfolio">Portfolio</a>
+      <a routerLink="/services">Services</a>
+      <a routerLink="/about">About Us</a>
+      <a routerLink="/contact">Contact</a>
+    </div>
+  </mat-sidenav>
+
+  <!-- Main Content -->
+  <mat-sidenav-content>
+    <!-- Header -->
+    <div class="d-flex justify-between align-center p-3 mobile-header glass-card">
+      <h3 class="logo heading_color">Glow <span class="primary_color italic">by </span> Rishi</h3>
+
+      <button mat-icon-button (click)="drawer.toggle()">☰</button>
+    </div>
+
+    <div class="desktop-header d-flex justify-between align-center p-3 glass-card">
+      <div class="d-flex g-2 align-items-center">
+        <a routerLink="/portfolio">Portfolio</a>
+        <a routerLink="/services" class="ml-5">Services</a>
+      </div>
+      <h3 class="logo heading_color">Glow <span class="primary_color italic">by </span> Rishi</h3>
+      <div class="d-flex justify-end align-center g-2">
+        <a routerLink="/about">About Us</a>
+        <a routerLink="/contact" class="ml-5">Contact</a>
+        <button class="ml-5 btn-book">Book Now</button>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+    <footer></footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
