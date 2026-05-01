@@ -24,18 +24,19 @@
 <mat-sidenav-container class="sidenav-container">
   <!-- Side Drawer -->
   <mat-sidenav #drawer mode="over" position="end">
-    <div class="d-flex justify-between align-center p-3">
-      <h3>Menu</h3>
+    <div class="d-flex justify-between align-center p-3 heading">
+      <h3 class="fw-semibold">Menu</h3>
 
       <button mat-icon-button (click)="drawer.close()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div class="p-4 d-flex flex-column gap-3">
-      <a routerLink="/portfolio">Portfolio</a>
-      <a routerLink="/services">Services</a>
-      <a routerLink="/about">About Us</a>
-      <a routerLink="/contact">Contact</a>
+    <div class="d-flex flex-column gap-3">
+      <a routerLink="/portfolio" class="pl-4">Portfolio</a>
+      <a routerLink="/services" class="pl-4">Services</a>
+      <a routerLink="/about" class="pl-4">About Us</a>
+      <a routerLink="/contact" class="pl-4">Contact</a>
+      <button class="btn-book w-100">Book Now</button>
     </div>
   </mat-sidenav>
 

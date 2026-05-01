@@ -106,6 +106,19 @@ a {
   backdrop-filter: blur(10px);
 }
 
+mat-sidenav {
+  color: $footer_bg;
+  a {
+    text-transform: uppercase;
+  }
+
+  .btn-book {
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+}
+
 @media (min-width: 768px) {
   .container {
     padding-top: 6.5rem !important;
