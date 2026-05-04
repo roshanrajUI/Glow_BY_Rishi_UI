@@ -95,7 +95,7 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
 
 .italic {
   font-style: italic;
-  color: $italic_accent;
+  color: $accent;
 }
 
 .upper_case {
@@ -126,6 +126,22 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   border: none;
   letter-spacing: 5px;
   font-size: 1rem;
+}
+
+.feature-heading {
+  color: $primary_text;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.feature-description {
+  color: $heading;
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: 500;
+  margin: 2rem 0;
+  font-weight: 300;
 }
 
 @media (min-width: 768px) {

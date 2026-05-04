@@ -1,0 +1,62 @@
+@use '../../../app/partial-scss/index' as *;
+a {
+  color: $heading;
+  text-decoration: none;
+  border-bottom: 1px solid $heading;
+  padding-bottom: 1px;
+  transition: 0.3s;
+  max-width: max-content;
+}
+
+.service-card {
+  //   background-color: red;
+  margin: 3rem 0;
+  border-bottom: 1px solid $accent;
+  // padding-bottom: 2rem;
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    height: 140px;
+  }
+
+  img {
+    width: 100%;
+    // height: auto;
+    margin-bottom: 1.5rem;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .service-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+
+    .service-card {
+      margin: 0;
+    }
+    .service-description {
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    // .service-card {
+    //   margin-top: calc(var(--i) * 60px);
+    // }
+  }
+}

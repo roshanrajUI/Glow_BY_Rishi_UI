@@ -1,0 +1,20 @@
+<h4 class="feature-heading text-center">Why Choose Us</h4>
+<h1 class="feature-description text-center">
+  Care, skill & <br />
+  with <span class="italic">trust.</span>
+</h1>
+
+<div class="reason-details">
+  @for (reason of whyChooseMeDetails; track reason.title; let i = $index) {
+    <div class="reason-card">
+      <div class="reason-image mb-4">
+        <mat-icon>{{ reason.icon }}</mat-icon>
+        <!-- <img [src]="reason.image" [alt]="reason.title" /> -->
+      </div>
+      <h2 class="reason-title mb-4 fw-medium">{{ reason.title }}</h2>
+      <p class="reason-description fw-light">
+        {{ reason.description }}
+      </p>
+    </div>
+  }
+</div>

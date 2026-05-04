@@ -1,7 +1,13 @@
 {
-  "extends": [
-    "plugin:@angular-eslint/recommended",
-    "plugin:@angular-eslint/template/process-inline-templates",
-    "plugin:prettier/recommended"
+  "root": true,
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": ["plugin:@angular-eslint/recommended", "plugin:prettier/recommended"]
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"]
+    }
   ]
 }
