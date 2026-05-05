@@ -1,0 +1,29 @@
+<div class="client-review">
+  <h4 class="feature-heading text-center">Reviews</h4>
+  <h1 class="feature-description text-center">
+    Kind words <br />
+    from our <span class="italic">clients.</span>
+  </h1>
+
+  <div class="reviews-section">
+    @for (review of reviews; track review.name; let i = $index) {
+      <div class="review-card">
+        <p class="review-text fw-light">"{{ review.review }}"</p>
+        <div>
+          <p class="reviewer-name mt-4">{{ review.name }}</p>
+
+          <div class="d-flex g-1 mt-2 align-items-center">
+            <span class="review-service-name fw-light">
+              <mat-icon>fiber_manual_record</mat-icon>
+              {{ review.serviceName }}
+            </span>
+            <span class="review-city flex-center">
+              <mat-icon>fiber_manual_record</mat-icon>
+              {{ review.city }}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

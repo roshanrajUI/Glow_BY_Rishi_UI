@@ -1,0 +1,44 @@
+@use '../../partial-scss/index' as *;
+
+.client-review {
+  padding: 4rem 0;
+}
+.reviews-section {
+  overflow: auto;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+
+  .review-card {
+    border: 1px solid $secondary;
+    background-color: $white_color;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 250px;
+    max-width: 300px;
+    min-height: 300px;
+
+    .review-text {
+      font-style: italic;
+    }
+
+    .review-city,
+    .review-service-name {
+      color: $gray;
+      font-size: 10px;
+      text-transform: uppercase;
+      mat-icon {
+        font-size: 8px;
+        color: $gray;
+        height: 8px;
+        width: 8px;
+      }
+    }
+
+    &:hover {
+      border-color: $primary_text;
+    }
+  }
+}

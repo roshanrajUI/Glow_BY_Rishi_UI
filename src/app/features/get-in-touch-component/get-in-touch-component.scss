@@ -1,0 +1,37 @@
+@use '../../partial-scss/index' as *;
+
+.get-in-touch-description {
+  font-size: 10px;
+  text-align: center;
+  margin-top: 20px;
+  color: $gray;
+}
+
+.get-in-touch-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .slot-booking {
+    padding: 1rem;
+    background-color: $footer_bg;
+    color: $footer_text;
+
+    button {
+      background-color: $accent;
+      color: $button_text;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $CTA_hover;
+      }
+    }
+  }
+}
+
+.reach-us {
+  border: 1px solid $border;
+  padding: 2rem;
+}

@@ -1,5 +1,9 @@
 @use '../../../app/partial-scss/index' as *;
 
+.why-choose-section {
+  margin: 4rem 0;
+}
+
 .reason-details {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -35,8 +39,6 @@
 
     &:hover {
       border-color: $primary_text;
-      // transform: translateY(-5px);
-      // transition: all 0.3s ease;
     }
   }
 }

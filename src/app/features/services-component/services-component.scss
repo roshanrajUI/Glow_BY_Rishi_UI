@@ -9,10 +9,8 @@ a {
 }
 
 .service-card {
-  //   background-color: red;
   margin: 3rem 0;
   border-bottom: 1px solid $accent;
-  // padding-bottom: 2rem;
   .service-title {
     font-size: 1.5rem;
     font-weight: 600;
@@ -53,6 +51,7 @@ a {
     .service-description {
       font-size: 1rem;
       line-height: 1.75;
+      height: 250px;
     }
 
     // .service-card {

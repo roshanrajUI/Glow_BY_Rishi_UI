@@ -1,0 +1,40 @@
+@use '../../../app/partial-scss/index' as *;
+
+.artist-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  //   padding: 2rem;
+
+  .artist-img {
+    // width: 150px;
+    // height: 150px;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .description {
+    color: $gray;
+    font-size: 12px;
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 768px) {
+  .artist-section {
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    .feature-description {
+      margin: 1rem 0;
+    }
+  }
+}
