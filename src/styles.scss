@@ -61,7 +61,7 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   color: $secondary;
 }
 
-.primary_color {
+.primary-color {
   color: $primary_text;
 }
 
@@ -85,15 +85,15 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   color: $gray;
 }
 
-.border_color {
+.border-color {
   color: $border;
 }
 
-.black_color {
+.black-color {
   color: $black_color;
 }
 
-.white_color {
+.white-color {
   color: $white_color;
 }
 
@@ -104,7 +104,6 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
 
 .upper_case {
   text-transform: uppercase;
-  color: $upper_case;
 }
 
 .super-header {
@@ -123,13 +122,13 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
 }
 
 .btn-book {
-  padding: 1.5rem 1rem;
+  padding: 1.3rem 1rem;
   text-transform: uppercase;
   background-color: $footer_bg;
   color: $white_color;
   border: none;
   letter-spacing: 5px;
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 .feature-heading {
@@ -146,6 +145,10 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   font-weight: 500;
   margin: 2rem 0;
   font-weight: 300;
+}
+
+.text-decoration-none {
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {

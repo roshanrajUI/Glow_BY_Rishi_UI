@@ -1,0 +1,32 @@
+@use '../../../partial-scss/index' as *;
+
+footer {
+  background-color: $footer_bg;
+  color: $footer_text;
+  padding: 3rem 1rem;
+  font-weight: 300;
+
+  hr {
+    margin: 3rem 0;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .about {
+        width: 50%;
+      }
+    }
+  }
+
+  .copy-rights {
+    text-align: center;
+    font-size: 12px;
+  }
+}

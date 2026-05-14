@@ -1,3 +1,5 @@
+@use './index' as *;
+
 $space: (
   0: 0,
   1: 4px,
@@ -99,6 +101,15 @@ $font-weights: (
 .w-100 {
   width: 100%;
 }
+
+.w-50 {
+  width: 50%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
 .w-auto {
   width: auto;
 }
@@ -128,6 +139,10 @@ $font-weights: (
   font-weight: 400;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+} // 12px
+
 .text-sm {
   font-size: 0.875rem;
 } // 14px
@@ -137,6 +152,23 @@ $font-weights: (
 .text-lg {
   font-size: 1.25rem;
 } // 20px
+
+//text colors
+.text-primary {
+  color: $primary_text;
+}
+.text-secondary {
+  color: $secondary;
+}
+.text-gray {
+  color: $gray;
+}
+.text-white {
+  color: $white-color;
+}
+.text-black {
+  color: $black-color;
+}
 
 //backgound colors
 .bg-white {

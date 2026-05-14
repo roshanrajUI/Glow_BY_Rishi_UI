@@ -12,17 +12,24 @@
   flex-direction: column;
   gap: 1.5rem;
 
+  .reach-us-heading {
+    font-size: 1.5rem;
+    color: $white-color;
+  }
+
   .slot-booking {
-    padding: 1rem;
+    padding: 2rem;
     background-color: $footer_bg;
     color: $footer_text;
 
     button {
-      background-color: $accent;
-      color: $button_text;
+      background-color: $white-color;
+      color: $black-color;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 1rem 2rem;
       cursor: pointer;
+      letter-spacing: 4px;
+      text-transform: uppercase;
 
       &:hover {
         background-color: $CTA_hover;

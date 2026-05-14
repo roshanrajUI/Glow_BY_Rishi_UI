@@ -1,5 +1,5 @@
 <!-- <div class="header p-4 border_bottom">
-    <h3 class="logo heading_color">Glow <span class="primary_color italic">by </span> Rishi</h3>
+    <h3 class="logo heading_color">Glow <span class="primary-color italic">by </span> Rishi</h3>
     <mat-icon mat-icon-button [matMenuTriggerFor]="menu">menu</mat-icon>
 </div>
 
@@ -44,9 +44,11 @@
   <mat-sidenav-content>
     <!-- Header -->
     <div class="d-flex justify-between align-center p-3 mobile-header glass-card">
-      <h3 class="logo heading_color">Glow <span class="primary_color italic">by </span> Rishi</h3>
+      <h3 class="logo heading_color">Glow <span class="primary-color italic">by </span> Rishi</h3>
 
-      <button mat-icon-button (click)="drawer.toggle()">☰</button>
+      <button mat-icon-button class="text-lg" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
     </div>
 
     <div class="desktop-header d-flex justify-between align-center p-3 glass-card">
@@ -54,7 +56,7 @@
         <a routerLink="/portfolio">Portfolio</a>
         <a routerLink="/services" class="ml-5">Services</a>
       </div>
-      <h3 class="logo heading_color">Glow <span class="primary_color italic">by </span> Rishi</h3>
+      <h3 class="logo heading_color">Glow <span class="primary-color italic">by </span> Rishi</h3>
       <div class="d-flex justify-end align-center g-2">
         <a routerLink="/about">About Us</a>
         <a routerLink="/contact" class="ml-5">Contact</a>
@@ -66,6 +68,6 @@
     <div class="container">
       <router-outlet></router-outlet>
     </div>
-    <footer></footer>
+    <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
