@@ -5,6 +5,7 @@ import { WhyChooseMe } from '../../why-choose-me/why-choose-me';
 import { Artist } from '../../artist/artist';
 import { ReviewsComponent } from '../../reviews-component/reviews-component';
 import { GetInTouchComponent } from '../../get-in-touch-component/get-in-touch-component';
+import { MyWorkComponent } from '../../my-work-component/my-work-component';
 
 @Component({
   selector: 'app-landing-page',
@@ -15,6 +16,7 @@ import { GetInTouchComponent } from '../../get-in-touch-component/get-in-touch-c
     Artist,
     ReviewsComponent,
     GetInTouchComponent,
+    MyWorkComponent,
   ],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',

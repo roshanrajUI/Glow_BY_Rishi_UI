@@ -1,0 +1,61 @@
+@use '../../partial-scss/variables' as *;
+
+.work-button {
+  padding: 0rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: $white_color;
+  color: $gray;
+  border: 1px solid $border_dividers;
+
+  &:hover {
+    border-color: $primary_text;
+    color: $primary_text;
+  }
+
+  &:active,
+  &:focus {
+    background-color: $heading;
+    color: $white_color;
+    border-color: $heading;
+  }
+}
+
+.my-work-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+
+  .work-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .work-info {
+      position: absolute;
+      text-align: left;
+      bottom: 10px;
+      color: $white_color;
+      display: none;
+      transition: opacity 0.3s ease;
+      padding-left: 0.5rem;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    &:hover {
+      .work-info {
+        display: block;
+        z-index: 999;
+
+        img {
+          transition: ease-out linear;
+        }
+      }
+    }
+  }
+}

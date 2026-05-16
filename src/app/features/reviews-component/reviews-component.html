@@ -6,7 +6,7 @@
   </h1>
 
   <div class="reviews-section">
-    @for (review of reviews; track review.name; let i = $index) {
+    @for (review of reviews; track review.id) {
       <div class="review-card">
         <p class="review-text fw-light">"{{ review.review }}"</p>
         <div>

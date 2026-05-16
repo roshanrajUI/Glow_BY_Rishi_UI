@@ -12,4 +12,21 @@ import { Footer } from '../../shared/components/footer/footer';
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
 })
-export class MainLayout {}
+export class MainLayout {
+  constructor() {}
+
+  goToSection(sectionId: string, drawer?: any) {
+    drawer?.close();
+
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }, 200);
+  }
+}

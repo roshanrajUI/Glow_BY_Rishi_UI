@@ -132,13 +132,6 @@ $font-weights: (
   text-align: right;
 }
 
-.text-bold {
-  font-weight: 600;
-}
-.text-normal {
-  font-weight: 400;
-}
-
 .text-xs {
   font-size: 0.75rem;
 } // 12px
@@ -178,9 +171,6 @@ $font-weights: (
   background: #f5f5f5;
 }
 
-.text-primary {
-  color: #1976d2;
-}
 .text-muted {
   color: #777;
 }
