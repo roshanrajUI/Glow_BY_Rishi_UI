@@ -9,30 +9,36 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './my-work-component.scss',
 })
 export class MyWorkComponent {
-  services: { serviceId: number; serviceName: string }[] = [
+  services: { serviceId: number; serviceName: string; price: number }[] = [
     {
       serviceId: 0,
       serviceName: 'All',
+      price: 1200,
     },
     {
       serviceId: 2,
       serviceName: 'Bridal',
+      price: 1000,
     },
     {
       serviceId: 3,
       serviceName: 'Party',
+      price: 4000,
     },
     {
       serviceId: 4,
       serviceName: 'Photoshoot',
+      price: 10000,
     },
     {
       serviceId: 5,
       serviceName: 'Saree',
+      price: 5000,
     },
     {
       serviceId: 6,
       serviceName: 'Hair',
+      price: 300,
     },
   ];
 

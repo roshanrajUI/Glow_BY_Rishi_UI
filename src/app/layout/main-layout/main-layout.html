@@ -1,5 +1,5 @@
 <!-- <div class="header p-4 border_bottom">
-    <h3 class="logo heading_color">Glow <span class="primary-color italic">by </span> Rishi</h3>
+    <h3 class="logo heading-color">Glow <span class="primary-color italic">by </span> Rishi</h3>
     <mat-icon mat-icon-button [matMenuTriggerFor]="menu">menu</mat-icon>
 </div>
 
@@ -27,7 +27,7 @@
     <div class="d-flex justify-between align-center p-3 heading">
       <h3 class="fw-semibold">Menu</h3>
 
-      <button mat-icon-button (click)="drawer.close()">
+      <button type="button" mat-icon-button (click)="drawer.close()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
@@ -36,7 +36,9 @@
       <a class="pl-4" (click)="goToSection('services', drawer)">Services</a>
       <a class="pl-4" (click)="goToSection('artist', drawer)">About Us</a>
       <a class="pl-4" (click)="goToSection('get-in-touch', drawer)">Contact Us</a>
-      <button class="btn-book w-100" (click)="drawer.close()">Book Now</button>
+      <button type="button" class="btn-book w-100" (click)="openBookNowDialog(true, drawer)">
+        Book Now
+      </button>
     </div>
   </mat-sidenav>
 
@@ -44,9 +46,9 @@
   <mat-sidenav-content>
     <!-- Header -->
     <div class="d-flex justify-between align-center p-3 mobile-header glass-card">
-      <h3 class="logo heading_color">Glow <span class="primary-color italic">by </span> Rishi</h3>
+      <h3 class="logo heading-color">Glow <span class="primary-color italic">by </span> Rishi</h3>
 
-      <button mat-icon-button class="text-lg" (click)="drawer.toggle()">
+      <button type="button" mat-icon-button class="fs-lg" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
     </div>
@@ -56,11 +58,11 @@
         <a (click)="goToSection('services', drawer)" class="ml-5">Services</a>
         <a (click)="goToSection('my-work', drawer)">My Work</a>
       </div>
-      <h3 class="logo heading_color">Glow <span class="primary-color italic">by </span> Rishi</h3>
+      <h3 class="logo heading-color">Glow <span class="primary-color italic">by </span> Rishi</h3>
       <div class="d-flex justify-end align-center g-2">
         <a (click)="goToSection('artist', drawer)">About Us</a>
         <a (click)="goToSection('get-in-touch', drawer)" class="ml-5">Contact</a>
-        <button class="ml-5 btn-book">Book Now</button>
+        <button type="button" class="ml-5 btn-book" (click)="openBookNowDialog()">Book Now</button>
       </div>
     </div>
 

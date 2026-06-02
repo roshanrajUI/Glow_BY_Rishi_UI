@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Footer } from '../../shared/components/footer/footer';
+import { MatDialog } from '@angular/material/dialog';
+import { BookNowDialog } from '../../features/book-now-dialog/book-now-dialog';
 
 @Component({
   selector: 'app-main-layout',
@@ -14,6 +16,7 @@ import { Footer } from '../../shared/components/footer/footer';
 })
 export class MainLayout {
   constructor() {}
+  dialog = inject(MatDialog);
 
   goToSection(sectionId: string, drawer?: any) {
     drawer?.close();
@@ -28,5 +31,16 @@ export class MainLayout {
         });
       }
     }, 200);
+  }
+
+  openBookNowDialog(isSide = false, drawer?: any) {
+    if (isSide) drawer?.close();
+    this.dialog.open(BookNowDialog, {
+      width: '600px',
+      height: '600px',
+      data: {
+        name: 'roshan',
+      },
+    });
   }
 }

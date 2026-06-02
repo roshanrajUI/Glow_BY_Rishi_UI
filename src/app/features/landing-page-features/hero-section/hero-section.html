@@ -1,11 +1,13 @@
 <div class="hero-section">
   <div class="hero-section-content">
     <div class="services">
-      <ng-template ngFor let-service [ngForOf]="services">
-        <span class="flex-center">
-          <mat-icon>fiber_manual_record</mat-icon> {{ service | uppercase }}
-        </span>
-      </ng-template>
+      @for (service of services; track service) {
+        <div>
+          <span class="flex-center">
+            <mat-icon>fiber_manual_record</mat-icon> {{ service | uppercase }}
+          </span>
+        </div>
+      }
     </div>
 
     <h1 class="super-header">
@@ -19,11 +21,13 @@
     </p>
 
     <div class="book-and-explore">
-      <button type="button" class="btn-book">Book an Appointment</button>
+      <button type="button" class="btn-book" (click)="openBookNowDialog()">
+        Book an Appointment
+      </button>
       <a href="#">EXPLOR SERVICES</a>
     </div>
 
-    <div class="experiance-and-count">
+    <div class="experience-and-count">
       <div>
         <h1>12 <span>+</span></h1>
         <p>YEARS OF ARTISTRY</p>
@@ -40,11 +44,10 @@
   <div class="hero-section-photos">
     <!-- <div> -->
     <div class="img-inner">
-      <img src="../../../../assets/images/hero-bride-portrait.jpg" alt="bride portraite" />
+      <img src="../../../../assets/images/hero-bride-portrait.jpg" alt="bride portrait" />
     </div>
     <div class="img-outer">
       <img src="../../../../assets/images/service-mehendi.jpg" alt="mehendi" />
     </div>
-    <!-- </div> -->
   </div>
 </div>

@@ -1,0 +1,210 @@
+@use '../../partial-scss/variables' as *;
+
+.book-now-container {
+  .star-icon {
+    font-size: 18px;
+    height: 16px;
+    width: 16px;
+  }
+
+  .book-service {
+    .dialog-close {
+      background-color: white;
+    }
+  }
+}
+
+.service-details {
+  padding: 0.5rem;
+  color: $gray;
+  border: 1px solid $border_dividers;
+
+  &:hover {
+    border-color: $primary_text;
+    color: $primary_text;
+  }
+}
+
+.selected-service {
+  background-color: #f6ede8;
+  border-color: $primary_text;
+  color: $primary_text;
+}
+
+.custom-stepper {
+  background: transparent;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding: 0 !important;
+  margin-top: 1rem;
+}
+
+::ng-deep .mat-step-header,
+::ng-deep .mat-horizontal-stepper-header-container,
+::ng-deep .mat-horizontal-stepper-header,
+::ng-deep .mat-step-header,
+::ng-deep .mat-horizontal-stepper-header {
+  height: 2rem !important;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-step-header .mat-step-header-ripple {
+  display: none !important;
+}
+
+::ng-deep .mat-step-header {
+  pointer-events: none;
+}
+
+::ng-deep .mat-step-icon {
+  background-color: white !important;
+  color: #c97d67 !important;
+  border: 1px solid #d9a18f;
+  width: 42px;
+  height: 42px;
+}
+
+::ng-deep .mat-step-icon-selected {
+  background-color: #c97d67 !important;
+  color: white !important;
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+  border-top-color: #e4c5bb !important;
+}
+
+// cutome checkbox
+::ng-deep .custom-checkbox .mdc-checkbox__background {
+  border-color: #c97d67 !important;
+  border-radius: 50% !important;
+}
+
+::ng-deep .custom-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: #c97d67 !important;
+  border-color: #c97d67 !important;
+  border-radius: 50% !important;
+}
+
+::ng-deep .custom-checkbox .mdc-checkbox__checkmark {
+  color: white !important;
+}
+
+/* Remove ripple/background effect */
+::ng-deep .custom-checkbox .mat-mdc-checkbox-ripple,
+::ng-deep .custom-checkbox .mdc-checkbox__ripple {
+  display: none !important;
+}
+
+/* Remove hover/focus background */
+::ng-deep .custom-checkbox .mdc-form-field {
+  background: transparent !important;
+}
+// end of custom checkbox
+
+// custome time ::picker
+::ng-deep .custom-timepicker {
+  /* Label */
+  .mdc-floating-label {
+    color: #c97d67 !important;
+  }
+
+  /* Input text */
+  input {
+    color: #c97d67 !important;
+  }
+
+  /* Outline border */
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: #c97d67 !important;
+  }
+
+  /* Focus border */
+  &.mat-focused .mdc-notched-outline__leading,
+  &.mat-focused .mdc-notched-outline__notch,
+  &.mat-focused .mdc-notched-outline__trailing {
+    border-color: #c97d67 !important;
+    border-width: 2px !important;
+  }
+
+  /* Toggle icon */
+  mat-icon {
+    color: #c97d67 !important;
+  }
+}
+
+::ng-deep .mat-timepicker-content {
+  /* Selected hour/minute */
+  .mat-timepicker-dial__item_active {
+    background-color: #c97d67 !important;
+    color: white !important;
+  }
+
+  /* Clock hand */
+  .mat-timepicker-dial__hand {
+    background-color: #c97d67 !important;
+  }
+
+  /* Clock center dot */
+  .mat-timepicker-dial__center {
+    background-color: #c97d67 !important;
+  }
+}
+
+::ng-deep .custom-timepicker {
+  /* Default border */
+  .mdc-notched-outline > * {
+    border-color: #c97d67 !important;
+  }
+
+  /* Hover border */
+  &:hover .mdc-notched-outline > * {
+    border-color: #c97d67 !important;
+  }
+
+  /* Focus border */
+  &.mat-focused .mdc-notched-outline > * {
+    border-color: #c97d67 !important;
+    border-width: 2px !important;
+  }
+
+  /* Label color */
+  .mdc-floating-label {
+    color: #c97d67 !important;
+  }
+
+  /* Input text */
+  input {
+    color: #c97d67 !important;
+  }
+
+  /* Icon color */
+  mat-icon {
+    color: #c97d67 !important;
+  }
+}
+
+// stepper 3
+
+.confirmation-container {
+  .appointment-details {
+    background-color: #f6ede8;
+    border: 1px solid $border_dividers;
+    color: $gray;
+
+    & > div {
+      margin-bottom: 0.8rem;
+
+      span {
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+
+    & > div:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

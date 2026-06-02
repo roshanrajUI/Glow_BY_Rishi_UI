@@ -2,32 +2,32 @@
   <h4 class="feature-heading text-center">My Work</h4>
   <h1 class="feature-description text-center">
     Looks made <br />
-    with <span class="italic"> love & care.</span>
+    with <span class="italic"> love &amp; care.</span>
   </h1>
 
   <div class="work-gallery d-flex flex-wrap justify-center g-4">
     @for (service of services; track service.serviceId) {
-      <button class="work-button" (click)="getServiceWork(service.serviceId)">
+      <button type="button" class="work-button" (click)="getServiceWork(service.serviceId)">
         {{ service.serviceName }}
       </button>
     }
   </div>
 
   <div class="my-work-container mt-5">
-    @for (work of myWorks; track work.serviceId; let i = $index) {
+    @for (work of myWorks; track i; let i = $index) {
       <div class="work-item">
-        <img [src]="work.image" alt="Work {{ i + 1 }}" class="work-image" />
+        <img [src]="work.image" alt="Work" class="work-image" />
         <div class="work-info">
-          <h3 class="work-description text-sm capitalize">
+          <h3 class="work-description fs-sm capitalize">
             <i>{{ work.description }}</i>
           </h3>
-          <p class="work-title upper-case fw-light text-xs">{{ work.title }}</p>
+          <p class="work-title upper-case fw-light fs-xs">{{ work.title }}</p>
         </div>
       </div>
     }
   </div>
 
-  <p (click)="showMoreWorks()" class="text-xs text-primary fw-semibold text-right mt-4">
+  <p (click)="showMoreWorks()" class="fs-xs text-primary fw-semibold text-right mt-4">
     Show More...
   </p>
 </div>

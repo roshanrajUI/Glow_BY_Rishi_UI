@@ -13,7 +13,7 @@ body {
   // font-family: 'Cormorant Garamond', serif;
   // font-family: 'Playfair Display', serif;
   font-family: 'Poppins', sans-serif;
-  color: $body_text;
+  // color: $body_text;
   letter-spacing: 2px;
 }
 
@@ -71,7 +71,7 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   color: $primary_text;
 }
 
-.bold_text {
+.bold-text {
   color: $body_text;
 }
 
@@ -79,11 +79,11 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   color: $heading;
 }
 
-.heading_color {
+.heading-color {
   color: $heading;
 }
 
-.body_text {
+.body-text {
   color: $body_text;
 }
 
@@ -136,7 +136,7 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
 }
 
 .btn-book {
-  padding: 1.3rem 1rem;
+  padding: 1rem;
   text-transform: uppercase;
   background-color: $footer_bg;
   color: $white_color;
