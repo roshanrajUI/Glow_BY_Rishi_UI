@@ -6,9 +6,9 @@
   </h1>
 
   <div class="work-gallery d-flex flex-wrap justify-center g-4">
-    @for (service of services; track service.serviceId) {
-      <button type="button" class="work-button" (click)="getServiceWork(service.serviceId)">
-        {{ service.serviceName }}
+    @for (category of categories; track category.categoryId) {
+      <button type="button" class="work-button" (click)="getServiceWork(category.categoryId)">
+        {{ category.categoryName | uppercase }}
       </button>
     }
   </div>

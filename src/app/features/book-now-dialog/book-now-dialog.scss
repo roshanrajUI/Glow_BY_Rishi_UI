@@ -208,3 +208,24 @@
     }
   }
 }
+
+.select-service {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mat-expansion-panel {
+  border: 1px solid $border_dividers;
+}
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: none;
+}
+.mat-expansion-panel-header-description {
+  justify-content: end;
+}
+
+.calendar-card {
+  box-shadow: none;
+}

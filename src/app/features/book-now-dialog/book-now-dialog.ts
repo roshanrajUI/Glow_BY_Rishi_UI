@@ -12,6 +12,8 @@ import { MatTimepickerModule } from '@angular/material/timepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { dummyCategories } from '../../../assets/images/dummy/dummy';
 
 @Component({
   selector: 'app-book-now-dialog',
@@ -28,51 +30,24 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     MatInputModule,
     MatTimepickerModule,
     ReactiveFormsModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './book-now-dialog.html',
   styleUrl: './book-now-dialog.scss',
 })
 export class BookNowDialog implements OnInit {
-  constructor(private fb: FormBuilder) {}
-
+  constructor(private readonly fb: FormBuilder) {}
   readonly dialogRef = inject(MatDialogRef<BookNowDialog>);
   readonly data = inject<any>(MAT_DIALOG_DATA);
   customerDetailsForm: FormGroup = new FormGroup({});
   selectedDate = model<Date | null>(new Date());
-  services: { serviceId: number; serviceName: string; price: number }[] = [
-    {
-      serviceId: 1,
-      serviceName: 'All',
-      price: 1200,
-    },
-    {
-      serviceId: 2,
-      serviceName: 'Bridal',
-      price: 1000,
-    },
-    {
-      serviceId: 3,
-      serviceName: 'Party',
-      price: 4000,
-    },
-    {
-      serviceId: 4,
-      serviceName: 'Photoshoot',
-      price: 10000,
-    },
-    {
-      serviceId: 5,
-      serviceName: 'Saree',
-      price: 5000,
-    },
-    {
-      serviceId: 6,
-      serviceName: 'Hair',
-      price: 300,
-    },
-  ];
+  categories = dummyCategories;
+  selectedServices: string[] = [];
+  today = model<Date | null>(new Date());
 
-  selectedServices: number[] = [];
   ngOnInit(): void {
     this.createCustomerDetailsForm();
   }
@@ -89,7 +64,7 @@ export class BookNowDialog implements OnInit {
     this.dialogRef.close();
   }
 
-  addService(event: MatCheckboxChange, selectedServiceId: number) {
+  addService(event: MatCheckboxChange, selectedServiceId: string) {
     if (event.checked) {
       this.selectedServices.push(selectedServiceId);
     } else {
@@ -101,7 +76,7 @@ export class BookNowDialog implements OnInit {
     console.log(this.selectedServices);
   }
 
-  isSelectedService(serviceId: number): boolean {
+  isSelectedService(serviceId: string): boolean {
     const result = this.selectedServices.find((id) => id === serviceId);
     return !!result;
   }

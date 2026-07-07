@@ -41,6 +41,7 @@ export class MainLayout {
       data: {
         name: 'roshan',
       },
+      disableClose: true,
     });
   }
 }

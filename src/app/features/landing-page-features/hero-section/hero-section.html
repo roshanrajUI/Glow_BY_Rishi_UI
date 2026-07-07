@@ -1,10 +1,10 @@
 <div class="hero-section">
   <div class="hero-section-content">
-    <div class="services">
-      @for (service of services; track service) {
+    <div class="categories">
+      @for (category of categories; track category.categoryId) {
         <div>
           <span class="flex-center">
-            <mat-icon>fiber_manual_record</mat-icon> {{ service | uppercase }}
+            <mat-icon>fiber_manual_record</mat-icon> {{ category.categoryName | uppercase }}
           </span>
         </div>
       }

@@ -21,23 +21,39 @@
   </div>
   <mat-stepper linear #stepper class="custom-stepper mt-5">
     <mat-step class="my-5">
-      <div class="select-service mt-3">
-        @for (service of services; track service.serviceId) {
-          <div
-            class="d-flex-between align-center service-details mt-3"
-            [ngClass]="{
-              'selected-service': isSelectedService(service.serviceId),
-            }"
-          >
-            <mat-checkbox (change)="addService($event, service.serviceId)" class="custom-checkbox">
-              {{ service.serviceName }}
-            </mat-checkbox>
+      <div class="select-service">
+        @for (category of categories; track category.categoryId) {
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title> {{ category.categoryName }} </mat-panel-title>
+                <mat-panel-description>
+                  {{ category.services.length }} services
+                </mat-panel-description>
+              </mat-expansion-panel-header>
 
-            <p>
-              <mat-icon>currency_rupee</mat-icon>
-              {{ service.price }}
-            </p>
-          </div>
+              @for (service of category.services; track service.serviceId) {
+                <div
+                  class="d-flex-between align-center service-details"
+                  [ngClass]="{
+                    'selected-service': isSelectedService(service.serviceId),
+                  }"
+                >
+                  <mat-checkbox
+                    (change)="addService($event, service.serviceId)"
+                    class="custom-checkbox"
+                  >
+                    {{ service.serviceName }}
+                  </mat-checkbox>
+
+                  <p class="price-details">
+                    <mat-icon>currency_rupee</mat-icon>
+                    345
+                  </p>
+                </div>
+              }
+            </mat-expansion-panel>
+          </mat-accordion>
         }
       </div>
       <div class="d-flex justify-end mt-5">
@@ -49,17 +65,23 @@
       <div class="my-5">
         <mat-form-field class="w-100 custom-timepicker">
           <mat-label>Pick a time</mat-label>
-          <input matInput [matTimepicker]="picker" />
+          <input id="timepicker-input" matInput [matTimepicker]="picker" aria-label="Pick a time" />
           <mat-timepicker-toggle matIconSuffix [for]="picker" />
           <mat-timepicker #picker />
         </mat-form-field>
         <mat-form-field class="w-100">
           <mat-icon matPrefix>calendar_today</mat-icon>
-          <input type="tel" [value]="selectedDate()" matInput />
+          <input
+            type="tel"
+            [value]="selectedDate() | date: 'dd-MM-yyyy'"
+            matInput
+            readonly
+            aria-label="selected date"
+          />
         </mat-form-field>
 
-        <mat-card class="demo-inline-calendar-card">
-          <mat-calendar [(selected)]="selectedDate"></mat-calendar>
+        <mat-card class="calendar-card">
+          <mat-calendar [minDate]="today()" [(selected)]="selectedDate"></mat-calendar>
         </mat-card>
       </div>
       <div class="d-flex justify-end g-3">
@@ -92,7 +114,7 @@
           <div class="d-flex-between align-center">
             <span>Estimated Total</span>
             <span>
-              <!-- <mat-icon> rupee_currency </mat-icon> -->
+              <mat-icon> rupee_currency </mat-icon>
               12,300
             </span>
           </div>
@@ -100,28 +122,33 @@
 
         <form [formGroup]="customerDetailsForm" class="your-details mt-5">
           <h4 class="mb-5 heading-color">Your Details</h4>
-          <div>
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Full Name</mat-label>
-              <input matInput placeholder="Enter your full name" formControlName="fullName" />
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Phone Number</mat-label>
-              <input matInput placeholder="Enter your phone number" formControlName="phoneNumber" />
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Notes (Optional)</mat-label>
-              <textarea
-                matInput
-                placeholder="Venue, allergies, anything you'd love us to know..."
-                formControlName="notes"
-              ></textarea>
-            </mat-form-field>
-          </div>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Full Name</mat-label>
+            <input
+              matInput
+              placeholder="Enter your full name"
+              formControlName="fullName"
+              aria-label="Full Name"
+            />
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              placeholder="Enter your phone number"
+              formControlName="phoneNumber"
+              aria-label="Phone Number"
+            />
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Notes (Optional)</mat-label>
+            <textarea
+              matInput
+              placeholder="Venue, allergies, anything you'd love us to know..."
+              formControlName="notes"
+              aria-label="Notes (Optional)"
+            ></textarea>
+          </mat-form-field>
         </form>
       </div>
       <div class="d-flex-between">

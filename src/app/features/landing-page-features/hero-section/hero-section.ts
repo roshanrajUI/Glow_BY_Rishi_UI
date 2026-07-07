@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { BookNowDialog } from '../../book-now-dialog/book-now-dialog';
 import { MatDialog } from '@angular/material/dialog';
+import { dummyCategories } from '../../../../assets/images/dummy/dummy';
 
 @Component({
   selector: 'app-hero-section',
@@ -12,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class HeroSection {
   readonly dialog = inject(MatDialog);
-  services: string[] = ['Bridal', 'Party Makeup', 'Hair', 'Skin', 'Mehendi', 'Saree Draping'];
+  categories = dummyCategories;
 
   openBookNowDialog(isSide = false, drawer?: any) {
     if (isSide) drawer?.close();
@@ -22,6 +23,7 @@ export class HeroSection {
       data: {
         name: 'roshan',
       },
+      disableClose: true,
     });
   }
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { dummyCategories } from '../../../assets/images/dummy/dummy';
 
 @Component({
   selector: 'app-my-work-component',
@@ -9,72 +10,41 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './my-work-component.scss',
 })
 export class MyWorkComponent {
-  services: { serviceId: number; serviceName: string; price: number }[] = [
-    {
-      serviceId: 0,
-      serviceName: 'All',
-      price: 1200,
-    },
-    {
-      serviceId: 2,
-      serviceName: 'Bridal',
-      price: 1000,
-    },
-    {
-      serviceId: 3,
-      serviceName: 'Party',
-      price: 4000,
-    },
-    {
-      serviceId: 4,
-      serviceName: 'Photoshoot',
-      price: 10000,
-    },
-    {
-      serviceId: 5,
-      serviceName: 'Saree',
-      price: 5000,
-    },
-    {
-      serviceId: 6,
-      serviceName: 'Hair',
-      price: 300,
-    },
-  ];
+  categories = dummyCategories;
 
   myAllWorks = [
     {
-      serviceId: 1,
+      serviceId: '1',
       image: '../../../assets/images/service-makeup.jpg',
       title: 'Bridal Makeup',
       description: 'bridal super nice.',
     },
     {
-      serviceId: 2,
+      serviceId: '2',
       image: '../../../assets/images/service-hair.jpg',
       title: 'Party Glam',
       description: 'makeup super nice.',
     },
     {
-      serviceId: 3,
+      serviceId: '3',
       image: '../../../assets/images/service-skin.jpg',
       title: 'Photoshoot Ready',
       description: 'Photoshoot super.',
     },
     {
-      serviceId: 4,
+      serviceId: '4',
       image: '../../../assets/images/service-mehendi.jpg',
       title: 'Saree',
       description: 'Elegant and personalized saree .',
     },
     {
-      serviceId: 2,
+      serviceId: '5',
       image: '../../../assets/images/service-saree.jpg',
       title: 'Hair',
       description: 'Elegant and personalized .',
     },
     {
-      serviceId: 2,
+      serviceId: '5',
       image: '../../../assets/images/service-saree.jpg',
       title: 'Hair',
       description: 'Elegant and personalized .',
@@ -83,8 +53,8 @@ export class MyWorkComponent {
 
   myWorks = this.myAllWorks;
 
-  getServiceWork(serviceId: number) {
-    if (serviceId === 0) {
+  getServiceWork(serviceId: string) {
+    if (!serviceId) {
       this.myWorks = this.myAllWorks;
       return;
     }
