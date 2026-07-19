@@ -1,0 +1,59 @@
+<div class="my-5 work-gallery d-flex flex-wrap justify-center g-4">
+  <button type="button" class="secondary-button" (click)="getBookings()">All</button>
+  @for (status of bookingStatuses; track status) {
+    <button type="button" class="secondary-button" (click)="getBookings(status)">
+      {{ status }}
+    </button>
+  }
+</div>
+@for (booking of allBookings; track booking.bookingId) {
+  <div class="booking-card mb-3">
+    <div>
+      <div class="customer-info d-flex justify-between align-center mb-1">
+        <h2>{{ booking.client.clientName }}</h2>
+        <h2>${{ booking.totalPrice }}</h2>
+      </div>
+      <div class="d-flex justify-between align-center contact mb-1">
+        <div>
+          <span>{{ booking.client.email }}</span>
+          <span>·</span>
+          <span>{{ booking.client.phoneNumber }}</span>
+        </div>
+        <div class="status">{{ booking.status }}</div>
+      </div>
+
+      <div class="d-flex justify-between align-end mb-1">
+        <div>
+          <div class="booking-date mb-1">
+            {{ booking.bookingDate | date: 'dd/MM/yyyy' }}, {{ booking.bookingTime }}
+          </div>
+          <div class="booked-date mb-1">Booked {{ booking.createdAt | date: 'dd/MM/yyyy' }}</div>
+          <div class="note">“Cocktail night”</div>
+        </div>
+        <div class="d-flex justify-end align-center g-2">
+          <button class="secondary-button" (click)="updateBooking(booking.bookingId, 'Confirmed')">
+            Accept
+          </button>
+          <button class="secondary-button" (click)="updateBooking(booking.bookingId, 'Rejected')">
+            Reject
+          </button>
+          <button class="secondary-button" (click)="updateBooking(booking.bookingId, 'Cancelled')">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="services">
+      <h2 class="service-title mb-1">SERVICES (1)</h2>
+      @for (service of booking.bookingServices; track service.bookingServiceId) {
+        <div class="d-flex justify-between align-center service-row">
+          <span>{{ service.service.serviceName }}</span>
+          <span>${{ service.servicePrice }}</span>
+        </div>
+      }
+    </div>
+  </div>
+}

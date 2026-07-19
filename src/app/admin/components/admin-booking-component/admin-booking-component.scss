@@ -1,0 +1,74 @@
+@use '../../../partial-scss/variables' as *;
+
+.booking-card {
+  border: 1px solid $secondary;
+  background-color: $white-color;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.customer-info {
+  h2 {
+    font-size: 18px;
+    font-weight: 400;
+    color: $heading;
+  }
+}
+
+.contact {
+  span {
+    color: #a16f66;
+    font-size: 12px;
+  }
+
+  .status {
+    letter-spacing: 2px;
+    font-size: 14px;
+    color: #8f716a;
+  }
+}
+
+.booking-date {
+  font-size: 12px;
+  font-weight: 400;
+  color: #3f302c;
+}
+
+.booked-date {
+  font-size: 12px;
+  color: #a16f66;
+}
+
+.note {
+  font-size: 12px;
+  font-style: italic;
+  color: #8d7770;
+}
+
+/* Right Side */
+.booking-actions {
+  min-width: 320px;
+  text-align: right;
+
+  .price {
+    margin-bottom: 0.5rem;
+    font-size: 18px;
+    font-weight: 400;
+    color: #3f302c;
+  }
+}
+
+.divider {
+  height: 1px;
+  background: #e7d2cc;
+  margin: 12px 0;
+}
+
+.service-title {
+  font-size: 12px;
+  color: #b16f63;
+}
+
+.service-row {
+  font-size: 12px;
+}

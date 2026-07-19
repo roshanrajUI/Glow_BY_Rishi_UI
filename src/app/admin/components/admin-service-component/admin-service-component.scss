@@ -1,0 +1,7 @@
+.service-card {
+  max-height: calc(100vh - 200px);
+
+  .existing-services {
+    overflow-y: scroll;
+  }
+}

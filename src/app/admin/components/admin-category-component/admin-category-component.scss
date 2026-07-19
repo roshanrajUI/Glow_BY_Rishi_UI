@@ -1,0 +1,15 @@
+.delete-icon {
+  color: red;
+}
+
+.description {
+  font-size: 12px;
+}
+
+.category-card {
+  max-height: calc(100vh - 200px);
+
+  .existing-categories {
+    overflow-y: scroll;
+  }
+}

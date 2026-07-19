@@ -6,17 +6,18 @@
   </h1>
 
   <div class="work-gallery d-flex flex-wrap justify-center g-4">
+    <button type="button" class="secondary-button" (click)="getCategoryWorks('')">All</button>
     @for (category of categories; track category.categoryId) {
-      <button type="button" class="work-button" (click)="getServiceWork(category.categoryId)">
+      <button type="button" class="secondary-button" (click)="getCategoryWorks(category.categoryId)">
         {{ category.categoryName | uppercase }}
       </button>
     }
   </div>
 
   <div class="my-work-container mt-5">
-    @for (work of myWorks; track i; let i = $index) {
+    @for (work of myAllWorks; track i; let i = $index) {
       <div class="work-item">
-        <img [src]="work.image" alt="Work" class="work-image" />
+        <img [src]="'../../../assets/images/service-saree.jpg'" alt="Work" class="work-image" />
         <div class="work-info">
           <h3 class="work-description fs-sm capitalize">
             <i>{{ work.description }}</i>

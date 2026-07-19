@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { dummyCategories } from '../../../assets/images/dummy/dummy';
+import { Category, MyWorkRequest, MyWorks, Work } from '../models/common.interface';
+import { WorkService } from '../services/work-services/work-service';
+import { CategoryService } from '../services/category-services/category.service';
 
 @Component({
   selector: 'app-my-work-component',
@@ -9,60 +11,46 @@ import { dummyCategories } from '../../../assets/images/dummy/dummy';
   templateUrl: './my-work-component.html',
   styleUrl: './my-work-component.scss',
 })
-export class MyWorkComponent {
-  categories = dummyCategories;
+export class MyWorkComponent implements OnInit {
+  constructor(
+    private readonly categoryService: CategoryService,
+    private readonly workService: WorkService,
+  ) {}
+  categories: Category[] = [];
+  myAllWorks: Work[] = [];
 
-  myAllWorks = [
-    {
-      serviceId: '1',
-      image: '../../../assets/images/service-makeup.jpg',
-      title: 'Bridal Makeup',
-      description: 'bridal super nice.',
-    },
-    {
-      serviceId: '2',
-      image: '../../../assets/images/service-hair.jpg',
-      title: 'Party Glam',
-      description: 'makeup super nice.',
-    },
-    {
-      serviceId: '3',
-      image: '../../../assets/images/service-skin.jpg',
-      title: 'Photoshoot Ready',
-      description: 'Photoshoot super.',
-    },
-    {
-      serviceId: '4',
-      image: '../../../assets/images/service-mehendi.jpg',
-      title: 'Saree',
-      description: 'Elegant and personalized saree .',
-    },
-    {
-      serviceId: '5',
-      image: '../../../assets/images/service-saree.jpg',
-      title: 'Hair',
-      description: 'Elegant and personalized .',
-    },
-    {
-      serviceId: '5',
-      image: '../../../assets/images/service-saree.jpg',
-      title: 'Hair',
-      description: 'Elegant and personalized .',
-    },
-  ];
+  ngOnInit() {
+    this.getCategories();
+    this.getMyWorks();
+  }
 
-  myWorks = this.myAllWorks;
+  getCategories() {
+    this.categoryService.getAllCategories<Category[]>().subscribe((categories: Category[]) => {
+      this.categories = categories;
+    });
+  }
 
-  getServiceWork(serviceId: string) {
-    if (!serviceId) {
-      this.myWorks = this.myAllWorks;
+  getMyWorks(categoryId = '', serviceId = '', pageSize = 10, pageNumber = 1) {
+    const body: MyWorkRequest = {
+      categoryId,
+      serviceId,
+      pageSize,
+      pageNumber,
+    };
+    this.workService.getAllWorks<MyWorkRequest, MyWorks>(body).subscribe((works: MyWorks) => {
+      this.myAllWorks = works.data;
+    });
+  }
+
+  getCategoryWorks(categoryId: string) {
+    if (!categoryId) {
+      this.getMyWorks();
       return;
     }
-    this.myWorks = this.myAllWorks.filter((work) => work.serviceId === serviceId);
+    this.getMyWorks(categoryId);
   }
 
   showMoreWorks() {
-    // this.myWorks =
-    // api call with pagination
+    this.getMyWorks('', '', this.myAllWorks.length + 10, 1);
   }
 }

@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { BookNowDialog } from '../../book-now-dialog/book-now-dialog';
 import { MatDialog } from '@angular/material/dialog';
-import { dummyCategories } from '../../../../assets/images/dummy/dummy';
+import { Category } from '../../models/common.interface';
+import { CategoryService } from '../../services/category-services/category.service';
+import { SharedService } from '../../../shared/services/shared-service';
 
 @Component({
   selector: 'app-hero-section',
@@ -11,9 +13,25 @@ import { dummyCategories } from '../../../../assets/images/dummy/dummy';
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.scss',
 })
-export class HeroSection {
+export class HeroSection implements OnInit {
+  constructor(
+    private readonly categoryService: CategoryService,
+    private readonly sharedService: SharedService,
+  ) {}
   readonly dialog = inject(MatDialog);
-  categories = dummyCategories;
+  categories: Category[] = [];
+
+  ngOnInit() {
+    this.getCategories();
+  }
+
+  getCategories() {
+    this.categoryService.getAllCategories<Category[]>().subscribe((categories: Category[]) => {
+      this.categories = categories;
+      debugger;
+      this.sharedService.$categories.set(categories);
+    });
+  }
 
   openBookNowDialog(isSide = false, drawer?: any) {
     if (isSide) drawer?.close();

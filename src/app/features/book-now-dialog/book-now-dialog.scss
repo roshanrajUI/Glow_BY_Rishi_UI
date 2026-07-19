@@ -20,15 +20,15 @@
   border: 1px solid $border_dividers;
 
   &:hover {
-    border-color: $primary_text;
-    color: $primary_text;
+    border-color: $primary_color;
+    color: $primary_color;
   }
 }
 
 .selected-service {
   background-color: #f6ede8;
-  border-color: $primary_text;
-  color: $primary_text;
+  border-color: $primary_color;
+  color: $primary_color;
 }
 
 .custom-stepper {

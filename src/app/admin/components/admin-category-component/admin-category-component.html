@@ -1,0 +1,41 @@
+<div class="d-flex justify-between g-5 mt-5 category-card">
+  <div class="card w-50">
+    <h2 class="card-heading">Add Category</h2>
+    <form [formGroup]="categoryForm" class="mt-5">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label for="categoryName">Name</mat-label>
+        <input
+          id="categoryName"
+          type="text"
+          matInput
+          formControlName="categoryName"
+          aria-label="Category Name"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Description</mat-label>
+        <textarea
+          rows="7"
+          type="text"
+          matInput
+          formControlName="description"
+          aria-label="Category Description"
+        ></textarea>
+      </mat-form-field>
+
+      <button class="btn-book" type="submit">Add Category</button>
+    </form>
+  </div>
+  <div class="card existing-categories w-50">
+    @for (category of existingCategories; track category.categoryId) {
+      <div class="card mb-3 d-flex-between align-center">
+        <div>
+          <h2 class="card-heading mb-1">{{ category.categoryName }}</h2>
+          <p class="description">{{ category.description }}</p>
+        </div>
+        <mat-icon class="delete-icon">delete</mat-icon>
+      </div>
+    }
+  </div>
+</div>

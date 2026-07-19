@@ -68,7 +68,15 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
 }
 
 .primary-color {
-  color: $primary_text;
+  color: $primary_color;
+}
+
+.danger-color {
+  color: $danger_color;
+}
+
+.success-color {
+  color: $success_color;
 }
 
 .bold-text {
@@ -146,7 +154,7 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
 }
 
 .feature-heading {
-  color: $primary_text;
+  color: $primary_color;
   font-size: 1.2rem;
   text-transform: uppercase;
   font-weight: 600;
@@ -184,4 +192,47 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   .content {
     padding: 24px;
   }
+}
+
+.secondary-button {
+  padding: 0rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: $white_color;
+  color: $gray;
+  border: 1px solid $border_dividers;
+
+  &:hover {
+    border-color: $primary_color;
+    color: $primary_color;
+  }
+
+  &:active,
+  &:focus {
+    background-color: $heading;
+    color: $white_color;
+    border-color: $heading;
+  }
+}
+
+mat-icon {
+  cursor: pointer;
+}
+// common styles
+.card {
+  border: 1px solid $secondary;
+  background-color: $white-color;
+  padding: 1.5rem;
+
+  .card-heading {
+    font-size: 18px;
+    font-weight: 400;
+    color: $heading;
+  }
+}
+
+.price {
+  font-size: 16px;
+  font-family: none;
+  color: gray;
 }

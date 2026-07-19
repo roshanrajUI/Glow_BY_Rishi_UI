@@ -1,0 +1,65 @@
+<div class="d-flex justify-between g-5 mt-5 service-card">
+  <div class="card w-50">
+    <h2 class="card-heading">Add Category</h2>
+
+    <form [formGroup]="serviceForm" class="mt-5">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Choose Category</mat-label>
+        <mat-select formControlName="categoryId" aria-label="Service Category">
+          @for (category of categories; track category.categoryId) {
+            <mat-option [value]="category.categoryId">{{ category.categoryName }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label for="serviceName">Service Name</mat-label>
+        <input
+          id="serviceName"
+          type="text"
+          matInput
+          formControlName="serviceName"
+          aria-label="Service Name"
+        />
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label for="price">Price</mat-label>
+        <input
+          id="price"
+          type="number"
+          matInput
+          formControlName="price"
+          aria-label="Service price"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label for="description">Description</mat-label>
+        <textarea
+          id="description"
+          type="text"
+          matInput
+          formControlName="description"
+          aria-label="Service Description"
+        ></textarea>
+      </mat-form-field>
+      <input type="file" />
+    </form>
+  </div>
+  <div class="w-50 existing-services">
+    @for (service of services; track service.serviceId) {
+      <div class="card d-flex-between mb-3">
+        <div class="w-75">
+          <h2 class="fs-lg fw-medium primary-color italic mb-1">
+            {{ service.category.categoryName }}
+          </h2>
+          <h2 class="card-heading mb-1">{{ service.serviceName }}</h2>
+          <h2 class="price mb-1">${{ service.price }}</h2>
+          <p class="description fs-xs">{{ service.description }}</p>
+        </div>
+        <div>
+          <mat-icon class="success-color mr-1">edit</mat-icon>
+          <mat-icon class="danger-color">delete</mat-icon>
+        </div>
+      </div>
+    }
+  </div>
+</div>

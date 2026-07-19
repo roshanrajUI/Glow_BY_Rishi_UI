@@ -1,26 +1,5 @@
 @use '../../partial-scss/variables' as *;
 
-.work-button {
-  padding: 0rem 1rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background-color: $white_color;
-  color: $gray;
-  border: 1px solid $border_dividers;
-
-  &:hover {
-    border-color: $primary_text;
-    color: $primary_text;
-  }
-
-  &:active,
-  &:focus {
-    background-color: $heading;
-    color: $white_color;
-    border-color: $heading;
-  }
-}
-
 .my-work-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

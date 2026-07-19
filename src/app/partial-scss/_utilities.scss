@@ -102,6 +102,10 @@ $font-weights: (
   width: 100%;
 }
 
+.w-75 {
+  width: 75%;
+}
+
 .w-50 {
   width: 50%;
 }
@@ -143,12 +147,12 @@ $font-weights: (
   font-size: 1rem;
 } // 16px
 .fs-lg {
-  font-size: 1.25rem;
-} // 20px
+  font-size: 18px;
+} // 18px
 
 //text colors
 .text-primary {
-  color: $primary_text;
+  color: $primary_color;
 }
 .text-secondary {
   color: $secondary;

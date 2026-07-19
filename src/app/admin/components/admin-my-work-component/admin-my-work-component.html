@@ -1,0 +1,59 @@
+<div class="d-flex justify-between g-5 mt-5 mywork-card">
+  <div class="card w-50">
+    <h2 class="card-heading">Add to My Work</h2>
+
+    <form [formGroup]="myWorkForm" class="mt-5">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Choose Service</mat-label>
+        <mat-select formControlName="serviceId" aria-label="service work">
+          @for (service of services; track service.serviceId) {
+            <mat-option [value]="service.serviceId">{{ service.serviceName }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label for="workTitle">Title</mat-label>
+        <input
+          id="workTitle"
+          type="text"
+          matInput
+          formControlName="title"
+          aria-label="Work Title"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label for="description">Description</mat-label>
+        <textarea
+          id="description"
+          rows="5"
+          type="text"
+          matInput
+          formControlName="description"
+          aria-label="Service Description"
+        ></textarea>
+      </mat-form-field>
+      <input type="file" formControlName="img" />
+      <button type="submit" class="btn-book">Add Work</button>
+    </form>
+  </div>
+  <div class="w-50 existing-works">
+    @for (work of myWorks; track work.workId) {
+      <div class="card d-flex-between mb-3">
+        <div class="w-75 d-flex g-3">
+          <div class="work-img">
+            <img src="../../../../assets/images/service-hair.jpg" alt="" />
+          </div>
+          <div>
+            <h2 class="card-heading">{{ work.title }}</h2>
+            <p class="description fs-xs">{{ work.service.category.categoryName }}</p>
+            <p class="description fs-xs">{{ work.service.serviceName }}</p>
+          </div>
+        </div>
+        <div>
+          <mat-icon class="success-color mr-1">edit</mat-icon>
+          <mat-icon class="danger-color">delete</mat-icon>
+        </div>
+      </div>
+    }
+  </div>
+</div>
