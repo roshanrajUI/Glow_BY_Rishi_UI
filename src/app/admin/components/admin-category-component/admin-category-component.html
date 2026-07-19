@@ -1,6 +1,6 @@
 <div class="d-flex justify-between g-5 mt-5 category-card">
   <div class="card w-50">
-    <h2 class="card-heading">Add Category</h2>
+    <h2 class="card-heading">{{ isEditCategory ? 'Edit' : 'Add' }} Category</h2>
     <form [formGroup]="categoryForm" class="mt-5">
       <mat-form-field class="w-100" appearance="outline">
         <mat-label for="categoryName">Name</mat-label>
@@ -24,7 +24,14 @@
         ></textarea>
       </mat-form-field>
 
-      <button class="btn-book" type="submit">Add Category</button>
+      @if (isEditCategory) {
+        <div class="d-flex g-5">
+          <button class="btn-book" type="submit" (click)="updateCategory()">Edit Category</button>
+          <button class="secondary-button" type="button" (click)="cancelUpdate()">Cancel</button>
+        </div>
+      } @else {
+        <button class="btn-book" type="submit" (click)="saveCategory()">Add Category</button>
+      }
     </form>
   </div>
   <div class="card existing-categories w-50">
@@ -34,7 +41,10 @@
           <h2 class="card-heading mb-1">{{ category.categoryName }}</h2>
           <p class="description">{{ category.description }}</p>
         </div>
-        <mat-icon class="delete-icon">delete</mat-icon>
+        <div>
+          <mat-icon class="success-color mr-2" (click)="editCategory(category)">edit</mat-icon>
+          <mat-icon class="danger-color" (click)="deleteCategory(category)">delete</mat-icon>
+        </div>
       </div>
     }
   </div>

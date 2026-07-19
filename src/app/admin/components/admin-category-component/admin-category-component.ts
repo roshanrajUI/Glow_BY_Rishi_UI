@@ -28,6 +28,9 @@ export class AdminCategoryComponent implements OnInit {
   ) {}
   categoryForm: FormGroup = new FormGroup({});
   existingCategories: Category[] = [];
+  isEditCategory = false;
+  updatingCategoryId = '';
+
   ngOnInit(): void {
     this.createForm();
     this.getCategories();
@@ -46,5 +49,64 @@ export class AdminCategoryComponent implements OnInit {
         this.existingCategories = res;
       },
     });
+  }
+
+  saveCategory() {
+    if (this.categoryForm.invalid) return;
+
+    const { categoryName, description } = this.categoryForm.value;
+    const body = {
+      categoryName,
+      description,
+    };
+
+    this.categoryService.createCategory<unknown, Category>(body).subscribe({
+      next: (res: Category) => {
+        this.getCategories();
+      },
+    });
+  }
+
+  editCategory(category: Category) {
+    this.categoryForm.patchValue({
+      categoryName: category.categoryName,
+      description: category.description,
+    });
+
+    this.isEditCategory = true;
+    this.updatingCategoryId = category.categoryId;
+  }
+
+  updateCategory() {
+    if (this.categoryForm.invalid) return;
+
+    const { categoryName, description } = this.categoryForm.value;
+    const body = {
+      categoryName,
+      description,
+      isActive: true,
+    };
+    this.categoryService.updateCategory<unknown, boolean>(body, this.updatingCategoryId).subscribe({
+      next: (res: boolean) => {
+        this.getCategories();
+        this.cancelUpdate();
+      },
+    });
+  }
+
+  deleteCategory(category: Category) {
+    this.categoryService.deleteCategory<boolean>(category.categoryId).subscribe({
+      next: (res: boolean) => {
+        this.getCategories();
+      },
+    });
+  }
+
+  cancelUpdate() {
+    this.categoryForm.reset();
+    this.categoryForm.markAsUntouched();
+    this.categoryForm.updateValueAndValidity();
+    this.isEditCategory = false;
+    this.updatingCategoryId = '';
   }
 }

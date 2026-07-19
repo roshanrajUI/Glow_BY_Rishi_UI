@@ -1,6 +1,7 @@
 export const API_URL = {
   BASE_URL: 'http://localhost:8080/api/v1/',
-  CATEGORIES: 'categories/all',
+  CATEGORIES: 'categories',
+  GETCATEGORIES: 'categories/all',
   SERVICES: 'services/all',
   WORKS: 'my-works',
   BOOKINGS: 'bookings',
