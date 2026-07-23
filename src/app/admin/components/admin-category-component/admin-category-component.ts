@@ -63,6 +63,7 @@ export class AdminCategoryComponent implements OnInit {
     this.categoryService.createCategory<unknown, Category>(body).subscribe({
       next: (res: Category) => {
         this.getCategories();
+        this.categoryForm.reset();
       },
     });
   }

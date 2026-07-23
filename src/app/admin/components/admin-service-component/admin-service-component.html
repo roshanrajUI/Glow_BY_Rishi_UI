@@ -1,6 +1,6 @@
 <div class="d-flex justify-between g-5 mt-5 service-card">
   <div class="card w-50">
-    <h2 class="card-heading">Add Category</h2>
+    <h2 class="card-heading">{{ isEditService ? 'Update' : 'Add' }} Service</h2>
 
     <form [formGroup]="serviceForm" class="mt-5">
       <mat-form-field class="w-100" appearance="outline">
@@ -34,6 +34,7 @@
       <mat-form-field appearance="outline" class="w-100">
         <mat-label for="description">Description</mat-label>
         <textarea
+          rows="1"
           id="description"
           type="text"
           matInput
@@ -41,7 +42,15 @@
           aria-label="Service Description"
         ></textarea>
       </mat-form-field>
-      <input type="file" />
+      <input type="file" /><br />
+      @if (isEditService) {
+        <div class="d-flex g-5 mt-3">
+          <button class="btn-book" type="submit" (click)="updateService()">Edit Service</button>
+          <button class="secondary-button" type="button" (click)="cancelUpdate()">Cancel</button>
+        </div>
+      } @else {
+        <button class="btn-book mt-3" type="submit" (click)="saveService()">Add Service</button>
+      }
     </form>
   </div>
   <div class="w-50 existing-services">
@@ -56,8 +65,8 @@
           <p class="description fs-xs">{{ service.description }}</p>
         </div>
         <div>
-          <mat-icon class="success-color mr-1">edit</mat-icon>
-          <mat-icon class="danger-color">delete</mat-icon>
+          <mat-icon class="success-color mr-1" (click)="editService(service)">edit</mat-icon>
+          <mat-icon class="danger-color" (click)="deleteService(service)">delete</mat-icon>
         </div>
       </div>
     }

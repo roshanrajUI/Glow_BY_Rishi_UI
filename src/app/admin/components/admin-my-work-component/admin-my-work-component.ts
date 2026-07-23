@@ -35,6 +35,9 @@ export class AdminMyWorkComponent implements OnInit {
   myWorkForm: FormGroup = new FormGroup({});
   services: Service[] = [];
   myWorks: Work[] = [];
+  isEditMyWork = false;
+  updatingMyWorkId = '';
+
   ngOnInit(): void {
     this.createForm();
     this.getAllServices();
@@ -46,7 +49,7 @@ export class AdminMyWorkComponent implements OnInit {
       serviceId: ['', Validators.required],
       title: ['', Validators.required],
       description: [''],
-      img: ['', Validators.required],
+      imageUrl: [''],
     });
   }
 
@@ -70,5 +73,74 @@ export class AdminMyWorkComponent implements OnInit {
         this.myWorks = res.data;
       },
     });
+  }
+
+  saveWork() {
+    if (this.myWorkForm.invalid) return;
+
+    const { serviceId, title, description, imageUrl } = this.myWorkForm.value;
+    const body = {
+      serviceId,
+      title,
+      description,
+      imageUrl,
+    };
+
+    this.workService.createMyWork<unknown, boolean>(body).subscribe({
+      next: (res: boolean) => {
+        if (res) {
+          this.cancelUpdate();
+          this.getAllWorks();
+        }
+      },
+    });
+  }
+
+  editMyWork(myWork: Work) {
+    this.myWorkForm.patchValue({
+      serviceId: myWork.serviceId,
+      title: myWork.title,
+      description: myWork.description,
+      imageUrl: myWork.imageUrl,
+    });
+
+    this.isEditMyWork = true;
+    this.updatingMyWorkId = myWork.workId;
+  }
+
+  updateMyWork() {
+    if (this.myWorkForm.invalid) return;
+
+    const { serviceId, title, description, imageUrl } = this.myWorkForm.value;
+    const body = {
+      serviceId,
+      title,
+      description,
+      imageUrl,
+    };
+    this.workService
+      .updateMyWork<unknown, boolean>(this.updatingMyWorkId, this.myWorkForm.value)
+      .subscribe({
+        next: (res: boolean) => {
+          this.getAllWorks();
+          this.cancelUpdate();
+        },
+      });
+  }
+
+  deleteMyWork(myWork: Work) {
+    this.workService.deleteMyWork<boolean>(myWork.workId).subscribe({
+      next: (res: boolean) => {
+        if (res) this.getAllWorks();
+      },
+    });
+  }
+
+  cancelUpdate() {
+    this.myWorkForm.reset();
+    this.myWorkForm.markAsUntouched();
+    this.myWorkForm.updateValueAndValidity();
+    this.isEditMyWork = false;
+    this.updatingMyWorkId = '';
   }
 }

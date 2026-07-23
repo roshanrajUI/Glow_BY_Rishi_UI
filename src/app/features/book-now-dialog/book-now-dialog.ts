@@ -11,9 +11,17 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTimepickerModule } from '@angular/material/timepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { dummyCategories } from '../../../assets/images/dummy/dummy';
+import { Category, Service } from '../models/common.interface';
+import { CategoryService } from '../services/category-services/category.service';
+import { BookingService } from '../services/booking-services/booking-service';
 
 @Component({
   selector: 'app-book-now-dialog',
@@ -32,29 +40,44 @@ import { dummyCategories } from '../../../assets/images/dummy/dummy';
     MatExpansionModule,
     MatIconModule,
     MatFormFieldModule,
+    FormsModule,
   ],
   templateUrl: './book-now-dialog.html',
   styleUrl: './book-now-dialog.scss',
 })
 export class BookNowDialog implements OnInit {
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private categoryService: CategoryService,
+    private bookingService: BookingService,
+  ) {}
   readonly dialogRef = inject(MatDialogRef<BookNowDialog>);
   readonly data = inject<any>(MAT_DIALOG_DATA);
   customerDetailsForm: FormGroup = new FormGroup({});
   selectedDate = model<Date | null>(new Date());
-  categories = dummyCategories;
-  selectedServices: string[] = [];
+  selectedTime: any;
+  categories: Category[] = [];
+  selectedServices: Service[] = [];
   today = model<Date | null>(new Date());
 
   ngOnInit(): void {
     this.createCustomerDetailsForm();
+    this.getAllCategories();
   }
 
   createCustomerDetailsForm() {
     this.customerDetailsForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(3)]],
+      clientName: ['', [Validators.required, Validators.minLength(3)]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       notes: [''],
+    });
+  }
+
+  getAllCategories() {
+    this.categoryService.getAllCategories<Category[]>().subscribe({
+      next: (res: Category[]) => {
+        this.categories = res;
+      },
     });
   }
 
@@ -62,33 +85,48 @@ export class BookNowDialog implements OnInit {
     this.dialogRef.close();
   }
 
-  addService(event: MatCheckboxChange, selectedServiceId: string) {
+  addService(event: MatCheckboxChange, selectedService: Service) {
     if (event.checked) {
-      this.selectedServices.push(selectedServiceId);
+      this.selectedServices.push(selectedService);
     } else {
-      const index = this.selectedServices.indexOf(selectedServiceId);
+      const index = this.selectedServices.indexOf(selectedService);
       if (index !== -1) {
         this.selectedServices.splice(index, 1);
       }
     }
-    console.log(this.selectedServices);
   }
 
   isSelectedService(serviceId: string): boolean {
-    const result = this.selectedServices.find((id) => id === serviceId);
+    const result = this.selectedServices.find((service) => service.serviceId === serviceId);
     return !!result;
+  }
+
+  getServicesName() {
+    const servicesNames = this.selectedServices.map((service) => service.serviceName).join();
+    return servicesNames;
+  }
+
+  get getTotalPrice() {
+    return this.selectedServices.reduce((acc, item) => acc + Number(item.price), 0);
   }
 
   ConfirmBooking() {
     if (this.customerDetailsForm.valid) {
       const bookingData = {
         ...this.customerDetailsForm.value,
-        selectedServices: this.selectedServices,
-        selectedDate: this.selectedDate,
+        bookedServices: this.selectedServices,
+        bookingDate: this.selectedDate(),
+        bookingTime: this.selectedTime,
+        location: 'Nizamabad',
+        gmail: 'abd@gmail.com',
       };
-      console.log('Booking Confirmed:', bookingData);
-      // Here you can send the bookingData to your backend or perform any other action
-      this.dialogRef.close(bookingData); // Close the dialog and pass the booking data back
+      this.bookingService.createBooking(bookingData).subscribe({
+        next: (res: any) => {
+          alert(res);
+        },
+      });
+
+      // this.dialogRef.close(bookingData); // Close the dialog and pass the booking data back
     } else {
       console.log('Form is invalid');
     }

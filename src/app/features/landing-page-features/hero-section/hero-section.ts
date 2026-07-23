@@ -28,7 +28,6 @@ export class HeroSection implements OnInit {
   getCategories() {
     this.categoryService.getAllCategories<Category[]>().subscribe((categories: Category[]) => {
       this.categories = categories;
-      debugger;
       this.sharedService.$categories.set(categories);
     });
   }

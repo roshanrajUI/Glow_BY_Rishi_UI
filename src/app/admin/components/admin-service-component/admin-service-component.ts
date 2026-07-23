@@ -35,6 +35,8 @@ export class AdminServiceComponent implements OnInit {
   categories: Category[] = [];
   services: Service[] = [];
   serviceForm: FormGroup = new FormGroup({});
+  isEditService = false;
+  updatingServiceId = '';
 
   ngOnInit(): void {
     this.createServiceForm();
@@ -58,8 +60,6 @@ export class AdminServiceComponent implements OnInit {
         this.categories = res;
       },
     });
-    // this.categories = this.sharedService.$categories();
-    // console.log(this.sharedService.$categories());
   }
 
   getAllServices() {
@@ -68,5 +68,61 @@ export class AdminServiceComponent implements OnInit {
         this.services = res;
       },
     });
+  }
+
+  saveService() {
+    if (this.serviceForm.invalid) return;
+
+    this.myServiceService.createService<unknown, boolean>(this.serviceForm.value).subscribe({
+      next: (res: boolean) => {
+        if (res) {
+          this.getAllServices();
+          this.serviceForm.reset();
+        }
+      },
+    });
+  }
+
+  editService(service: Service) {
+    const { categoryId, serviceId, serviceName, price, description } = service;
+    this.isEditService = true;
+    this.serviceForm.patchValue({
+      categoryId,
+      serviceName,
+      price,
+      description,
+    });
+
+    this.updatingServiceId = serviceId;
+  }
+
+  updateService() {
+    this.myServiceService
+      .updateService<unknown, boolean>(this.updatingServiceId, this.serviceForm.value)
+      .subscribe({
+        next: (res: boolean) => {
+          if (res) {
+            this.getAllServices();
+            this.isEditService = false;
+            this.cancelUpdate();
+          }
+        },
+      });
+  }
+
+  deleteService(service: Service) {
+    this.myServiceService.deleteService<boolean>(service.serviceId).subscribe({
+      next: (res: boolean) => {
+        if (res) this.getAllServices();
+      },
+    });
+  }
+
+  cancelUpdate() {
+    this.serviceForm.reset();
+    this.serviceForm.markAsUntouched();
+    this.serviceForm.updateValueAndValidity();
+    this.isEditService = false;
+    this.updatingServiceId = '';
   }
 }

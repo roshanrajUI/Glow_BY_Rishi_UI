@@ -39,16 +39,13 @@
                     'selected-service': isSelectedService(service.serviceId),
                   }"
                 >
-                  <mat-checkbox
-                    (change)="addService($event, service.serviceId)"
-                    class="custom-checkbox"
-                  >
+                  <mat-checkbox (change)="addService($event, service)" class="custom-checkbox">
                     {{ service.serviceName }}
                   </mat-checkbox>
 
                   <p class="price-details">
                     <mat-icon>currency_rupee</mat-icon>
-                    345
+                    {{ service.price }}
                   </p>
                 </div>
               }
@@ -65,7 +62,13 @@
       <div class="my-5">
         <mat-form-field class="w-100 custom-timepicker">
           <mat-label>Pick a time</mat-label>
-          <input id="timepicker-input" matInput [matTimepicker]="picker" aria-label="Pick a time" />
+          <input
+            id="timepicker-input"
+            matInput
+            [matTimepicker]="picker"
+            aria-label="Pick a time"
+            [(ngModel)]="selectedTime"
+          />
           <mat-timepicker-toggle matIconSuffix [for]="picker" />
           <mat-timepicker #picker />
         </mat-form-field>
@@ -96,15 +99,15 @@
           <h5 class="mb-5">Your Appointment</h5>
           <div class="d-flex-between align-center">
             <span>Services</span>
-            <span>Bridal, Hair</span>
+            <span>{{ getServicesName() }}</span>
           </div>
           <div class="d-flex-between align-center">
             <span>Date</span>
-            <span>12-22-2026</span>
+            <span>{{ selectedDate() | date: 'dd/MM/yyyy' }}</span>
           </div>
           <div class="d-flex-between align-center">
             <span>Time</span>
-            <span>10:30 AM</span>
+            <span>{{ selectedTime | date: 'shortTime' }}</span>
           </div>
           <div class="d-flex-between align-center">
             <span>Location</span>
@@ -115,7 +118,7 @@
             <span>Estimated Total</span>
             <span>
               <mat-icon> rupee_currency </mat-icon>
-              12,300
+              {{ getTotalPrice }}
             </span>
           </div>
         </div>
@@ -127,7 +130,7 @@
             <input
               matInput
               placeholder="Enter your full name"
-              formControlName="fullName"
+              formControlName="clientName"
               aria-label="Full Name"
             />
           </mat-form-field>

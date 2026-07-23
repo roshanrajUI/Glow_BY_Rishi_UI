@@ -25,4 +25,8 @@ export class BookingService {
   updateBookingStatus<R, B>(body: B): Observable<R> {
     return this.apiService.httpPost<R>(API_URL.UPDATEBOOKINGSTATUS, body);
   }
+
+  createBooking<B, R>(body: B): Observable<R> {
+    return this.apiService.httpPost(API_URL.BOOKINGS, body);
+  }
 }
