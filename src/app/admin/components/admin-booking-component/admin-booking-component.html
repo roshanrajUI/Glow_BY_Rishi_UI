@@ -25,19 +25,28 @@
       <div class="d-flex justify-between align-end mb-1">
         <div>
           <div class="booking-date mb-1">
-            {{ booking.bookingDate | date: 'dd/MM/yyyy' }}, {{ booking.bookingTime }}
+            {{ booking.bookingDate }}, {{ booking.bookingTime.slice(0, 5) }}
           </div>
           <div class="booked-date mb-1">Booked {{ booking.createdAt | date: 'dd/MM/yyyy' }}</div>
-          <div class="note">“Cocktail night”</div>
+          <div class="note">{{ booking.notes }}</div>
         </div>
         <div class="d-flex justify-end align-center g-2">
-          <button class="secondary-button" (click)="updateBooking(booking.bookingId, 'Confirmed')">
-            Accept
+          <button
+            [ngClass]="booking.status === 'Confirmed' ? 'btn-book' : 'secondary-button'"
+            (click)="updateBooking(booking.bookingId, 'Confirmed')"
+          >
+            Confirmed
           </button>
-          <button class="secondary-button" (click)="updateBooking(booking.bookingId, 'Rejected')">
-            Reject
+          <button
+            [ngClass]="booking.status === 'Completed' ? 'btn-book' : 'secondary-button'"
+            (click)="updateBooking(booking.bookingId, 'Completed')"
+          >
+            Completed
           </button>
-          <button class="secondary-button" (click)="updateBooking(booking.bookingId, 'Cancelled')">
+          <button
+            [ngClass]="booking.status === 'Cancelled' ? 'btn-book' : 'secondary-button'"
+            (click)="updateBooking(booking.bookingId, 'Cancelled')"
+          >
             Cancel
           </button>
         </div>
@@ -51,7 +60,7 @@
       @for (service of booking.bookingServices; track service.bookingServiceId) {
         <div class="d-flex justify-between align-center service-row">
           <span>{{ service.service.serviceName }}</span>
-          <span>${{ service.servicePrice }}</span>
+          <span>${{ service.price }}</span>
         </div>
       }
     </div>

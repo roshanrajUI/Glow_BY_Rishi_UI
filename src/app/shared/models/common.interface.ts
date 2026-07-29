@@ -56,7 +56,7 @@ export interface BookingService {
   bookingId: string;
   serviceId: string;
   assignedUserId: string;
-  servicePrice: number;
+  price: number;
   isActive: boolean;
   //   createdAt: Date;
   //   updatedAt: Date;

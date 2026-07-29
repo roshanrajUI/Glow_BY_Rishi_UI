@@ -119,10 +119,12 @@ export class BookNowDialog implements OnInit {
         bookingTime: this.selectedTime,
         location: 'Nizamabad',
         gmail: 'abd@gmail.com',
+        totalPrice: this.getTotalPrice,
       };
       this.bookingService.createBooking(bookingData).subscribe({
         next: (res: any) => {
-          alert(res);
+          alert('Your Booking is succesful');
+          this.dialogClose();
         },
       });
 
