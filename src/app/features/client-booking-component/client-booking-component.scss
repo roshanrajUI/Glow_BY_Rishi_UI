@@ -1,0 +1,135 @@
+.container {
+  margin: 1px auto;
+}
+.back-button {
+  color: gray;
+  mat-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+.heading-1 {
+  font-size: 3rem;
+}
+
+.heading-2 {
+  font-size: 1.5rem;
+}
+
+.card {
+  //   margin: 30px auto;
+  //   background: #fff;
+  //   border: 1px solid #eadfd6;
+  //   padding: 32px;
+  font-family: 'Poppins', sans-serif;
+  color: #5c4d45;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .booking-number {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #9b8476;
+  }
+
+  .customer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: #2d2d2d;
+  }
+
+  .status {
+    background: #efe7df;
+    color: #8b7466;
+    padding: 10px 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #eee3da;
+    margin: 1rem 0;
+  }
+
+  .services {
+    .title {
+      font-size: 15px;
+      text-transform: uppercase;
+      color: #9b8476;
+    }
+
+    .service-row {
+      .service-name {
+        color: #4c3d35;
+      }
+
+      .price {
+        color: #6a574b;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .booked-date {
+    font-size: 15px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #9b8476;
+  }
+
+  .comment {
+    font-size: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: #6d5b50;
+  }
+}
+
+.total {
+  // font-size: 42px;
+  // font-family: 'Cormorant Garamond', serif;
+  color: #4a3b34;
+  font-weight: 500;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .booking-card {
+    padding: 20px;
+
+    .header {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .details {
+      flex-direction: column;
+      gap: 15px !important;
+    }
+
+    .footer {
+      flex-direction: column;
+      gap: 25px;
+
+      .total {
+        align-self: flex-end;
+      }
+    }
+
+    .service-row {
+      font-size: 18px !important;
+    }
+
+    .customer-name {
+      font-size: 32px !important;
+    }
+  }
+}

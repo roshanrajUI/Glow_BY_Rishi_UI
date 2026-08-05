@@ -106,83 +106,83 @@
 ::ng-deep .custom-timepicker {
   /* Label */
   .mdc-floating-label {
-    color: #c97d67 !important;
+    // color: #c97d67 !important;
   }
 
   /* Input text */
   input {
-    color: #c97d67 !important;
+    // color: #c97d67 !important;
   }
 
   /* Outline border */
   .mdc-notched-outline__leading,
   .mdc-notched-outline__notch,
   .mdc-notched-outline__trailing {
-    border-color: #c97d67 !important;
+    // border-color: #c97d67 !important;
   }
 
   /* Focus border */
   &.mat-focused .mdc-notched-outline__leading,
   &.mat-focused .mdc-notched-outline__notch,
   &.mat-focused .mdc-notched-outline__trailing {
-    border-color: #c97d67 !important;
+    // border-color: #c97d67 !important;
     border-width: 2px !important;
   }
 
   /* Toggle icon */
   mat-icon {
-    color: #c97d67 !important;
+    // color: #c97d67 !important;
   }
 }
 
 ::ng-deep .mat-timepicker-content {
   /* Selected hour/minute */
   .mat-timepicker-dial__item_active {
-    background-color: #c97d67 !important;
+    // background-color: #c97d67 !important;
     color: white !important;
   }
 
   /* Clock hand */
   .mat-timepicker-dial__hand {
-    background-color: #c97d67 !important;
+    // background-color: #c97d67 !important;
   }
 
   /* Clock center dot */
   .mat-timepicker-dial__center {
-    background-color: #c97d67 !important;
+    // background-color: #c97d67 !important;
   }
 }
 
 ::ng-deep .custom-timepicker {
   /* Default border */
   .mdc-notched-outline > * {
-    border-color: #c97d67 !important;
+    // border-color: #c97d67 !important;
   }
 
   /* Hover border */
   &:hover .mdc-notched-outline > * {
-    border-color: #c97d67 !important;
+    // border-color: #c97d67 !important;
   }
 
   /* Focus border */
   &.mat-focused .mdc-notched-outline > * {
-    border-color: #c97d67 !important;
+    // border-color: #c97d67 !important;
     border-width: 2px !important;
   }
 
   /* Label color */
   .mdc-floating-label {
-    color: #c97d67 !important;
+    // color: #c97d67 !important;
   }
 
   /* Input text */
   input {
-    color: #c97d67 !important;
+    // color: #c97d67 !important;
   }
 
   /* Icon color */
   mat-icon {
-    color: #c97d67 !important;
+    // color: #c97d67 !important;
   }
 }
 

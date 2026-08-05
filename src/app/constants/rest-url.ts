@@ -9,4 +9,5 @@ export const API_URL = {
   BOOKINGS: 'bookings',
   BOOKING_REVIEWS: 'bookings/booking-reviews',
   UPDATEBOOKINGSTATUS: 'bookings/update-status',
+  CLIENTBOOKINS: 'bookings/client-bookings',
 };

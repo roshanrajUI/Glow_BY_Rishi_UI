@@ -29,4 +29,8 @@ export class BookingService {
   createBooking<B, R>(body: B): Observable<R> {
     return this.apiService.httpPost(API_URL.BOOKINGS, body);
   }
+
+  getClientBookings<B, R>(body: B): Observable<R> {
+    return this.apiService.httpPost(API_URL.CLIENTBOOKINS, body);
+  }
 }

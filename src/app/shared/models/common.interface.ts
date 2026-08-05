@@ -13,6 +13,7 @@ export interface Client {
 
 export interface Booking {
   bookingId: string;
+  bookingNumber: string;
   clientId: string;
   bookingDate: Date | string;
   bookingTime: string;

@@ -54,8 +54,8 @@ export class BookNowDialog implements OnInit {
   readonly dialogRef = inject(MatDialogRef<BookNowDialog>);
   readonly data = inject<any>(MAT_DIALOG_DATA);
   customerDetailsForm: FormGroup = new FormGroup({});
-  selectedDate = model<Date | null>(new Date());
-  selectedTime: any;
+  selectedDate = model<Date | null>(null);
+  selectedTime = model<Date | null>(null);
   categories: Category[] = [];
   selectedServices: Service[] = [];
   today = model<Date | null>(new Date());
@@ -115,8 +115,8 @@ export class BookNowDialog implements OnInit {
       const bookingData = {
         ...this.customerDetailsForm.value,
         bookedServices: this.selectedServices,
-        bookingDate: this.selectedDate(),
-        bookingTime: this.selectedTime,
+        bookingDate: this.selectedDate()?.toISOString(),
+        bookingTime: this.selectedTime()?.toISOString(),
         location: 'Nizamabad',
         gmail: 'abd@gmail.com',
         totalPrice: this.getTotalPrice,

@@ -1,0 +1,100 @@
+<div class="container w-75">
+  <span class="price-details back-button">
+    <mat-icon>arrow_back</mat-icon>
+    Back to home
+  </span>
+
+  <h2 class="fs-md mt-5 fw-medium primary-color">TRACK YOUR BOOKING</h2>
+  <h1 class="heading-1 mt-2 mb-4">My <i class="italic">Bookings</i></h1>
+
+  <p class="description fs-sm">
+    Enter the phone number you booked with to see every appointment and its current status. Add a
+    booking number to look up just one.
+  </p>
+
+  <form [formGroup]="clientBookingForm" class="my-5 d-flex align-center g-5">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Phone Number</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="phone number"
+        formControlName="phoneNumber"
+        aria-label="Phone Number"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Booking Number</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="GLOW1001"
+        formControlName="bookingNumber"
+        aria-label="Booking Number"
+      />
+    </mat-form-field>
+    <button type="submit" class="btn-book radius-md" (click)="searchClientBooking()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+
+  @for (booking of clientBookings; track booking.bookingId) {
+    <div class="card mb-4">
+      <div class="header">
+        <p class="booking-number">Booking #{{ booking.bookingNumber }}</p>
+        <p class="status">{{ booking.status }}</p>
+      </div>
+
+      <h2 class="customer-name mb-1 fs-lg">{{ booking.client.clientName }}</h2>
+
+      <div class="d-flex g-3 fs-sm">
+        <span class="price-details g-2">
+          <mat-icon>calendar_today</mat-icon>
+          {{ booking.bookingDate }}
+        </span>
+        <span class="price-details g-2">
+          <mat-icon> timer </mat-icon>
+          {{ booking.bookingTime }}
+        </span>
+        <span class="price-details g-2">
+          <mat-icon> call </mat-icon>
+          {{ booking.client.phoneNumber }}
+        </span>
+        <span class="price-details g-2">
+          <mat-icon> location_on </mat-icon>
+          {{ booking.location }}
+        </span>
+      </div>
+
+      <hr />
+
+      <div class="services">
+        <h2 class="title mb-1">Services(2)</h2>
+        @for (bkService of booking.bookingServices; track bkService.serviceId) {
+          <div class="d-flex-between align-center service-row fs-sm">
+            <span class="service-name">{{ bkService.service.serviceName }}</span>
+            <span class="price-details">
+              <mat-icon> currency_rupee </mat-icon>
+              {{ bkService.price }}
+            </span>
+          </div>
+        }
+      </div>
+
+      <hr />
+      <div class="d-flex-between align-center">
+        <h4>
+          <span class="booked-date">BOOKED</span> {{ booking.bookingDate }},
+          {{ booking.bookingTime }}
+        </h4>
+        <span class="price-details fs-sm">
+          <mat-icon> currency_rupee </mat-icon>
+          {{ booking.totalPrice }}
+        </span>
+      </div>
+      <p class="comment">
+        {{ booking.notes }}
+      </p>
+    </div>
+  }
+</div>

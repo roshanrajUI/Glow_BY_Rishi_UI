@@ -36,6 +36,7 @@
       <a class="pl-4" (click)="goToSection('services', drawer)">Services</a>
       <a class="pl-4" (click)="goToSection('artist', drawer)">About Us</a>
       <a class="pl-4" (click)="goToSection('get-in-touch', drawer)">Contact Us</a>
+      <a class="pl-4" routerLink="/my-bookings">My Bookings</a>
       <a class="pl-4" routerLink="/admin">Admin</a>
       <button type="button" class="btn-book w-100" (click)="openBookNowDialog(true, drawer)">
         Book Now
@@ -63,6 +64,7 @@
       <div class="d-flex justify-end align-center g-2">
         <a (click)="goToSection('artist', drawer)">About Us</a>
         <a (click)="goToSection('get-in-touch', drawer)" class="ml-5">Contact</a>
+        <a class="pl-4" routerLink="/my-bookings">My Bookings</a>
         <a class="pl-4" routerLink="/admin">Admin</a>
         <button type="button" class="ml-5 btn-book" (click)="openBookNowDialog()">Book Now</button>
       </div>

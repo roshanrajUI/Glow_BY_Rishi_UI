@@ -79,6 +79,7 @@
             [value]="selectedDate() | date: 'dd-MM-yyyy'"
             matInput
             readonly
+            placeholder="Please select a date below"
             aria-label="selected date"
           />
         </mat-form-field>
@@ -107,7 +108,7 @@
           </div>
           <div class="d-flex-between align-center">
             <span>Time</span>
-            <span>{{ selectedTime | date: 'shortTime' }}</span>
+            <span>{{ selectedTime() | date: 'shortTime' }}</span>
           </div>
           <div class="d-flex-between align-center">
             <span>Location</span>
