@@ -40,7 +40,7 @@ export interface Work {
 export interface User {
   userId: string;
   userName: string;
-  email: string;
+  gmail: string;
   phoneNumber: string;
   password: string;
   role: string;
@@ -87,7 +87,7 @@ export interface Client {
   clientId: string;
   clientName: string;
   phoneNumber: string;
-  email: string;
+  gmail: string;
   address: string;
   isActive: boolean;
   createdAt: Date;

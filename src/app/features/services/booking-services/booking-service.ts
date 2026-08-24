@@ -30,7 +30,15 @@ export class BookingService {
     return this.apiService.httpPost(API_URL.BOOKINGS, body);
   }
 
+  createBookingReview<B, R>(body: B): Observable<R> {
+    return this.apiService.httpPost(API_URL.CREATEBOOKINGREVIEW, body);
+  }
+
   getClientBookings<B, R>(body: B): Observable<R> {
     return this.apiService.httpPost(API_URL.CLIENTBOOKINS, body);
+  }
+
+  verifyBookingOtp<B, R>(body: B): Observable<R> {
+    return this.apiService.httpPost(API_URL.VERIFYBOOKINGOTP, body);
   }
 }

@@ -7,10 +7,13 @@
     width: 16px;
   }
 
-  .book-service {
-    .dialog-close {
-      background-color: white;
-    }
+  .dialog-header {
+    background-color: #f9f5f2;
+    padding: 1rem;
+  }
+
+  .stepper-header {
+    margin-bottom: 0.2rem;
   }
 }
 
@@ -33,6 +36,12 @@
 
 .custom-stepper {
   background: transparent;
+  padding: 1rem;
+  .stepper-body {
+    height: calc(100% - 3rem);
+    overflow-y: auto;
+    padding-bottom: 1rem;
+  }
 }
 
 ::ng-deep .mat-horizontal-content-container {
@@ -45,7 +54,7 @@
 ::ng-deep .mat-horizontal-stepper-header,
 ::ng-deep .mat-step-header,
 ::ng-deep .mat-horizontal-stepper-header {
-  height: 2rem !important;
+  height: 3rem !important;
   padding: 0 !important;
 }
 
@@ -63,6 +72,7 @@
   border: 1px solid #d9a18f;
   width: 42px;
   height: 42px;
+  padding: 1rem !important;
 }
 
 ::ng-deep .mat-step-icon-selected {
@@ -228,4 +238,127 @@
 
 .calendar-card {
   box-shadow: none;
+}
+
+//otp
+.verification-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3rem;
+  background: #faf9f7;
+  border-top: 1px solid #eee4df;
+  box-sizing: border-box;
+
+  .btn-book {
+    margin: 1rem 0px;
+  }
+}
+
+// Description
+.verification-text {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.45;
+  color: #796d69;
+}
+
+// OTP container
+.otp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0 1rem;
+}
+
+// Individual OTP boxes
+.otp-input {
+  width: 72px;
+  height: 70px;
+  padding: 0;
+  border: 1px solid #e3d4ce;
+  border-right: none;
+  outline: none;
+  background: #fbfaf8;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 27px;
+  font-weight: 300;
+  color: #504844;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:first-child {
+    border-radius: 3px 0 0 3px;
+  }
+
+  &:last-child {
+    border-right: 1px solid #e3d4ce;
+    border-radius: 0 3px 3px 0;
+  }
+
+  &:focus {
+    border-color: #d98c7a;
+    box-shadow: inset 0 0 0 1px #d98c7a;
+    z-index: 1;
+  }
+}
+
+// Resend button
+.resend-btn {
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 6px;
+  color: #d98b79;
+  transition: color 0.2s ease;
+  &:hover {
+    color: #c87563;
+    border-bottom: 1px solid #c87563;
+  }
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .verification-container {
+    padding: 45px 20px;
+  }
+
+  .verification-text {
+    max-width: 400px;
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+
+  .otp-input {
+    width: 48px;
+    height: 55px;
+
+    font-size: 22px;
+  }
+
+  .resend-btn {
+    font-size: 15px;
+    letter-spacing: 4px;
+  }
+}
+
+@media (max-width: 380px) {
+  .verification-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .otp-input {
+    width: 43px;
+    height: 50px;
+    font-size: 20px;
+  }
 }

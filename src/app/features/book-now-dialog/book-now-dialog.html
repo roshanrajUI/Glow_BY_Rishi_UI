@@ -1,4 +1,4 @@
-<div class="book-now-container p-5">
+<div class="book-now-container">
   <div class="dialog-header">
     <div class="text-right">
       <mat-icon
@@ -10,56 +10,71 @@
         >close</mat-icon
       >
     </div>
-    <p>
+    <p class="primary-color">
       <mat-icon class="star-icon">star</mat-icon>
-      Step 1 of 4
+      Step {{ stepper.selectedIndex + 1 }} of 4
     </p>
-    <div class="book-service mt-3">
-      <h1 class="">Select Service</h1>
-      <p class="description fs-xs">Choose one or more services for your appointment.</p>
+    <div class="mt-3">
+      @if (stepper.selectedIndex === 0) {
+        <h1 class="stepper-header">Select Service</h1>
+        <p class="description mb-2 fs-xs">Choose one or more services for your appointment.</p>
+      } @else if (stepper.selectedIndex === 1) {
+        <h1 class="stepper-header">Pick a Date and Time</h1>
+        <p class="description mb-2 fs-xs">Choose your preferred date and time.</p>
+      } @else if (stepper.selectedIndex === 2) {
+        <h1 class="stepper-header">Confirm Details</h1>
+        <p class="description mb-2 fs-xs">Please review and confirm your booking.</p>
+      } @else if (stepper.selectedIndex === 3) {
+        <h1 class="stepper-header">Verify Your Booking</h1>
+        <p class="description mb-2 fs-xs">
+          Enter the 6-digit code we sent to {{ customerDetailsForm.value.email }}.
+        </p>
+      }
     </div>
   </div>
-  <mat-stepper linear #stepper class="custom-stepper mt-5">
-    <mat-step class="my-5">
-      <div class="select-service">
-        @for (category of categories; track category.categoryId) {
-          <mat-accordion>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title> {{ category.categoryName }} </mat-panel-title>
-                <mat-panel-description>
-                  {{ category.services.length }} services
-                </mat-panel-description>
-              </mat-expansion-panel-header>
+  <mat-stepper linear #stepper class="custom-stepper">
+    <mat-step>
+      <div class="stepper-body">
+        <div class="select-service">
+          @for (category of categories; track category.categoryId) {
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title> {{ category.categoryName }} </mat-panel-title>
+                  <mat-panel-description>
+                    {{ category.services.length }} services
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
 
-              @for (service of category.services; track service.serviceId) {
-                <div
-                  class="d-flex-between align-center service-details"
-                  [ngClass]="{
-                    'selected-service': isSelectedService(service.serviceId),
-                  }"
-                >
-                  <mat-checkbox (change)="addService($event, service)" class="custom-checkbox">
-                    {{ service.serviceName }}
-                  </mat-checkbox>
+                @for (service of category.services; track service.serviceId) {
+                  <div
+                    class="d-flex-between align-center service-details"
+                    [ngClass]="{
+                      'selected-service': isSelectedService(service.serviceId),
+                    }"
+                  >
+                    <mat-checkbox (change)="addService($event, service)" class="custom-checkbox">
+                      {{ service.serviceName }}
+                    </mat-checkbox>
 
-                  <p class="price-details">
-                    <mat-icon>currency_rupee</mat-icon>
-                    {{ service.price }}
-                  </p>
-                </div>
-              }
-            </mat-expansion-panel>
-          </mat-accordion>
-        }
+                    <p class="price-details">
+                      <mat-icon>currency_rupee</mat-icon>
+                      {{ service.price }}
+                    </p>
+                  </div>
+                }
+              </mat-expansion-panel>
+            </mat-accordion>
+          }
+        </div>
       </div>
-      <div class="d-flex justify-end mt-5">
+      <div class="d-flex justify-end stepper-footer">
         <button type="button" class="btn-book" type="button" matStepperNext>Next</button>
       </div>
     </mat-step>
 
     <mat-step>
-      <div class="my-5">
+      <div>
         <mat-form-field class="w-100 custom-timepicker">
           <mat-label>Pick a time</mat-label>
           <input
@@ -89,7 +104,7 @@
         </mat-card>
       </div>
       <div class="d-flex justify-end g-3">
-        <button type="button" mat-button matStepperPrevious>Back</button>
+        <button type="button" class="secondary-button" matStepperPrevious>Back</button>
         <button type="button" class="btn-book" matStepperNext>Next</button>
       </div>
     </mat-step>
@@ -97,7 +112,7 @@
     <mat-step>
       <div class="confirmation-container">
         <div class="appointment-details p-4">
-          <h5 class="mb-5">Your Appointment</h5>
+          <h5 class="mb-4">Your Appointment</h5>
           <div class="d-flex-between align-center">
             <span>Services</span>
             <span>{{ getServicesName() }}</span>
@@ -109,10 +124,6 @@
           <div class="d-flex-between align-center">
             <span>Time</span>
             <span>{{ selectedTime() | date: 'shortTime' }}</span>
-          </div>
-          <div class="d-flex-between align-center">
-            <span>Location</span>
-            <span>Nizamabad</span>
           </div>
           <hr class="my-4" />
           <div class="d-flex-between align-center">
@@ -145,6 +156,24 @@
             />
           </mat-form-field>
           <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Gmail</mat-label>
+            <input
+              matInput
+              placeholder="Enter your gmail"
+              formControlName="gmail"
+              aria-label="gmail"
+            />
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              placeholder="Enter your address"
+              formControlName="address"
+              aria-label="Address"
+            />
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
             <mat-label>Notes (Optional)</mat-label>
             <textarea
               matInput
@@ -155,10 +184,38 @@
           </mat-form-field>
         </form>
       </div>
-      <div class="d-flex-between">
-        <button type="button" mat-button matStepperPrevious>Back</button>
+      <div class="d-flex justify-end g-3">
+        <button type="button" class="secondary-button" matStepperPrevious>Back</button>
         <button type="submit" class="btn-book" (click)="ConfirmBooking()">Confirm Booking</button>
       </div>
+    </mat-step>
+    <mat-step>
+      <form class="verification-container" [formGroup]="otpForm" (ngSubmit)="verifyOtp()">
+        <p class="verification-text">
+          For your security, please enter the 6-digit verification code to confirm your appointment.
+        </p>
+        <div class="otp-container">
+          <input
+            *ngFor="let digit of otpForm.controls | keyvalue; let i = index"
+            type="text"
+            inputmode="numeric"
+            [id]="'otp_' + i"
+            maxlength="1"
+            minlength="1"
+            class="otp-input"
+            formControlName="{{ digit.key }}"
+            (input)="onOtpInput($event, i)"
+            (keydown)="onOtpKeyDown($event, i)"
+            (paste)="onOtpPaste($event)"
+            autocomplete="one-time-code"
+          />
+        </div>
+
+        <button type="button" class="resend-btn" (click)="resendCode()">RESEND CODE</button>
+        <button type="submit" class="btn-book" [disabled]="!otpForm.valid" (click)="verifyOtp()">
+          VERIFY
+        </button>
+      </form>
     </mat-step>
   </mat-stepper>
 </div>

@@ -7,7 +7,9 @@ export const API_URL = {
   WORKS: 'my-works',
   GETMYWORKS: 'my-works/all',
   BOOKINGS: 'bookings',
+  CREATEBOOKINGREVIEW: 'bookings/create-review',
   BOOKING_REVIEWS: 'bookings/booking-reviews',
   UPDATEBOOKINGSTATUS: 'bookings/update-status',
   CLIENTBOOKINS: 'bookings/client-bookings',
+  VERIFYBOOKINGOTP: 'bookings/verify-booking',
 };

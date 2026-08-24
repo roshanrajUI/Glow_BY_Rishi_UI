@@ -1,8 +1,8 @@
-import { Component, inject, model, OnInit } from '@angular/core';
+import { Component, inject, model, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -22,6 +22,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { Category, Service } from '../models/common.interface';
 import { CategoryService } from '../services/category-services/category.service';
 import { BookingService } from '../services/booking-services/booking-service';
+import { Booking } from '../../shared/models/common.interface';
 
 @Component({
   selector: 'app-book-now-dialog',
@@ -59,17 +60,34 @@ export class BookNowDialog implements OnInit {
   categories: Category[] = [];
   selectedServices: Service[] = [];
   today = model<Date | null>(new Date());
+  otpForm: FormGroup = new FormGroup({});
+  booking!: Booking;
+  @ViewChild('stepper') stepper!: MatStepper;
 
   ngOnInit(): void {
     this.createCustomerDetailsForm();
+    this.createOtpForm();
     this.getAllCategories();
   }
 
   createCustomerDetailsForm() {
     this.customerDetailsForm = this.fb.group({
-      clientName: ['', [Validators.required, Validators.minLength(3)]],
-      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      notes: [''],
+      clientName: ['Roshan', [Validators.required, Validators.minLength(3)]],
+      phoneNumber: ['7675997701', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      address: ['Nizamabad', [Validators.required, Validators.minLength(3)]],
+      gmail: ['gurairishitha1010@gmail.com', [Validators.required, Validators.email]],
+      notes: ['hi'],
+    });
+  }
+
+  createOtpForm() {
+    this.otpForm = this.fb.group({
+      otp_0: ['', [Validators.required]],
+      otp_1: ['', [Validators.required]],
+      otp_2: ['', [Validators.required]],
+      otp_3: ['', [Validators.required]],
+      otp_4: ['', [Validators.required]],
+      otp_5: ['', [Validators.required]],
     });
   }
 
@@ -118,19 +136,86 @@ export class BookNowDialog implements OnInit {
         bookingDate: this.selectedDate()?.toISOString(),
         bookingTime: this.selectedTime()?.toISOString(),
         location: 'Nizamabad',
-        gmail: 'abd@gmail.com',
+        gmail: this.customerDetailsForm.value.gmail,
         totalPrice: this.getTotalPrice,
       };
-      this.bookingService.createBooking(bookingData).subscribe({
-        next: (res: any) => {
-          alert('Your Booking is succesful');
-          this.dialogClose();
+      this.bookingService.createBooking<unknown, Booking>(bookingData).subscribe({
+        next: (res: Booking) => {
+          this.booking = res;
+          this.stepper.next();
         },
       });
-
       // this.dialogRef.close(bookingData); // Close the dialog and pass the booking data back
+    }
+  }
+
+  onOtpInput(event: Event, index: number): void {
+    const input = event.target as HTMLInputElement;
+
+    // Allow only numbers
+    const value = input.value.replace(/\D/g, '');
+    input.value = value;
+
+    // Move to next input
+    if (value && index < 6) {
+      const nextInput = document.getElementById(`otp_${index + 1}`) as HTMLInputElement;
+      if (nextInput) {
+        nextInput.focus();
+      }
+    }
+  }
+
+  onOtpKeyDown(event: KeyboardEvent, index: number): void {
+    const input = event.target as HTMLInputElement;
+    if (event.key === 'Backspace') {
+      if (index > 0 && !input.value) {
+        const prevInput = document.getElementById(`otp_${index - 1}`) as HTMLInputElement;
+        if (prevInput) {
+          prevInput.focus();
+        }
+      }
+    }
+  }
+
+  onOtpPaste(event: ClipboardEvent): void {
+    event.preventDefault();
+
+    const pastedData = event.clipboardData?.getData('text').replace(/\D/g, '').slice(0, 6);
+
+    if (!pastedData) {
+      return;
+    }
+  }
+
+  resendCode(): void {
+    console.log('Resending verification code...');
+
+    // Call your API here
+    // this.bookingService.resendVerificationCode(...).subscribe(...)
+  }
+
+  verifyOtp(): void {
+    if (this.otpForm.valid) {
+      const otp = Object.values(this.otpForm.value).join('');
+      console.log('Verifying OTP:', otp);
+      const { bookingNumber } = this.booking;
+      const body = {
+        bookingNumber,
+        gmail: this.customerDetailsForm.value?.gmail,
+        otp,
+      };
+      this.bookingService.verifyBookingOtp(body).subscribe({
+        next: (res: any) => {
+          this.dialogClose();
+        },
+        error: (err: any) => {
+          console.error('Error verifying OTP:', err);
+        },
+      });
+      // Call your API here to verify the OTP
+      // this.bookingService.verifyOtp(otp).subscribe(...)
     } else {
-      console.log('Form is invalid');
+      console.log('OTP form is invalid');
     }
   }
 }

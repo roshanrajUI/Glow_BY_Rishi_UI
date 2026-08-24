@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BookingService } from '../services/booking-services/booking-service';
 import {
   FormBuilder,
@@ -13,7 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ClientReviewComponent } from '../client-review-component/client-review-component';
 @Component({
   selector: 'app-client-booking-component',
   imports: [
@@ -34,6 +35,7 @@ export class ClientBookingComponent {
     private readonly bookingService: BookingService,
     private fb: FormBuilder,
   ) {}
+  readonly matDialog = inject(MatDialog);
   clientBookingForm: FormGroup = new FormGroup({});
   clientBookings: Booking[] = [];
 
@@ -56,5 +58,13 @@ export class ClientBookingComponent {
           this.clientBookings = res;
         },
       });
+  }
+
+  addMyReview() {
+    const dialogRef = this.matDialog.open(ClientReviewComponent, {
+      width: '600px',
+      data: {},
+      disableClose: true,
+    });
   }
 }

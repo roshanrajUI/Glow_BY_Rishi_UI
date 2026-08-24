@@ -1,8 +1,11 @@
 <div class="container w-75">
-  <span class="price-details back-button">
-    <mat-icon>arrow_back</mat-icon>
-    Back to home
-  </span>
+  <div class="d-flex justify-between align-center">
+    <span class="price-details back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Back to home
+    </span>
+    <button class="btn-book" (click)="addMyReview()">Add My Review</button>
+  </div>
 
   <h2 class="fs-md mt-5 fw-medium primary-color">TRACK YOUR BOOKING</h2>
   <h1 class="heading-1 mt-2 mb-4">My <i class="italic">Bookings</i></h1>

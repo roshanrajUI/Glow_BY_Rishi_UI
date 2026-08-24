@@ -408,3 +408,9 @@
 //   flex: 0 0 100%;
 //   max-width: 100%;
 // }
+
+.flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,32 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>Add Booking Rating & Review</h2>
+  </div>
+
+  <div class="dialog-body">
+    <form [formGroup]="bookingReviewForm" (ngSubmit)="submitReview()">
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" formControlName="clientNumber" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Booking Number</mat-label>
+        <input matInput type="text" formControlName="bookingNumber" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Rating</mat-label>
+        <input matInput type="number" formControlName="rating" min="1" max="5" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Review</mat-label>
+        <textarea matInput formControlName="review" rows="4" required></textarea>
+      </mat-form-field>
+      <div class="dialog-footer d-flex g-3">
+        <button class="w-50 secondary-button" type="button" (click)="closeDialog()">Cancel</button>
+        <button class="btn-book w-50" type="submit" [disabled]="bookingReviewForm.invalid">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

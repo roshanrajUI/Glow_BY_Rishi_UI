@@ -8,8 +8,6 @@
   //   padding: 2rem;
 
   .artist-img {
-    // width: 150px;
-    // height: 150px;
     width: 100%;
     margin-bottom: 1rem;
 
@@ -30,11 +28,11 @@
 @media (min-width: 768px) {
   .artist-section {
     flex-direction: row;
-    gap: 1rem;
+    gap: 2rem;
     margin-top: 2rem;
 
     .artist-img {
-      width: 50%;
+      width: 45%;
     }
 
     .feature-description {
