@@ -10,6 +10,7 @@ import { Service } from '../../../shared/models/common.interface';
 import { MyServiceService } from '../../../features/services/my-service-services/my-service-service';
 import { Work } from '../../../features/models/common.interface';
 import { WorkService } from '../../../features/services/work-services/work-service';
+import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
 
 @Component({
   selector: 'app-admin-my-work-component',
@@ -21,6 +22,7 @@ import { WorkService } from '../../../features/services/work-services/work-servi
     MatFormFieldModule,
     MatIconModule,
     MatSelectModule,
+    FieldErrorComponent,
   ],
   templateUrl: './admin-my-work-component.html',
   styleUrl: './admin-my-work-component.scss',

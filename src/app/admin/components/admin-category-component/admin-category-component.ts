@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CategoryService } from '../../../features/services/category-services/category.service';
 import { Category } from '../../../shared/models/common.interface';
 import { MatIconModule } from '@angular/material/icon';
+import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
 
 @Component({
   selector: 'app-admin-category-component',
@@ -17,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     MatFormFieldModule,
     MatIconModule,
+    FieldErrorComponent,
   ],
   templateUrl: './admin-category-component.html',
   styleUrl: './admin-category-component.scss',

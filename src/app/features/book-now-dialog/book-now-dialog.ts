@@ -23,6 +23,7 @@ import { Category, Service } from '../models/common.interface';
 import { CategoryService } from '../services/category-services/category.service';
 import { BookingService } from '../services/booking-services/booking-service';
 import { Booking } from '../../shared/models/common.interface';
+import { FieldErrorComponent } from '../../shared/components/field-error-component/field-error-component';
 
 @Component({
   selector: 'app-book-now-dialog',
@@ -42,6 +43,7 @@ import { Booking } from '../../shared/models/common.interface';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
+    FieldErrorComponent,
   ],
   templateUrl: './book-now-dialog.html',
   styleUrl: './book-now-dialog.scss',
@@ -72,11 +74,11 @@ export class BookNowDialog implements OnInit {
 
   createCustomerDetailsForm() {
     this.customerDetailsForm = this.fb.group({
-      clientName: ['Roshan', [Validators.required, Validators.minLength(3)]],
-      phoneNumber: ['7675997701', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      address: ['Nizamabad', [Validators.required, Validators.minLength(3)]],
-      gmail: ['gurairishitha1010@gmail.com', [Validators.required, Validators.email]],
-      notes: ['hi'],
+      clientName: ['', [Validators.required, Validators.minLength(3)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      address: ['', [Validators.required, Validators.minLength(3)]],
+      gmail: ['', [Validators.required, Validators.email]],
+      notes: [''],
     });
   }
 

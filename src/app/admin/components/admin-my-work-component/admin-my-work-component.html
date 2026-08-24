@@ -10,6 +10,12 @@
             <mat-option [value]="service.serviceId">{{ service.serviceName }}</mat-option>
           }
         </mat-select>
+        <mat-error>
+          <app-field-error-component
+            [control]="myWorkForm.get('serviceId')"
+            [fieldName]="'Service'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="w-100" appearance="outline">
         <mat-label for="workTitle">Title</mat-label>
@@ -20,6 +26,12 @@
           formControlName="title"
           aria-label="Work Title"
         />
+        <mat-error>
+          <app-field-error-component
+            [control]="myWorkForm.get('title')"
+            [fieldName]="'Title'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label for="description">Description</mat-label>
@@ -31,6 +43,12 @@
           formControlName="description"
           aria-label="Service Description"
         ></textarea>
+        <mat-error>
+          <app-field-error-component
+            [control]="myWorkForm.get('description')"
+            [fieldName]="'Description'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <input type="file" formControlName="imageUrl" />
       @if (isEditMyWork) {

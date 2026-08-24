@@ -145,6 +145,12 @@
               formControlName="clientName"
               aria-label="Full Name"
             />
+            <mat-error>
+              <app-field-error-component
+                [control]="customerDetailsForm.get('clientName')"
+                [fieldName]="'Full Name'"
+              ></app-field-error-component>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>Phone Number</mat-label>
@@ -154,6 +160,12 @@
               formControlName="phoneNumber"
               aria-label="Phone Number"
             />
+            <mat-error class="mb-5">
+              <app-field-error-component
+                [control]="customerDetailsForm.get('phoneNumber')"
+                [fieldName]="'Phone Number'"
+              ></app-field-error-component>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>Gmail</mat-label>
@@ -163,6 +175,12 @@
               formControlName="gmail"
               aria-label="gmail"
             />
+            <mat-error>
+              <app-field-error-component
+                [control]="customerDetailsForm.get('gmail')"
+                [fieldName]="'Gmail'"
+              ></app-field-error-component>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>Address</mat-label>
@@ -172,6 +190,12 @@
               formControlName="address"
               aria-label="Address"
             />
+            <mat-error>
+              <app-field-error-component
+                [control]="customerDetailsForm.get('address')"
+                [fieldName]="'Address'"
+              ></app-field-error-component>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>Notes (Optional)</mat-label>
@@ -181,6 +205,12 @@
               formControlName="notes"
               aria-label="Notes (Optional)"
             ></textarea>
+            <mat-error class="mb-5">
+              <app-field-error-component
+                [control]="customerDetailsForm.get('notes')"
+                [fieldName]="'Notes'"
+              ></app-field-error-component>
+            </mat-error>
           </mat-form-field>
         </form>
       </div>

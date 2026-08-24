@@ -8,18 +8,42 @@
       <mat-form-field appearance="outline">
         <mat-label>Phone Number</mat-label>
         <input matInput type="text" formControlName="clientNumber" required />
+        <mat-error>
+          <app-field-error-component
+            [control]="bookingReviewForm.get('clientNumber')"
+            [fieldName]="'Phone Number'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Booking Number</mat-label>
         <input matInput type="text" formControlName="bookingNumber" required />
+        <mat-error>
+          <app-field-error-component
+            [control]="bookingReviewForm.get('bookingNumber')"
+            [fieldName]="'Booking Number'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Rating</mat-label>
         <input matInput type="number" formControlName="rating" min="1" max="5" required />
+        <mat-error>
+          <app-field-error-component
+            [control]="bookingReviewForm.get('rating')"
+            [fieldName]="'Rating'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Review</mat-label>
         <textarea matInput formControlName="review" rows="4" required></textarea>
+        <mat-error>
+          <app-field-error-component
+            [control]="bookingReviewForm.get('review')"
+            [fieldName]="'Review'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <div class="dialog-footer d-flex g-3">
         <button class="w-50 secondary-button" type="button" (click)="closeDialog()">Cancel</button>

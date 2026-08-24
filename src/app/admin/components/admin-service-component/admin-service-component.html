@@ -10,6 +10,12 @@
             <mat-option [value]="category.categoryId">{{ category.categoryName }}</mat-option>
           }
         </mat-select>
+        <mat-error>
+          <app-field-error-component
+            [control]="serviceForm.get('categoryId')"
+            [fieldName]="'Category'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="w-100" appearance="outline">
         <mat-label for="serviceName">Service Name</mat-label>
@@ -20,6 +26,12 @@
           formControlName="serviceName"
           aria-label="Service Name"
         />
+        <mat-error>
+          <app-field-error-component
+            [control]="serviceForm.get('serviceName')"
+            [fieldName]="'Service Name'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="w-100" appearance="outline">
         <mat-label for="price">Price</mat-label>
@@ -30,6 +42,12 @@
           formControlName="price"
           aria-label="Service price"
         />
+        <mat-error>
+          <app-field-error-component
+            [control]="serviceForm.get('price')"
+            [fieldName]="'Price'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label for="description">Description</mat-label>
@@ -41,6 +59,12 @@
           formControlName="description"
           aria-label="Service Description"
         ></textarea>
+        <mat-error>
+          <app-field-error-component
+            [control]="serviceForm.get('description')"
+            [fieldName]="'Description'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
       <input type="file" /><br />
       @if (isEditService) {

@@ -6,19 +6,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BookingService } from '../services/booking-services/booking-service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatTimepickerModule } from '@angular/material/timepicker';
+import { FieldErrorComponent } from '../../shared/components/field-error-component/field-error-component';
 
 @Component({
   selector: 'app-client-review-component',
@@ -32,6 +28,7 @@ import { MatTimepickerModule } from '@angular/material/timepicker';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
+    FieldErrorComponent,
   ],
   templateUrl: './client-review-component.html',
   styleUrl: './client-review-component.scss',

@@ -11,6 +11,12 @@
           formControlName="categoryName"
           aria-label="Category Name"
         />
+        <mat-error class="mb-5">
+          <app-field-error-component
+            [control]="categoryForm.get('categoryName')"
+            [fieldName]="'Category Name'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-100">
@@ -22,6 +28,12 @@
           formControlName="description"
           aria-label="Category Description"
         ></textarea>
+        <mat-error class="mb-5">
+          <app-field-error-component
+            [control]="categoryForm.get('description')"
+            [fieldName]="'Description'"
+          ></app-field-error-component>
+        </mat-error>
       </mat-form-field>
 
       @if (isEditCategory) {

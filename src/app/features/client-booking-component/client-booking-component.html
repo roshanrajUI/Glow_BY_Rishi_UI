@@ -1,6 +1,6 @@
 <div class="container w-75">
   <div class="d-flex justify-between align-center">
-    <span class="price-details back-button">
+    <span class="price-details back-button pointer" routerLink="/">
       <mat-icon>arrow_back</mat-icon>
       Back to home
     </span>
@@ -16,17 +16,23 @@
   </p>
 
   <form [formGroup]="clientBookingForm" class="my-5 d-flex align-center g-5">
-    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-form-field appearance="outline">
       <mat-label>Phone Number</mat-label>
       <input
         matInput
         type="text"
-        placeholder="phone number"
+        placeholder="Phone Number"
         formControlName="phoneNumber"
         aria-label="Phone Number"
       />
+      <mat-error>
+        <app-field-error-component
+          [control]="clientBookingForm.get('phoneNumber')"
+          [fieldName]="'Phone Number'"
+        ></app-field-error-component>
+      </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-form-field appearance="outline">
       <mat-label>Booking Number</mat-label>
       <input
         type="text"
@@ -35,6 +41,12 @@
         formControlName="bookingNumber"
         aria-label="Booking Number"
       />
+      <mat-error>
+        <app-field-error-component
+          [control]="clientBookingForm.get('bookingNumber')"
+          [fieldName]="'Booking Number'"
+        ></app-field-error-component>
+      </mat-error>
     </mat-form-field>
     <button type="submit" class="btn-book radius-md" (click)="searchClientBooking()">
       <mat-icon>search</mat-icon>

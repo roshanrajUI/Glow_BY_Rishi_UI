@@ -15,6 +15,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientReviewComponent } from '../client-review-component/client-review-component';
+import { FieldErrorComponent } from '../../shared/components/field-error-component/field-error-component';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-client-booking-component',
   imports: [
@@ -26,6 +29,8 @@ import { ClientReviewComponent } from '../client-review-component/client-review-
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
+    FieldErrorComponent,
+    RouterModule,
   ],
   templateUrl: './client-booking-component.html',
   styleUrl: './client-booking-component.scss',

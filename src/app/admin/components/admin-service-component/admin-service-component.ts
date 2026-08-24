@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoryService } from '../../../features/services/category-services/category.service';
 import { MyServiceService } from '../../../features/services/my-service-services/my-service-service';
+import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
 
 @Component({
   selector: 'app-admin-service-component',
@@ -21,13 +22,13 @@ import { MyServiceService } from '../../../features/services/my-service-services
     MatFormFieldModule,
     MatIconModule,
     MatSelectModule,
+    FieldErrorComponent,
   ],
   templateUrl: './admin-service-component.html',
   styleUrl: './admin-service-component.scss',
 })
 export class AdminServiceComponent implements OnInit {
   constructor(
-    private sharedService: SharedService,
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private myServiceService: MyServiceService,
