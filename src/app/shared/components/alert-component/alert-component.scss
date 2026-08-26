@@ -1,0 +1,28 @@
+.alert-container {
+  padding: 1rem;
+  z-index: 999;
+  position: absolute;
+  top: 6rem;
+  right: 1rem;
+  width: 30rem;
+}
+
+.error-msg {
+  background-color: red;
+  color: white;
+}
+
+.info-msg {
+  background-color: rgb(166, 166, 251);
+  color: white;
+}
+
+.success-msg {
+  background-color: green;
+  color: white;
+}
+
+.warning-msg {
+  background-color: orange;
+  color: white;
+}

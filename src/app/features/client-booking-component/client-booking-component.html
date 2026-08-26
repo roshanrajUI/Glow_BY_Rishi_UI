@@ -15,7 +15,7 @@
     booking number to look up just one.
   </p>
 
-  <form [formGroup]="clientBookingForm" class="my-5 d-flex align-center g-5">
+  <form [formGroup]="clientBookingForm" class="my-5 d-flex g-5">
     <mat-form-field appearance="outline">
       <mat-label>Phone Number</mat-label>
       <input
@@ -48,7 +48,7 @@
         ></app-field-error-component>
       </mat-error>
     </mat-form-field>
-    <button type="submit" class="btn-book radius-md" (click)="searchClientBooking()">
+    <button type="submit" class="btn-book btn-search radius-md" (click)="searchClientBooking()">
       <mat-icon>search</mat-icon>
     </button>
   </form>

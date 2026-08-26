@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -15,7 +15,7 @@ import { BookNowDialog } from '../../features/book-now-dialog/book-now-dialog';
   styleUrl: './main-layout.scss',
 })
 export class MainLayout {
-  constructor() {}
+  constructor(private readonly router: Router) {}
   dialog = inject(MatDialog);
 
   goToSection(sectionId: string, drawer?: any) {
@@ -28,6 +28,18 @@ export class MainLayout {
         element.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
+        });
+      } else {
+        this.router.navigate(['/']).then(() => {
+          setTimeout(() => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+              element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              });
+            }
+          }, 500);
         });
       }
     }, 200);

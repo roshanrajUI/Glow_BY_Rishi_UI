@@ -6,12 +6,13 @@ import {
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpErrorInterceptor } from './interceptors/http-interceptor-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([HttpErrorInterceptor])),
     provideZoneChangeDetection({
       eventCoalescing: true,
     }),

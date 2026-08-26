@@ -1,0 +1,7 @@
+@for (alert of alerts(); track alert) {
+  <div class="alert-container" [ngClass]="getAlertClass(alert)">
+    <div class="alert alert-{{ alert.type }}" role="alert">
+      {{ alert.message }}
+    </div>
+  </div>
+}
