@@ -27,7 +27,7 @@
       } @else if (stepper.selectedIndex === 3) {
         <h1 class="stepper-header">Verify Your Booking</h1>
         <p class="description mb-2 fs-xs">
-          Enter the 6-digit code we sent to {{ customerDetailsForm.value.email }}.
+          Enter the 6-digit code we sent to {{ customerDetailsForm.value.gmail }}.
         </p>
       }
     </div>
@@ -69,7 +69,15 @@
         </div>
       </div>
       <div class="d-flex justify-end stepper-footer">
-        <button type="button" class="btn-book" type="button" matStepperNext>Next</button>
+        <button
+          type="button"
+          class="btn-book"
+          type="button"
+          matStepperNext
+          [disabled]="!(selectedServices.length > 0)"
+        >
+          Next
+        </button>
       </div>
     </mat-step>
 
@@ -105,7 +113,14 @@
       </div>
       <div class="d-flex justify-end g-3">
         <button type="button" class="secondary-button" matStepperPrevious>Back</button>
-        <button type="button" class="btn-book" matStepperNext>Next</button>
+        <button
+          type="button"
+          class="btn-book"
+          matStepperNext
+          [disabled]="!selectedTime() || !selectedDate()"
+        >
+          Next
+        </button>
       </div>
     </mat-step>
 
@@ -137,7 +152,7 @@
 
         <form [formGroup]="customerDetailsForm" class="your-details mt-5">
           <h4 class="mb-5 heading-color">Your Details</h4>
-          <mat-form-field class="w-100" appearance="outline">
+          <mat-form-field class="w-100 mb-2" appearance="outline">
             <mat-label>Full Name</mat-label>
             <input
               matInput
@@ -152,7 +167,7 @@
               ></app-field-error-component>
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="w-100" appearance="outline">
+          <mat-form-field class="w-100 mb-2" appearance="outline">
             <mat-label>Phone Number</mat-label>
             <input
               matInput
@@ -167,7 +182,7 @@
               ></app-field-error-component>
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="w-100" appearance="outline">
+          <mat-form-field class="w-100 mb-2" appearance="outline">
             <mat-label>Gmail</mat-label>
             <input
               matInput
@@ -182,7 +197,7 @@
               ></app-field-error-component>
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="w-100" appearance="outline">
+          <mat-form-field class="w-100 mb-2" appearance="outline">
             <mat-label>Address</mat-label>
             <input
               matInput
@@ -197,7 +212,7 @@
               ></app-field-error-component>
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="w-100" appearance="outline">
+          <mat-form-field class="w-100 mb-2" appearance="outline">
             <mat-label>Notes (Optional)</mat-label>
             <textarea
               matInput
@@ -216,7 +231,14 @@
       </div>
       <div class="d-flex justify-end g-3">
         <button type="button" class="secondary-button" matStepperPrevious>Back</button>
-        <button type="submit" class="btn-book" (click)="ConfirmBooking()">Confirm Booking</button>
+        <button
+          type="submit"
+          class="btn-book"
+          [disabled]="customerDetailsForm.invalid || isBookingNotConfirm"
+          (click)="ConfirmBooking()"
+        >
+          Confirm Booking
+        </button>
       </div>
     </mat-step>
     <mat-step>

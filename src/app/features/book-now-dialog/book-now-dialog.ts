@@ -24,6 +24,7 @@ import { CategoryService } from '../services/category-services/category.service'
 import { BookingService } from '../services/booking-services/booking-service';
 import { Booking } from '../../shared/models/common.interface';
 import { FieldErrorComponent } from '../../shared/components/field-error-component/field-error-component';
+import { AlertService } from '../../shared/services/alert-service';
 
 @Component({
   selector: 'app-book-now-dialog',
@@ -53,6 +54,7 @@ export class BookNowDialog implements OnInit {
     private readonly fb: FormBuilder,
     private categoryService: CategoryService,
     private bookingService: BookingService,
+    private alertService: AlertService,
   ) {}
   readonly dialogRef = inject(MatDialogRef<BookNowDialog>);
   readonly data = inject<any>(MAT_DIALOG_DATA);
@@ -64,6 +66,7 @@ export class BookNowDialog implements OnInit {
   today = model<Date | null>(new Date());
   otpForm: FormGroup = new FormGroup({});
   booking!: Booking;
+  isBookingNotConfirm = false;
   @ViewChild('stepper') stepper!: MatStepper;
 
   ngOnInit(): void {
@@ -132,6 +135,7 @@ export class BookNowDialog implements OnInit {
 
   ConfirmBooking() {
     if (this.customerDetailsForm.valid) {
+      this.isBookingNotConfirm = true;
       const bookingData = {
         ...this.customerDetailsForm.value,
         bookedServices: this.selectedServices,
@@ -143,11 +147,14 @@ export class BookNowDialog implements OnInit {
       };
       this.bookingService.createBooking<unknown, Booking>(bookingData).subscribe({
         next: (res: Booking) => {
+          this.isBookingNotConfirm = false;
           this.booking = res;
           this.stepper.next();
         },
+        error: (err: any) => {
+          this.isBookingNotConfirm = false;
+        },
       });
-      // this.dialogRef.close(bookingData); // Close the dialog and pass the booking data back
     }
   }
 
@@ -190,16 +197,24 @@ export class BookNowDialog implements OnInit {
   }
 
   resendCode(): void {
-    console.log('Resending verification code...');
-
-    // Call your API here
-    // this.bookingService.resendVerificationCode(...).subscribe(...)
+    const { bookingNumber } = this.booking;
+    const body = {
+      bookingNumber,
+      gmail: this.customerDetailsForm.value?.gmail,
+    };
+    this.bookingService.resendOtp<unknown, boolean>(body).subscribe({
+      next: (res: boolean) => {
+        if (res) {
+          this.otpForm.reset();
+          this.alertService.showAlert('success', 'Otp Sent Successfully Please Check Your Mail');
+        }
+      },
+    });
   }
 
   verifyOtp(): void {
     if (this.otpForm.valid) {
       const otp = Object.values(this.otpForm.value).join('');
-      console.log('Verifying OTP:', otp);
       const { bookingNumber } = this.booking;
       const body = {
         bookingNumber,
@@ -210,14 +225,7 @@ export class BookNowDialog implements OnInit {
         next: (res: any) => {
           this.dialogClose();
         },
-        error: (err: any) => {
-          console.error('Error verifying OTP:', err);
-        },
       });
-      // Call your API here to verify the OTP
-      // this.bookingService.verifyOtp(otp).subscribe(...)
-    } else {
-      console.log('OTP form is invalid');
     }
   }
 }

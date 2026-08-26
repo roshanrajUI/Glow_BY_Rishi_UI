@@ -57,15 +57,15 @@
 
     <div class="desktop-header d-flex justify-between align-center p-3 glass-card">
       <div class="d-flex g-2 align-items-center">
-        <a (click)="goToSection('services', drawer)" class="ml-5">Services</a>
-        <a (click)="goToSection('my-work', drawer)">My Work</a>
+        <a (click)="goToSection('services', drawer)">Services</a>
+        <a (click)="goToSection('my-work', drawer)" class="pl-4">My Work</a>
       </div>
       <h3 class="logo heading-color pointer" routerLink="/">
         Glow <span class="primary-color italic">by </span> Rishi
       </h3>
       <div class="d-flex justify-end align-center g-2">
         <a (click)="goToSection('artist', drawer)">About Us</a>
-        <a (click)="goToSection('get-in-touch', drawer)" class="ml-5">Contact</a>
+        <a (click)="goToSection('get-in-touch', drawer)" class="pl-4">Contact</a>
         <a class="pl-4" routerLink="/my-bookings">My Bookings</a>
         <a class="pl-4" routerLink="/admin">Admin</a>
         <button type="button" class="ml-5 btn-book" (click)="openBookNowDialog()">Book Now</button>

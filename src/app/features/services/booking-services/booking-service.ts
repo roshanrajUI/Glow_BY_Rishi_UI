@@ -27,7 +27,7 @@ export class BookingService {
   }
 
   createBooking<B, R>(body: B): Observable<R> {
-    return this.apiService.httpPost(API_URL.BOOKINGS, body);
+    return this.apiService.httpPost(API_URL.CREATEBOOKING, body);
   }
 
   createBookingReview<B, R>(body: B): Observable<R> {
@@ -40,5 +40,9 @@ export class BookingService {
 
   verifyBookingOtp<B, R>(body: B): Observable<R> {
     return this.apiService.httpPost(API_URL.VERIFYBOOKINGOTP, body);
+  }
+
+  resendOtp<B, R>(body: B): Observable<R> {
+    return this.apiService.httpPost(API_URL.RESENDOTP, body);
   }
 }
