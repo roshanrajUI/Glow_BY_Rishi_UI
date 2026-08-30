@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  baseUrl = 'http://localhost:3000/api';
+  baseUrl = 'https://glow-by-rishi-api.onrender.com/api';
 
   httpGet<R>(endpoint: string, params?: HttpParams, headers?: HttpHeaders): Observable<R> {
     return this.httpClient.get<R>(`${this.baseUrl}/${endpoint}`, {
