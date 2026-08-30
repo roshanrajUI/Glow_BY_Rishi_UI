@@ -211,6 +211,12 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   }
 }
 
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
 @media (min-width: 768px) {
   .container {
     padding: 24px;

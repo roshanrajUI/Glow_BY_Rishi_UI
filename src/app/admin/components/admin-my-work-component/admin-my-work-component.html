@@ -1,5 +1,5 @@
-<div class="d-flex justify-between g-5 mt-5 mywork-card">
-  <div class="card w-50">
+<div class="grid-2 g-5 mt-5 mywork-card">
+  <div class="card">
     <h2 class="card-heading">{{ isEditMyWork ? 'Edit' : 'Add to' }} My Work</h2>
 
     <form [formGroup]="myWorkForm" class="mt-5">
@@ -61,7 +61,7 @@
       }
     </form>
   </div>
-  <div class="w-50 existing-works">
+  <div class="existing-works">
     @for (work of myWorks; track work.workId) {
       <div class="card d-flex-between mb-3">
         <div class="w-75 d-flex g-3">

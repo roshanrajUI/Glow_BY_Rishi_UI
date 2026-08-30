@@ -1,5 +1,5 @@
-<div class="d-flex justify-between g-5 mt-5 category-card">
-  <div class="card w-50">
+<div class="grid-2 g-5 mt-5 category-card">
+  <div class="card">
     <h2 class="card-heading">{{ isEditCategory ? 'Edit' : 'Add' }} Category</h2>
     <form [formGroup]="categoryForm" class="mt-5">
       <mat-form-field class="w-100" appearance="outline">
@@ -46,7 +46,7 @@
       }
     </form>
   </div>
-  <div class="card existing-categories w-50">
+  <div class="card existing-categories">
     @for (category of existingCategories; track category.categoryId) {
       <div class="card mb-3 d-flex-between align-center">
         <div>
