@@ -73,6 +73,7 @@ export class AdminServiceComponent implements OnInit {
 
   saveService() {
     if (this.serviceForm.invalid) return;
+    this.serviceForm.get('imageUrl')?.setValue('dummy');
 
     this.myServiceService.createService<unknown, boolean>(this.serviceForm.value).subscribe({
       next: (res: boolean) => {
@@ -87,6 +88,8 @@ export class AdminServiceComponent implements OnInit {
   editService(service: Service) {
     const { categoryId, serviceId, serviceName, price, description } = service;
     this.isEditService = true;
+    this.serviceForm.get('imageUrl')?.setValue('dummy');
+
     this.serviceForm.patchValue({
       categoryId,
       serviceName,

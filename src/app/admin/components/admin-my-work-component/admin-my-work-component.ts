@@ -78,6 +78,8 @@ export class AdminMyWorkComponent implements OnInit {
   }
 
   saveWork() {
+    this.myWorkForm.get('imageUrl')?.setValue('dummy');
+
     if (this.myWorkForm.invalid) return;
 
     const { serviceId, title, description, imageUrl } = this.myWorkForm.value;
