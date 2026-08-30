@@ -60,14 +60,18 @@ a {
   color: #333;
 }
 
-@media (min-width: 768px) {
+.mat-drawer.mat-drawer-opened.mat-drawer-opened {
+  padding-top: 0 !important;
+}
+
+@media (min-width: 1024px) {
   .mobile-header {
     display: none;
   }
 
   .desktop-header {
     display: flex;
-    padding: 1.5rem;
+    padding: 1rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -111,6 +115,7 @@ mat-sidenav {
   color: $footer_bg;
   a {
     text-transform: uppercase;
+    font-weight: 500;
   }
 
   .btn-book {

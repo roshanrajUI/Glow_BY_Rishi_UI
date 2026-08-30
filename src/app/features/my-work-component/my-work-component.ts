@@ -18,6 +18,8 @@ export class MyWorkComponent implements OnInit {
   ) {}
   categories: Category[] = [];
   myAllWorks: Work[] = [];
+  selectedCategoryId = '';
+  totalMyWorkCount!: number;
 
   ngOnInit() {
     this.getCategories();
@@ -39,10 +41,12 @@ export class MyWorkComponent implements OnInit {
     };
     this.workService.getAllWorks<MyWorkRequest, MyWorks>(body).subscribe((works: MyWorks) => {
       this.myAllWorks = works.data;
+      this.totalMyWorkCount = works.totalSize;
     });
   }
 
   getCategoryWorks(categoryId: string) {
+    this.selectedCategoryId = categoryId;
     if (!categoryId) {
       this.getMyWorks();
       return;
@@ -51,6 +55,6 @@ export class MyWorkComponent implements OnInit {
   }
 
   showMoreWorks() {
-    this.getMyWorks('', '', this.myAllWorks.length + 10, 1);
+    this.getMyWorks(this.selectedCategoryId, '', this.myAllWorks.length + 10, 1);
   }
 }

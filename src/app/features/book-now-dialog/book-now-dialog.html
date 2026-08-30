@@ -10,9 +10,9 @@
         >close</mat-icon
       >
     </div>
-    <p class="primary-color">
+    <p class="d-flex align-center g-3 primary-color">
       <mat-icon class="star-icon">star</mat-icon>
-      Step {{ stepper.selectedIndex + 1 }} of 4
+      <span class="stepper-count"> Step {{ stepper.selectedIndex + 1 }} of 4 </span>
     </p>
     <div class="mt-3">
       @if (stepper.selectedIndex === 0) {
@@ -127,21 +127,21 @@
     <mat-step>
       <div class="confirmation-container">
         <div class="appointment-details p-4">
-          <h5 class="mb-4">Your Appointment</h5>
-          <div class="d-flex-between align-center">
+          <h3 class="mb-4">Your Appointment</h3>
+          <div class="d-flex-between g-3">
             <span>Services</span>
             <span>{{ getServicesName() }}</span>
           </div>
-          <div class="d-flex-between align-center">
+          <div class="d-flex-between g-3">
             <span>Date</span>
             <span>{{ selectedDate() | date: 'dd/MM/yyyy' }}</span>
           </div>
-          <div class="d-flex-between align-center">
+          <div class="d-flex-between g-3">
             <span>Time</span>
             <span>{{ selectedTime() | date: 'shortTime' }}</span>
           </div>
           <hr class="my-4" />
-          <div class="d-flex-between align-center">
+          <div class="d-flex-between g-3">
             <span>Estimated Total</span>
             <span>
               <mat-icon> rupee_currency </mat-icon>

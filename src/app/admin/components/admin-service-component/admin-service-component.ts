@@ -51,7 +51,7 @@ export class AdminServiceComponent implements OnInit {
       serviceName: ['', Validators.required],
       price: [0, Validators.required],
       description: [''],
-      imageURL: [''],
+      imageUrl: [''],
     });
   }
 
@@ -125,5 +125,13 @@ export class AdminServiceComponent implements OnInit {
     this.serviceForm.updateValueAndValidity();
     this.isEditService = false;
     this.updatingServiceId = '';
+  }
+
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.serviceForm.get('imageUrl')?.setValue(input.files[0]);
+    }
   }
 }

@@ -1,4 +1,4 @@
-<div class="my-work-section common-margin">
+<div class="my-work-section">
   <h4 class="feature-heading text-center">My Work</h4>
   <h1 class="feature-description text-center">
     Looks made <br />
@@ -6,9 +6,19 @@
   </h1>
 
   <div class="work-gallery d-flex flex-wrap justify-center g-4">
-    <button type="button" class="secondary-button" (click)="getCategoryWorks('')">All</button>
+    <button
+      type="button"
+      [ngClass]="!selectedCategoryId ? 'btn-book' : 'secondary-button'"
+      (click)="getCategoryWorks('')"
+    >
+      All
+    </button>
     @for (category of categories; track category.categoryId) {
-      <button type="button" class="secondary-button" (click)="getCategoryWorks(category.categoryId)">
+      <button
+        type="button"
+        [ngClass]="selectedCategoryId === category.categoryId ? 'btn-book' : 'secondary-button'"
+        (click)="getCategoryWorks(category.categoryId)"
+      >
         {{ category.categoryName | uppercase }}
       </button>
     }
@@ -28,7 +38,7 @@
     }
   </div>
 
-  <p (click)="showMoreWorks()" class="fs-xs text-primary fw-semibold text-right mt-4">
+  <p (click)="showMoreWorks()" class="fs-xs text-primary fw-semibold text-right mt-4 pointer">
     Show More...
   </p>
 </div>

@@ -16,7 +16,6 @@ import { MyWorkComponent } from '../../my-work-component/my-work-component';
     Artist,
     ReviewsComponent,
     GetInTouchComponent,
-    MyWorkComponent,
   ],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',

@@ -7,10 +7,13 @@
   }
 </div>
 @for (booking of allBookings; track booking.bookingId) {
-  <div class="booking-card mb-3">
+  <div class="booking-card desktop-booking-card mb-3">
     <div>
       <div class="customer-info d-flex justify-between align-center mb-1">
-        <h2>{{ booking.client.clientName }}</h2>
+        <h2>
+          <span class="primary-color">#{{ booking.bookingNumber }}</span>
+          {{ booking.client.clientName }}
+        </h2>
         <h2>${{ booking.totalPrice }}</h2>
       </div>
       <div class="d-flex justify-between align-center contact mb-1">
@@ -56,13 +59,71 @@
     <div class="divider"></div>
 
     <div class="services">
-      <h2 class="service-title mb-1">SERVICES (1)</h2>
+      <h2 class="service-title mb-2">SERVICES (1)</h2>
       @for (service of booking.bookingServices; track service.bookingServiceId) {
         <div class="d-flex justify-between align-center service-row">
           <span>{{ service.service.serviceName }}</span>
           <span>${{ service.price }}</span>
         </div>
       }
+    </div>
+  </div>
+
+  <div class="booking-card mobile-booking-card mb-3">
+    <div class="customer-info d-flex justify-between align-center mb-1">
+      <h2>
+        <span class="primary-color">#{{ booking.bookingNumber }}</span>
+        {{ booking.client.clientName }}
+      </h2>
+      <h2>${{ booking.totalPrice }}</h2>
+    </div>
+
+    <div class="contact mb-1">
+      <h3>{{ booking.client.gmail }}</h3>
+      <h3>{{ booking.client.phoneNumber }}</h3>
+      <!-- <div class="status">{{ booking.status }}</div> -->
+    </div>
+
+    <div>
+      <h3 class="booking-date mb-1">
+        {{ booking.bookingDate }}, {{ booking.bookingTime.slice(0, 5) }}
+      </h3>
+      <h3 class="booked-date mb-1">Booked {{ booking.createdAt | date: 'dd/MM/yyyy' }}</h3>
+      <h3 class="note">{{ booking.notes }}</h3>
+    </div>
+
+    <div class="status">{{ booking.status }}</div>
+
+    <div class="divider"></div>
+    <div class="services">
+      <h2 class="service-title mb-2">SERVICES (1)</h2>
+      @for (service of booking.bookingServices; track service.bookingServiceId) {
+        <div class="d-flex justify-between align-center service-row">
+          <span>{{ service.service.serviceName }}</span>
+          <span>${{ service.price }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="d-flex flex-wrap align-center g-2 mt-3">
+      <button
+        [ngClass]="booking.status === 'Confirmed' ? 'btn-book' : 'secondary-button'"
+        (click)="updateBooking(booking.bookingId, 'Confirmed')"
+      >
+        Confirmed
+      </button>
+      <button
+        [ngClass]="booking.status === 'Completed' ? 'btn-book' : 'secondary-button'"
+        (click)="updateBooking(booking.bookingId, 'Completed')"
+      >
+        Completed
+      </button>
+      <button
+        [ngClass]="booking.status === 'Cancelled' ? 'btn-book' : 'secondary-button'"
+        (click)="updateBooking(booking.bookingId, 'Cancelled')"
+      >
+        Cancel
+      </button>
     </div>
   </div>
 }

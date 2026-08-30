@@ -1,43 +1,17 @@
-<!-- <div class="header p-4 border_bottom">
-    <h3 class="logo heading-color">Glow <span class="primary-color italic">by </span> Rishi</h3>
-    <mat-icon mat-icon-button [matMenuTriggerFor]="menu">menu</mat-icon>
-</div>
-
-<mat-menu #menu="matMenu" class="menu-list">
-    <button mat-menu-item>
-        Portfolio
-    </button>
-    <button mat-menu-item>
-        Services
-    </button>
-    <button mat-menu-item>
-        Aboust Us
-    </button>
-    <button mat-menu-item>
-        Contact Us
-    </button>
-    <button mat-menu-item>
-        Book Now
-    </button>
-</mat-menu> -->
-
 <mat-sidenav-container class="sidenav-container">
   <!-- Side Drawer -->
-  <mat-sidenav #drawer mode="over" position="end">
-    <div class="d-flex justify-between align-center p-3 heading">
-      <h3 class="fw-semibold">Menu</h3>
-
+  <mat-sidenav #drawer mode="over" position="end" class="p-0">
+    <div class="d-flex justify-end align-center p-3 heading">
       <button type="button" mat-icon-button (click)="drawer.close()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div class="d-flex flex-column g-3">
-      <a class="pl-4" (click)="goToSection('my-work', drawer)">My Work</a>
+    <div class="d-flex flex-column g-4">
+      <a class="pl-4" routerLink="/my-work">My Work</a>
       <a class="pl-4" (click)="goToSection('services', drawer)">Services</a>
       <a class="pl-4" (click)="goToSection('artist', drawer)">About Us</a>
       <a class="pl-4" (click)="goToSection('get-in-touch', drawer)">Contact Us</a>
-      <a class="pl-4" routerLink="/my-bookings">My Bookings</a>
-      <a class="pl-4" routerLink="/admin">Admin</a>
+      <a class="pl-4" routerLink="/my-bookings" (click)="drawer.close()">My Bookings</a>
       <button type="button" class="btn-book w-100" (click)="openBookNowDialog(true, drawer)">
         Book Now
       </button>
@@ -58,7 +32,7 @@
     <div class="desktop-header d-flex justify-between align-center p-3 glass-card">
       <div class="d-flex g-2 align-items-center">
         <a (click)="goToSection('services', drawer)">Services</a>
-        <a (click)="goToSection('my-work', drawer)" class="pl-4">My Work</a>
+        <a routerLink="/my-work" class="pl-4">My Work</a>
       </div>
       <h3 class="logo heading-color pointer" routerLink="/">
         Glow <span class="primary-color italic">by </span> Rishi
@@ -67,7 +41,6 @@
         <a (click)="goToSection('artist', drawer)">About Us</a>
         <a (click)="goToSection('get-in-touch', drawer)" class="pl-4">Contact</a>
         <a class="pl-4" routerLink="/my-bookings">My Bookings</a>
-        <a class="pl-4" routerLink="/admin">Admin</a>
         <button type="button" class="ml-5 btn-book" (click)="openBookNowDialog()">Book Now</button>
       </div>
     </div>

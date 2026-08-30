@@ -6,10 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { Category } from '../../models/common.interface';
 import { CategoryService } from '../../services/category-services/category.service';
 import { SharedService } from '../../../shared/services/shared-service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, RouterModule],
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.scss',
 })

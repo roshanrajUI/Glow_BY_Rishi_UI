@@ -42,3 +42,12 @@
     }
   }
 }
+
+@media (max-width: 400px) {
+  .reviews-section {
+    flex-direction: column;
+    .review-card {
+      min-width: 100%;
+    }
+  }
+}

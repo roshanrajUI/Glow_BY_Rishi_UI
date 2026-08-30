@@ -3,8 +3,8 @@
 .book-now-container {
   .star-icon {
     font-size: 18px;
-    height: 16px;
-    width: 16px;
+    height: 18px;
+    width: 18px;
   }
 
   .dialog-header {
@@ -240,6 +240,10 @@
   box-shadow: none;
 }
 
+::ng-deep .mat-calendar-body-selected {
+  background-color: #c87563 !important;
+}
+
 //otp
 .verification-container {
   width: 100%;
@@ -327,6 +331,15 @@
   }
 }
 
+@media (max-width: 768px) {
+  .stepper-count {
+    font-size: 0.8rem;
+  }
+  .stepper-header {
+    font-size: 1.5rem;
+  }
+}
+
 // Responsive
 @media (max-width: 600px) {
   .verification-container {
@@ -335,7 +348,6 @@
 
   .verification-text {
     max-width: 400px;
-    margin-bottom: 30px;
     font-size: 16px;
   }
 

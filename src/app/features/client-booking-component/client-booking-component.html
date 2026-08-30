@@ -1,5 +1,5 @@
-<div class="container w-75">
-  <div class="d-flex justify-between align-center">
+<div class="container">
+  <div class="d-flex flex-wrap g-3 justify-between align-center">
     <span class="price-details back-button pointer" routerLink="/">
       <mat-icon>arrow_back</mat-icon>
       Back to home
@@ -15,7 +15,7 @@
     booking number to look up just one.
   </p>
 
-  <form [formGroup]="clientBookingForm" class="my-5 d-flex g-5">
+  <form [formGroup]="clientBookingForm" class="my-5 d-flex flex-wrap search-section g-5">
     <mat-form-field appearance="outline">
       <mat-label>Phone Number</mat-label>
       <input

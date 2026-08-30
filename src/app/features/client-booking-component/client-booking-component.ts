@@ -56,13 +56,17 @@ export class ClientBookingComponent {
   }
 
   searchClientBooking() {
-    this.bookingService
-      .getClientBookings<unknown, Booking[]>(this.clientBookingForm.value)
-      .subscribe({
-        next: (res: Booking[]) => {
-          this.clientBookings = res;
-        },
-      });
+    if (this.clientBookingForm.valid) {
+      this.bookingService
+        .getClientBookings<unknown, Booking[]>(this.clientBookingForm.value)
+        .subscribe({
+          next: (res: Booking[]) => {
+            this.clientBookings = res;
+          },
+        });
+    } else {
+      this.clientBookingForm.markAllAsTouched();
+    }
   }
 
   addMyReview() {

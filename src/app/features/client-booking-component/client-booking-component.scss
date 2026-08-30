@@ -1,5 +1,5 @@
 .container {
-  margin: 1px auto;
+  width: 100%;
 }
 .back-button {
   color: gray;
@@ -20,11 +20,16 @@
   height: 3.5rem;
 }
 
+.search-section {
+  gap: 0.5rem;
+
+  mat-form-field,
+  .btn-search {
+    width: 100%;
+  }
+}
+
 .card {
-  //   margin: 30px auto;
-  //   background: #fff;
-  //   border: 1px solid #eadfd6;
-  //   padding: 32px;
   font-family: 'Poppins', sans-serif;
   color: #5c4d45;
 
@@ -97,43 +102,49 @@
 }
 
 .total {
-  // font-size: 42px;
-  // font-family: 'Cormorant Garamond', serif;
   color: #4a3b34;
   font-weight: 500;
 }
 
 /* Responsive */
+.booking-card {
+  padding: 20px;
 
-@media (max-width: 768px) {
-  .booking-card {
-    padding: 20px;
+  .header {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    .header {
-      flex-direction: column;
-      gap: 20px;
+  .details {
+    flex-direction: column;
+    gap: 15px !important;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 25px;
+
+    .total {
+      align-self: flex-end;
     }
+  }
 
-    .details {
-      flex-direction: column;
-      gap: 15px !important;
-    }
+  .service-row {
+    font-size: 18px !important;
+  }
 
-    .footer {
-      flex-direction: column;
-      gap: 25px;
+  .customer-name {
+    font-size: 32px !important;
+  }
+}
 
-      .total {
-        align-self: flex-end;
-      }
-    }
+@media (min-width: 768px) {
+  .container {
+    margin: 1px auto;
+    width: 75%;
 
-    .service-row {
-      font-size: 18px !important;
-    }
-
-    .customer-name {
-      font-size: 32px !important;
+    .search-section {
+      gap: 1rem;
     }
   }
 }

@@ -43,6 +43,7 @@ export class MainLayout {
         });
       }
     }, 200);
+    drawer.close();
   }
 
   openBookNowDialog(isSide = false, drawer?: any) {

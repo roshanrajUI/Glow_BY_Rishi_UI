@@ -63,3 +63,11 @@ export interface BookingService {
   //   updatedAt: Date;
   service: Service;
 }
+
+export enum BOOKINGSTATUS {
+  OTPPENDING = 'OTP Pending',
+  PENDING = 'Pending',
+  CONFIRMED = 'Confirmed',
+  COMPLETED = 'Completed',
+  CANCELLED = 'Cancelled',
+}
