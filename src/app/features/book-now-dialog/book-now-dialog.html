@@ -264,9 +264,7 @@
         </div>
 
         <button type="button" class="resend-btn" (click)="resendCode()">RESEND CODE</button>
-        <button type="submit" class="btn-book" [disabled]="!otpForm.valid" (click)="verifyOtp()">
-          VERIFY
-        </button>
+        <button type="submit" class="btn-book" [disabled]="!otpForm.valid">VERIFY</button>
       </form>
     </mat-step>
   </mat-stepper>
