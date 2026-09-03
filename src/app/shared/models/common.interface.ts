@@ -46,6 +46,7 @@ export interface Service {
   price: number;
   description: string;
   categoryId: string;
+  imageUrl: string;
   isActive: boolean;
   //   createdAt: Date;
   //   updatedAt: Date;

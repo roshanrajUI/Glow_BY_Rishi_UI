@@ -2,7 +2,7 @@
   <div class="card">
     <h2 class="card-heading">{{ isEditMyWork ? 'Edit' : 'Add to' }} My Work</h2>
 
-    <form [formGroup]="myWorkForm" class="mt-5">
+    <form [formGroup]="myWorkForm" class="mt-5" (submit)="submitMyWork()">
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Choose Service</mat-label>
         <mat-select formControlName="serviceId" aria-label="service work">
@@ -50,35 +50,37 @@
           ></app-field-error-component>
         </mat-error>
       </mat-form-field>
-      <input type="file" formControlName="imageUrl" />
+      <input type="file" (change)="onImageSelected($event)" />
       @if (isEditMyWork) {
         <div class="d-flex g-5 mt-3">
-          <button class="btn-book" type="submit" (click)="updateMyWork()">Edit Work</button>
+          <button class="btn-book" type="submit">Edit Work</button>
           <button class="secondary-button" type="button" (click)="cancelUpdate()">Cancel</button>
         </div>
       } @else {
-        <button class="btn-book mt-3" type="submit" (click)="saveWork()">Add Work</button>
+        <button class="btn-book mt-3" type="submit">Add Work</button>
       }
     </form>
   </div>
-  <div class="existing-works">
-    @for (work of myWorks; track work.workId) {
-      <div class="card d-flex-between mb-3">
-        <div class="w-75 d-flex g-3">
-          <div class="work-img">
-            <img src="../../../../assets/images/service-hair.jpg" alt="" />
+  @if (myWorks.length > 0) {
+    <div class="existing-works">
+      @for (work of myWorks; track work.workId) {
+        <div class="card d-flex-between mb-3">
+          <div class="w-75 d-flex g-3">
+            <div class="work-img">
+              <img [src]="baseURL + work.imageUrl" alt="my work image" />
+            </div>
+            <div>
+              <h2 class="card-heading">{{ work.title }}</h2>
+              <p class="description fs-xs">{{ work.service.category.categoryName }}</p>
+              <p class="description fs-xs">{{ work.service.serviceName }}</p>
+            </div>
           </div>
           <div>
-            <h2 class="card-heading">{{ work.title }}</h2>
-            <p class="description fs-xs">{{ work.service.category.categoryName }}</p>
-            <p class="description fs-xs">{{ work.service.serviceName }}</p>
+            <mat-icon class="success-color mr-1" (click)="editMyWork(work)">edit</mat-icon>
+            <mat-icon class="danger-color" (click)="deleteMyWork(work)">delete</mat-icon>
           </div>
         </div>
-        <div>
-          <mat-icon class="success-color mr-1" (click)="editMyWork(work)">edit</mat-icon>
-          <mat-icon class="danger-color" (click)="deleteMyWork(work)">delete</mat-icon>
-        </div>
-      </div>
-    }
-  </div>
+      }
+    </div>
+  }
 </div>

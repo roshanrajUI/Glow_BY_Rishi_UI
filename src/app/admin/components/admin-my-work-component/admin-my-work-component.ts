@@ -39,7 +39,8 @@ export class AdminMyWorkComponent implements OnInit {
   myWorks: Work[] = [];
   isEditMyWork = false;
   updatingMyWorkId = '';
-
+  // baseURL = 'http://localhost:3000';
+  baseURL = 'http://glow-by-rishi-api.onrender.com';
   ngOnInit(): void {
     this.createForm();
     this.getAllServices();
@@ -77,20 +78,34 @@ export class AdminMyWorkComponent implements OnInit {
     });
   }
 
-  saveWork() {
-    this.myWorkForm.get('imageUrl')?.setValue('dummy');
+  onImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.myWorkForm.get('imageUrl')?.setValue(file);
+    }
+  }
 
-    if (this.myWorkForm.invalid) return;
+  editMyWork(myWork: Work) {
+    this.myWorkForm.patchValue({
+      serviceId: myWork.serviceId,
+      title: myWork.title,
+      description: myWork.description,
+    });
 
-    const { serviceId, title, description, imageUrl } = this.myWorkForm.value;
-    const body = {
-      serviceId,
-      title,
-      description,
-      imageUrl,
-    };
+    this.isEditMyWork = true;
+    this.updatingMyWorkId = myWork.workId;
+  }
 
-    this.workService.createMyWork<unknown, boolean>(body).subscribe({
+  cancelUpdate() {
+    this.myWorkForm.reset();
+    this.myWorkForm.markAsUntouched();
+    this.myWorkForm.updateValueAndValidity();
+    this.isEditMyWork = false;
+    this.updatingMyWorkId = '';
+  }
+
+  saveWork(formData: FormData) {
+    this.workService.createMyWork<unknown, boolean>(formData).subscribe({
       next: (res: boolean) => {
         if (res) {
           this.cancelUpdate();
@@ -100,36 +115,13 @@ export class AdminMyWorkComponent implements OnInit {
     });
   }
 
-  editMyWork(myWork: Work) {
-    this.myWorkForm.patchValue({
-      serviceId: myWork.serviceId,
-      title: myWork.title,
-      description: myWork.description,
-      imageUrl: myWork.imageUrl,
+  updateMyWork(formData: FormData) {
+    this.workService.updateMyWork<unknown, boolean>(this.updatingMyWorkId, formData).subscribe({
+      next: (res: boolean) => {
+        this.getAllWorks();
+        this.cancelUpdate();
+      },
     });
-
-    this.isEditMyWork = true;
-    this.updatingMyWorkId = myWork.workId;
-  }
-
-  updateMyWork() {
-    if (this.myWorkForm.invalid) return;
-
-    const { serviceId, title, description, imageUrl } = this.myWorkForm.value;
-    const body = {
-      serviceId,
-      title,
-      description,
-      imageUrl,
-    };
-    this.workService
-      .updateMyWork<unknown, boolean>(this.updatingMyWorkId, this.myWorkForm.value)
-      .subscribe({
-        next: (res: boolean) => {
-          this.getAllWorks();
-          this.cancelUpdate();
-        },
-      });
   }
 
   deleteMyWork(myWork: Work) {
@@ -140,11 +132,19 @@ export class AdminMyWorkComponent implements OnInit {
     });
   }
 
-  cancelUpdate() {
-    this.myWorkForm.reset();
-    this.myWorkForm.markAsUntouched();
-    this.myWorkForm.updateValueAndValidity();
-    this.isEditMyWork = false;
-    this.updatingMyWorkId = '';
+  submitMyWork() {
+    if (this.myWorkForm.invalid) return;
+    const { serviceId, title, description, imageUrl } = this.myWorkForm.value;
+    const formData = new FormData();
+    formData.append('serviceId', serviceId);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('imageUrl', imageUrl);
+
+    if (this.isEditMyWork) {
+      this.updateMyWork(formData);
+    } else {
+      this.saveWork(formData);
+    }
   }
 }

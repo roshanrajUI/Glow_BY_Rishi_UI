@@ -38,7 +38,8 @@ export class AdminServiceComponent implements OnInit {
   serviceForm: FormGroup = new FormGroup({});
   isEditService = false;
   updatingServiceId = '';
-
+  // baseURL = 'http://localhost:3000';
+  baseURL = 'http://glow-by-rishi-api.onrender.com';
   ngOnInit(): void {
     this.createServiceForm();
     this.getAllCategories();
@@ -71,25 +72,9 @@ export class AdminServiceComponent implements OnInit {
     });
   }
 
-  saveService() {
-    if (this.serviceForm.invalid) return;
-    this.serviceForm.get('imageUrl')?.setValue('dummy');
-
-    this.myServiceService.createService<unknown, boolean>(this.serviceForm.value).subscribe({
-      next: (res: boolean) => {
-        if (res) {
-          this.getAllServices();
-          this.serviceForm.reset();
-        }
-      },
-    });
-  }
-
   editService(service: Service) {
     const { categoryId, serviceId, serviceName, price, description } = service;
     this.isEditService = true;
-    this.serviceForm.get('imageUrl')?.setValue('dummy');
-
     this.serviceForm.patchValue({
       categoryId,
       serviceName,
@@ -100,9 +85,36 @@ export class AdminServiceComponent implements OnInit {
     this.updatingServiceId = serviceId;
   }
 
-  updateService() {
+  submitService() {
+    if (this.serviceForm.invalid) return;
+    const formData = new FormData();
+    const { categoryId, serviceName, price, description, imageUrl } = this.serviceForm.value;
+    formData.append('categoryId', categoryId);
+    formData.append('serviceName', serviceName);
+    formData.append('price', price);
+    formData.append('description', description);
+    formData.append('imageUrl', imageUrl);
+    if (this.isEditService) {
+      this.updateService(formData);
+    } else {
+      this.saveService(formData);
+    }
+  }
+
+  saveService(formData: FormData) {
+    this.myServiceService.createService<unknown, boolean>(formData).subscribe({
+      next: (res: boolean) => {
+        if (res) {
+          this.getAllServices();
+          this.serviceForm.reset();
+        }
+      },
+    });
+  }
+
+  updateService(formData: FormData) {
     this.myServiceService
-      .updateService<unknown, boolean>(this.updatingServiceId, this.serviceForm.value)
+      .updateService<unknown, boolean>(this.updatingServiceId, formData)
       .subscribe({
         next: (res: boolean) => {
           if (res) {
