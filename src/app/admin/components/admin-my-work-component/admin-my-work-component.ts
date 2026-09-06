@@ -11,6 +11,7 @@ import { MyServiceService } from '../../../features/services/my-service-services
 import { Work } from '../../../features/models/common.interface';
 import { WorkService } from '../../../features/services/work-services/work-service';
 import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
+import { API_URL } from '../../../constants/rest-url';
 
 @Component({
   selector: 'app-admin-my-work-component',
@@ -39,8 +40,8 @@ export class AdminMyWorkComponent implements OnInit {
   myWorks: Work[] = [];
   isEditMyWork = false;
   updatingMyWorkId = '';
-  // baseURL = 'http://localhost:3000';
-  baseURL = 'http://glow-by-rishi-api.onrender.com';
+  baseUrl = API_URL.BASEURL;
+
   ngOnInit(): void {
     this.createForm();
     this.getAllServices();

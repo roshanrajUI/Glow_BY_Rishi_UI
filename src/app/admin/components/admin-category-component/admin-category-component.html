@@ -19,7 +19,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="w-100">
+      <mat-form-field appearance="outline" class="w-100 mt-1">
         <mat-label>Description</mat-label>
         <textarea
           rows="7"
@@ -35,15 +35,14 @@
           ></app-field-error-component>
         </mat-error>
       </mat-form-field>
-
-      @if (isEditCategory) {
-        <div class="d-flex g-5">
+      <div class="d-flex justify-end g-5">
+        @if (isEditCategory) {
           <button class="btn-book" type="submit" (click)="updateCategory()">Edit Category</button>
           <button class="secondary-button" type="button" (click)="cancelUpdate()">Cancel</button>
-        </div>
-      } @else {
-        <button class="btn-book" type="submit" (click)="saveCategory()">Add Category</button>
-      }
+        } @else {
+          <button class="btn-book" type="submit" (click)="saveCategory()">Add Category</button>
+        }
+      </div>
     </form>
   </div>
   @if (existingCategories.length > 0) {

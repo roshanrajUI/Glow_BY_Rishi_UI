@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_URL } from '../constants/rest-url';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  baseUrl = 'https://glow-by-rishi-api.onrender.com/api';
+  baseUrl = `${API_URL.BASEURL}/api`;
 
   httpGet<R>(endpoint: string, params?: HttpParams, headers?: HttpHeaders): Observable<R> {
     return this.httpClient.get<R>(`${this.baseUrl}/${endpoint}`, {

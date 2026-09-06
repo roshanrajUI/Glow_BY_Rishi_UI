@@ -67,36 +67,38 @@
         </mat-error>
       </mat-form-field>
       <input type="file" (change)="onImageSelected($event)" /><br />
-      @if (isEditService) {
-        <div class="d-flex g-5 mt-3">
+      <div class="d-flex justify-end g-5">
+        @if (isEditService) {
           <button class="btn-book" type="submit">Edit Service</button>
           <button class="secondary-button" type="button" (click)="cancelUpdate()">Cancel</button>
-        </div>
-      } @else {
-        <button class="btn-book mt-3" type="submit">Add Service</button>
-      }
+        } @else {
+          <button class="btn-book mt-3" type="submit">Add Service</button>
+        }
+      </div>
     </form>
   </div>
   @if (services.length > 0) {
     <div class="w-100 existing-services">
       @for (service of services; track service.serviceId) {
-        <img
-          class="service-image"
-          [src]="baseURL + service.imageUrl"
-          [alt]="service.serviceName"
-          width="100"
-          height="100"
-        />
         <div class="card d-flex-between mb-3">
-          <div class="w-75">
-            <h2 class="fs-lg fw-medium primary-color italic mb-1">
-              {{ service.category.categoryName }}
-            </h2>
-            <h2 class="card-heading mb-1">{{ service.serviceName }}</h2>
-            <h2 class="price mb-1">${{ service.price }}</h2>
-            <p class="description fs-xs">{{ service.description }}</p>
+          <div class="w-75 d-flex wrap g-3">
+            <img
+              class="service-image"
+              [src]="baseUrl + service.imageUrl"
+              [alt]="service.serviceName"
+              width="100"
+              height="100"
+            />
+            <div>
+              <h2 class="fs-lg fw-medium primary-color italic mb-1">
+                {{ service.category.categoryName }}
+              </h2>
+              <h2 class="card-heading mb-1">{{ service.serviceName }}</h2>
+              <h2 class="price mb-1">${{ service.price }}</h2>
+              <p class="description fs-xs">{{ service.description }}</p>
+            </div>
           </div>
-          <div>
+          <div class="d-flex flex-column g-2">
             <mat-icon class="success-color mr-1" (click)="editService(service)">edit</mat-icon>
             <mat-icon class="danger-color" (click)="deleteService(service)">delete</mat-icon>
           </div>

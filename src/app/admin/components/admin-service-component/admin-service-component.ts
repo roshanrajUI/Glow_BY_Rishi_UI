@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CategoryService } from '../../../features/services/category-services/category.service';
 import { MyServiceService } from '../../../features/services/my-service-services/my-service-service';
 import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
+import { API_URL } from '../../../constants/rest-url';
 
 @Component({
   selector: 'app-admin-service-component',
@@ -38,8 +39,8 @@ export class AdminServiceComponent implements OnInit {
   serviceForm: FormGroup = new FormGroup({});
   isEditService = false;
   updatingServiceId = '';
-  // baseURL = 'http://localhost:3000';
-  baseURL = 'http://glow-by-rishi-api.onrender.com';
+  baseUrl = API_URL.BASEURL;
+
   ngOnInit(): void {
     this.createServiceForm();
     this.getAllCategories();
@@ -137,7 +138,6 @@ export class AdminServiceComponent implements OnInit {
   cancelUpdate() {
     this.serviceForm.reset();
     this.serviceForm.markAsUntouched();
-    this.serviceForm.updateValueAndValidity();
     this.isEditService = false;
     this.updatingServiceId = '';
   }
