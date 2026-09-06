@@ -18,6 +18,10 @@
 
 .btn-search {
   height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .search-section {
@@ -32,14 +36,14 @@
 .card {
   font-family: 'Poppins', sans-serif;
   color: #5c4d45;
-
+  padding: 1rem;
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .booking-number {
-    font-size: 12px;
+    font-size: 15px;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: #9b8476;
@@ -66,14 +70,12 @@
     border-top: 1px solid #eee3da;
     margin: 1rem 0;
   }
-
+  .title {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #9b8476;
+  }
   .services {
-    .title {
-      font-size: 15px;
-      text-transform: uppercase;
-      color: #9b8476;
-    }
-
     .service-row {
       .service-name {
         color: #4c3d35;
@@ -138,6 +140,14 @@
   }
 }
 
+.booked-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 12px;
+  margin-top: 0.5rem;
+}
+
 @media (min-width: 768px) {
   .container {
     margin: 1px auto;
@@ -146,5 +156,10 @@
     .search-section {
       gap: 1rem;
     }
+  }
+
+  .booked-details {
+    flex-direction: row;
+    gap: 1rem;
   }
 }

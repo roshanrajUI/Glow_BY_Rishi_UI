@@ -4,10 +4,11 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Booking, BOOKINGSTATUS, BookingStatus } from '../../../shared/models/common.interface';
 import { BookingService } from '../../../features/services/booking-services/booking-service';
 import { AlertService } from '../../../shared/services/alert-service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-admin-booking-component',
-  imports: [MatTabsModule, DatePipe, CommonModule],
+  imports: [MatTabsModule, DatePipe, CommonModule, MatIconModule],
   templateUrl: './admin-booking-component.html',
   styleUrl: './admin-booking-component.scss',
 })

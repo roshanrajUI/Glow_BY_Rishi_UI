@@ -4,7 +4,7 @@
       <mat-icon>arrow_back</mat-icon>
       Back to home
     </span>
-    <button class="btn-book" (click)="addMyReview()">Add My Review</button>
+    <button class="btn-book" (click)="addMyReview()">Add Review</button>
   </div>
 
   <h2 class="fs-md mt-5 fw-medium primary-color">TRACK YOUR BOOKING</h2>
@@ -48,21 +48,25 @@
         ></app-field-error-component>
       </mat-error>
     </mat-form-field>
-    <button type="submit" class="btn-book btn-search radius-md" (click)="searchClientBooking()">
-      <mat-icon>search</mat-icon>
+    <button
+      type="submit"
+      class="btn-book btn-search icon-detail radius-md"
+      (click)="searchClientBooking()"
+    >
+      <mat-icon>search</mat-icon> Search
     </button>
   </form>
 
   @for (booking of clientBookings; track booking.bookingId) {
     <div class="card mb-4">
       <div class="header">
-        <p class="booking-number">Booking #{{ booking.bookingNumber }}</p>
+        <p class="booking-number">#{{ booking.bookingNumber }}</p>
         <p class="status">{{ booking.status }}</p>
       </div>
 
       <h2 class="customer-name mb-1 fs-lg">{{ booking.client.clientName }}</h2>
 
-      <div class="d-flex g-3 fs-sm">
+      <div class="booked-details fs-sm">
         <span class="price-details g-2">
           <mat-icon>calendar_today</mat-icon>
           {{ booking.bookingDate }}
@@ -84,9 +88,9 @@
       <hr />
 
       <div class="services">
-        <h2 class="title mb-1">Services(2)</h2>
+        <h2 class="title mb-1">Services({{ booking.bookingServices.length }})</h2>
         @for (bkService of booking.bookingServices; track bkService.serviceId) {
-          <div class="d-flex-between align-center service-row fs-sm">
+          <div class="d-flex-between align-center service-row fs-xs">
             <span class="service-name">{{ bkService.service.serviceName }}</span>
             <span class="price-details">
               <mat-icon> currency_rupee </mat-icon>
@@ -97,12 +101,16 @@
       </div>
 
       <hr />
+      <h2 class="title mb-1">BOOKED</h2>
+
       <div class="d-flex-between align-center">
-        <h4>
-          <span class="booked-date">BOOKED</span> {{ booking.bookingDate }},
-          {{ booking.bookingTime }}
-        </h4>
-        <span class="price-details fs-sm">
+        <span class="fs-xs">
+          {{ booking.createdAt | date: 'dd-MM-yyyy' }}
+        </span>
+        <span class="fs-xs">
+          {{ booking.createdAt | date: 'hh:mm a' }}
+        </span>
+        <span class="price-details fs-xs">
           <mat-icon> currency_rupee </mat-icon>
           {{ booking.totalPrice }}
         </span>
