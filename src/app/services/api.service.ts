@@ -9,7 +9,7 @@ import { API_URL } from '../constants/rest-url';
 export class ApiService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  baseUrl = `${API_URL.BASEURL}/api`;
+  baseUrl = API_URL.BASEURL;
 
   httpGet<R>(endpoint: string, params?: HttpParams, headers?: HttpHeaders): Observable<R> {
     return this.httpClient.get<R>(`${this.baseUrl}/${endpoint}`, {
