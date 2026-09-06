@@ -7,7 +7,7 @@
       </button>
     </div>
     <div class="d-flex flex-column g-4">
-      <a class="pl-4" routerLink="/my-work">My Work</a>
+      <a class="pl-4" routerLink="/my-work" (click)="drawer.close()">My Work</a>
       <a class="pl-4" (click)="goToSection('services', drawer)">Services</a>
       <a class="pl-4" (click)="goToSection('artist', drawer)">About Us</a>
       <a class="pl-4" (click)="goToSection('get-in-touch', drawer)">Contact Us</a>
@@ -22,7 +22,7 @@
   <mat-sidenav-content>
     <!-- Header -->
     <div class="d-flex justify-between align-center p-3 mobile-header glass-card">
-      <h3 class="logo heading-color pointer" routerLink="/my-work">
+      <h3 class="logo heading-color pointer" routerLink="/">
         Glow <span class="primary-color italic">by </span> Rishi
       </h3>
 

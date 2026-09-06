@@ -1,6 +1,6 @@
 export const API_URL = {
-  // BASEURL: 'http://localhost:3000',
-  BASEURL: 'https://glow-by-rishi-api.onrender.com',
+  // BASEURL: 'http://localhost:3000/api',
+  BASEURL: 'https://glow-by-rishi-api.onrender.com/api',
   CATEGORIES: 'categories',
   GETCATEGORIES: 'categories/all',
   SERVICES: 'services',
