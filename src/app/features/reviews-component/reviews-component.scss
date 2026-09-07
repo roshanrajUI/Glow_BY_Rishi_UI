@@ -16,9 +16,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 250px;
-    max-width: 300px;
-    min-height: 300px;
+    min-width: 200px;
+    min-height: 200px;
 
     .review-text {
       font-style: italic;
@@ -39,15 +38,6 @@
 
     &:hover {
       border-color: $primary_color;
-    }
-  }
-}
-
-@media (max-width: 400px) {
-  .reviews-section {
-    flex-direction: column;
-    .review-card {
-      min-width: 100%;
     }
   }
 }

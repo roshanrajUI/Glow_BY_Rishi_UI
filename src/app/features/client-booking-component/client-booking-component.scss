@@ -142,8 +142,8 @@
 
 .booked-details {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
   font-size: 12px;
   margin-top: 0.5rem;
 }

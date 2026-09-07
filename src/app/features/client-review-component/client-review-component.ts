@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FieldErrorComponent } from '../../shared/components/field-error-component/field-error-component';
+import { AlertService } from '../../shared/services/alert-service';
 
 @Component({
   selector: 'app-client-review-component',
@@ -37,6 +38,7 @@ export class ClientReviewComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private bookingService: BookingService,
+    private alertService: AlertService,
   ) {}
   readonly dialogRef = inject(MatDialogRef<ClientReviewComponent>);
   readonly data = inject<any>(MAT_DIALOG_DATA);
@@ -64,11 +66,10 @@ export class ClientReviewComponent implements OnInit {
       .createBookingReview<unknown, unknown>(this.bookingReviewForm.value)
       .subscribe({
         next: (res) => {
-          console.log('Review submitted successfully', res);
-          this.dialogRef.close();
-        },
-        error: (err) => {
-          console.error('Error submitting review', err);
+          if (res) {
+            this.alertService.showAlert('success', 'Review submitted successfully');
+            this.dialogRef.close();
+          }
         },
       });
   }

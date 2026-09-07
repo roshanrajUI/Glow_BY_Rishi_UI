@@ -81,6 +81,7 @@ export interface BookingServices {
   bookingServiceId: string;
   bookingId: string;
   serviceId: string;
+  price: string;
 }
 
 export interface Client {

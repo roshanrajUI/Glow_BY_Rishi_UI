@@ -9,24 +9,29 @@ a {
   max-width: max-content;
 }
 
+.service-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
 .service-card {
-  margin: 3rem 0;
   border-bottom: 1px solid $accent;
   .service-title {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .service-description {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    height: 70px;
+    margin-bottom: 0.5rem;
+    font-size: 12px;
+    min-height: 50px;
   }
 
   img {
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
@@ -46,12 +51,15 @@ a {
     align-items: start;
 
     .service-card {
-      margin: 0;
+      .service-title {
+        font-size: 1.5rem;
+      }
+      img {
+        margin-bottom: 0.5rem;
+      }
     }
     .service-description {
       font-size: 1rem;
-      line-height: 1.75;
-      height: 100px;
     }
   }
 }
