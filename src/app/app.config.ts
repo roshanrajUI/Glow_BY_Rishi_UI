@@ -17,12 +17,6 @@ export const appConfig: ApplicationConfig = {
       eventCoalescing: true,
     }),
 
-    provideRouter(
-      routes,
-      withInMemoryScrolling({
-        anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'enabled',
-      }),
-    ),
+    provideRouter(routes),
   ],
 };
