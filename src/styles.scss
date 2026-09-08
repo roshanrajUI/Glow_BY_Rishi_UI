@@ -166,8 +166,7 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
     color: $primary_color;
   }
 
-  &:active,
-  &:focus {
+  &:active {
     background-color: $heading;
     color: $white_color;
     border-color: $heading;
@@ -247,4 +246,24 @@ mat-icon {
 
 .pointer {
   cursor: pointer;
+}
+
+.dialog-container {
+  .dialog-header {
+    padding: 1.2rem;
+    background-color: $footer_bg;
+    color: $white_color;
+    font-size: 1rem;
+  }
+
+  .dialog-body {
+    padding: 1rem;
+  }
+
+  .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    gap: 1rem;
+  }
 }

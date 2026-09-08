@@ -1,0 +1,10 @@
+<div class="dialog-container">
+  <div class="dialog-header">{{ data.heading }}</div>
+
+  <div class="dialog-body">{{ data.message }}</div>
+
+  <div class="dialog-footer">
+    <button class="secondary-button" (click)="onCancel()">Cancel</button>
+    <button class="btn-book" (click)="onConfirm()">Confirm</button>
+  </div>
+</div>

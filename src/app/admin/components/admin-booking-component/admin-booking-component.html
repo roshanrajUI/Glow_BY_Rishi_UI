@@ -36,22 +36,22 @@
         </div>
         <div class="d-flex justify-end align-center g-2">
           <button
-            [ngClass]="booking.status === 'Confirmed' ? 'btn-book' : 'secondary-button'"
-            (click)="updateBooking(booking.bookingId, 'Confirmed')"
+            [ngClass]="booking.status === bookingStatus.CONFIRMED ? 'btn-book' : 'secondary-button'"
+            (click)="updateBooking(booking.bookingId, booking.status)"
           >
-            Confirmed
+            {{ booking.status === bookingStatus.CONFIRMED ? booking.status : 'Confirm' }}
           </button>
           <button
-            [ngClass]="booking.status === 'Completed' ? 'btn-book' : 'secondary-button'"
-            (click)="updateBooking(booking.bookingId, 'Completed')"
+            [ngClass]="booking.status === bookingStatus.COMPLETED ? 'btn-book' : 'secondary-button'"
+            (click)="updateBooking(booking.bookingId, bookingStatus.COMPLETED)"
           >
-            Completed
+            {{ booking.status === bookingStatus.COMPLETED ? booking.status : 'Complete' }}
           </button>
           <button
-            [ngClass]="booking.status === 'Cancelled' ? 'btn-book' : 'secondary-button'"
-            (click)="updateBooking(booking.bookingId, 'Cancelled')"
+            [ngClass]="booking.status === bookingStatus.CANCELLED ? 'btn-book' : 'secondary-button'"
+            (click)="updateBooking(booking.bookingId, bookingStatus.CANCELLED)"
           >
-            Cancel
+            {{ booking.status === bookingStatus.CANCELLED ? booking.status : 'Cancel' }}
           </button>
         </div>
       </div>
