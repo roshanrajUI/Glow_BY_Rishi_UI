@@ -1,8 +1,15 @@
 .alert-container {
-  padding: 0.8rem;
   z-index: 1001;
-  position: absolute;
-  top: 5rem;
+  position: fixed;
+  top: 2rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.alert {
+  padding: 0.8rem;
   right: 1rem;
   width: 20rem;
   font-size: 0.8rem;
