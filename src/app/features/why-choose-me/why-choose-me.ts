@@ -13,22 +13,32 @@ export class WhyChooseMe {
     {
       title: 'Easy Booking',
       icon: 'calendar_today',
-      description: 'Our team of skilled makeup artists.',
+      description:
+        'Our team makes your makeup experience effortless with smooth scheduling, clear communication, and personalized attention.',
     },
     {
       title: 'Premium Products',
       icon: 'hotel_class',
-      description: 'We understand that every bride is unique.',
+      description:
+        'We use carefully selected, high-quality makeup products that deliver a flawless, long-lasting finish while keeping your skin comfortable.',
     },
     {
       title: 'Hygiene Promise',
       icon: 'verified_user',
-      description: 'We use only high-quality, long-lasting makeup products.',
+      description:
+        'Your safety matters to us. We follow strict hygiene practices and use clean, sanitized tools for every client.',
     },
     {
       title: 'Client Satisfaction',
       icon: 'favorite',
-      description: 'Our team pays meticulous attention to detail.',
+      description:
+        'We take the time to understand your preferences and make sure your experience feels comfortable and special.',
+    },
+    {
+      title: 'Personalized Beauty',
+      icon: 'woman',
+      description:
+        'We create makeup looks that complement your features, personality, outfit, and wedding style.',
     },
   ];
 }

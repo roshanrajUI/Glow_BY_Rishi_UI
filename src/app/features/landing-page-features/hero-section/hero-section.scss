@@ -56,14 +56,36 @@
     }
   }
 }
+
+.super-header {
+  font-size: 3.5rem;
+  letter-spacing: 1.5px;
+  line-height: 3.5rem;
+  font-weight: 400;
+
+  .italic {
+    font-weight: 300;
+  }
+
+  @media (min-width: 400px) {
+    font-size: 5rem;
+    line-height: 4.5rem;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 5rem;
+    line-height: 4.5rem;
+  }
+}
+
 .details {
-  margin-top: 2rem;
-  line-height: 2rem;
+  margin-top: 1.5rem;
+  line-height: 1.8rem;
   font-weight: 300;
 }
 
 .book-and-explore {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -93,7 +115,7 @@
 
 .experience-and-count {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 1rem;
   align-items: center;
   justify-content: space-between;
 
@@ -101,6 +123,7 @@
     border: none;
     border-left: 2px solid $border_dividers;
     height: 50px;
+    margin: 0 1rem;
   }
 
   h1 {

@@ -9,7 +9,7 @@
     @for (category of sharedService.$categories(); track category.categoryId; let i = $index) {
       <div class="service-card">
         <div class="service-image">
-          <img [src]="'../../../assets/images/service-saree.jpg'" [alt]="category.categoryName" />
+          <img [src]="baseUrl + category.imageUrl" [alt]="category.categoryName" />
         </div>
         <h3 class="service-title">{{ category.categoryName }}</h3>
         <p class="service-description">

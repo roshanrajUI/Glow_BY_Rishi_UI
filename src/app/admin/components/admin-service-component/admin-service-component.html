@@ -66,13 +66,18 @@
           ></app-field-error-component>
         </mat-error>
       </mat-form-field>
-      <input type="file" (change)="onImageSelected($event)" /><br />
-      <div class="d-flex justify-end g-5">
+      <input
+        #serviceImageInput
+        type="file"
+        name="service_image"
+        (change)="onImageSelected($event)"
+      /><br />
+      <div class="d-flex justify-end g-5 mt-3">
         @if (isEditService) {
           <button class="btn-book" type="submit">Edit Service</button>
           <button class="secondary-button" type="button" (click)="cancelUpdate()">Cancel</button>
         } @else {
-          <button class="btn-book mt-3" type="submit">Add Service</button>
+          <button class="btn-book" type="submit">Add Service</button>
         }
       </div>
     </form>
@@ -94,12 +99,14 @@
                 {{ service.category.categoryName }}
               </h2>
               <h2 class="card-heading mb-1">{{ service.serviceName }}</h2>
-              <h2 class="price mb-1">${{ service.price }}</h2>
+              <h2 class="price price-details mb-1">
+                <mat-icon>currency_rupee</mat-icon> {{ service.price }}
+              </h2>
               <p class="description fs-xs">{{ service.description }}</p>
             </div>
           </div>
           <div class="d-flex flex-column g-2">
-            <mat-icon class="success-color mr-1" (click)="editService(service)">edit</mat-icon>
+            <mat-icon class="success-color" (click)="editService(service)">edit</mat-icon>
             <mat-icon class="danger-color" (click)="deleteService(service)">delete</mat-icon>
           </div>
         </div>

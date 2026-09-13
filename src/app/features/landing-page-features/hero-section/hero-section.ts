@@ -38,9 +38,6 @@ export class HeroSection implements OnInit {
     this.dialog.open(BookNowDialog, {
       width: '600px',
       height: '600px',
-      data: {
-        name: 'roshan',
-      },
       disableClose: true,
     });
   }

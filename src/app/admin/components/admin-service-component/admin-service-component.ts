@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Category, Service } from '../../../shared/models/common.interface';
 import { SharedService } from '../../../shared/services/shared-service';
 import { CommonModule } from '@angular/common';
@@ -40,6 +40,7 @@ export class AdminServiceComponent implements OnInit {
   isEditService = false;
   updatingServiceId = '';
   baseUrl = API_URL.BASEURL;
+  @ViewChild('serviceImageInput') serviceImageInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit(): void {
     this.createServiceForm();
@@ -140,6 +141,9 @@ export class AdminServiceComponent implements OnInit {
     this.serviceForm.markAsUntouched();
     this.isEditService = false;
     this.updatingServiceId = '';
+    if (this.serviceImageInput) {
+      this.serviceImageInput.nativeElement.value = '';
+    }
   }
 
   onImageSelected(event: Event) {

@@ -3,6 +3,7 @@ export type BookingStatus = 'Pending' | 'Confirmed' | 'Completed' | 'Cancelled';
 export interface Category {
   categoryId: string;
   categoryName: string;
+  imageUrl: string;
   description: string;
   isActive: boolean;
   services: Service[];
@@ -13,6 +14,7 @@ export interface Service {
   serviceName: string;
   price: string;
   description: string;
+  imageUrl: string;
   categoryId: string;
   category: Category;
   isActive: boolean;

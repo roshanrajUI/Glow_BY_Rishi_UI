@@ -51,7 +51,7 @@
         </mat-error>
       </mat-form-field>
       <input type="file" (change)="onImageSelected($event)" />
-      <div class="d-flex justify-end g-5">
+      <div class="d-flex justify-end g-5 mt-3">
         @if (isEditMyWork) {
           <button class="btn-book" type="submit">Edit Work</button>
           <button class="secondary-button" type="button" (click)="cancelUpdate()">Cancel</button>
@@ -76,7 +76,7 @@
             </div>
           </div>
           <div class="d-flex flex-column g-2">
-            <mat-icon class="success-color mr-1" (click)="editMyWork(work)">edit</mat-icon>
+            <mat-icon class="success-color" (click)="editMyWork(work)">edit</mat-icon>
             <mat-icon class="danger-color" (click)="deleteMyWork(work)">delete</mat-icon>
           </div>
         </div>

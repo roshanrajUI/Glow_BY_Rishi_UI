@@ -42,11 +42,38 @@
     overflow-y: auto;
     padding-bottom: 1rem;
   }
+
+  .stepper-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+}
+
+::ng-deep .mat-horizontal-stepper-header.cdk-program-focused,
+.mat-horizontal-stepper-header.cdk-keyboard-focused,
+.mat-horizontal-stepper-header.cdk-focused,
+.mat-horizontal-stepper-header {
+  background-color: transparent !important;
 }
 
 ::ng-deep .mat-horizontal-content-container {
   padding: 0 !important;
   margin-top: 1rem;
+}
+
+.mat-expansion-panel-header-title {
+  flex: 0 0 120px;
+  min-width: 0;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+.mat-expansion-panel-header-description {
+  flex: 1;
+  justify-content: flex-end;
+  min-width: 0;
+  margin-right: 8px;
 }
 
 ::ng-deep .mat-step-header,
@@ -145,9 +172,6 @@
 
 .mat-expansion-panel:not([class*='mat-elevation-z']) {
   box-shadow: none;
-}
-.mat-expansion-panel-header-description {
-  justify-content: end;
 }
 
 .calendar-card {

@@ -34,6 +34,7 @@ export interface Booking {
 export interface Category {
   categoryId: string;
   categoryName: string;
+  imageUrl: string;
   description: string;
   isActive: boolean;
   //   createdAt: Date;

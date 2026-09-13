@@ -35,26 +35,49 @@
           ></app-field-error-component>
         </mat-error>
       </mat-form-field>
-      <div class="d-flex justify-end g-5">
+      <div>
+        <input
+          #categoryImageInput
+          type="file"
+          name="category_image"
+          (change)="onImageSelected($event)"
+        />
+      </div>
+      <div class="d-flex justify-end g-5 mt-3">
         @if (isEditCategory) {
-          <button class="btn-book" type="submit" (click)="updateCategory()">Edit Category</button>
-          <button class="secondary-button" type="button" (click)="cancelUpdate()">Cancel</button>
+          <button class="btn-book" type="submit" (click)="submitCategory()">Edit Category</button>
+          <button
+            class="secondary-button"
+            type="button"
+            (click)="cancelUpdate(); categoryImageInput.value = ''"
+          >
+            Cancel
+          </button>
         } @else {
-          <button class="btn-book" type="submit" (click)="saveCategory()">Add Category</button>
+          <button class="btn-book" type="submit" (click)="submitCategory()">Add Category</button>
         }
       </div>
     </form>
   </div>
   @if (existingCategories.length > 0) {
-    <div class="card existing-categories">
+    <div class="w-100 existing-categories">
       @for (category of existingCategories; track category.categoryId) {
-        <div class="card mb-3 d-flex-between align-center">
-          <div>
-            <h2 class="card-heading mb-1">{{ category.categoryName }}</h2>
-            <p class="description">{{ category.description }}</p>
+        <div class="card mb-3 d-flex-between">
+          <div class="w-75 d-flex wrap g-3">
+            <img
+              class="category-image"
+              [src]="baseUrl + category.imageUrl"
+              [alt]="category.categoryName"
+              width="100"
+              height="100"
+            />
+            <div>
+              <h2 class="card-heading mb-1">{{ category.categoryName }}</h2>
+              <p class="description fs-xs">{{ category.description }}</p>
+            </div>
           </div>
-          <div>
-            <mat-icon class="success-color mr-2" (click)="editCategory(category)">edit</mat-icon>
+          <div class="d-flex flex-column g-2">
+            <mat-icon class="success-color" (click)="editCategory(category)">edit</mat-icon>
             <mat-icon class="danger-color" (click)="deleteCategory(category)">delete</mat-icon>
           </div>
         </div>

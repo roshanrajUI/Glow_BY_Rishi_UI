@@ -121,21 +121,6 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
   margin-top: 4rem;
 }
 
-.super-header {
-  font-size: 4rem;
-  letter-spacing: 1.5px;
-  line-height: 3.5rem;
-
-  .italic {
-    font-weight: 300;
-  }
-  @media (min-width: 768px) {
-    font-size: 5rem;
-    line-height: 5rem;
-    font-weight: 400;
-  }
-}
-
 .btn-book {
   padding: 1rem;
   text-transform: uppercase;
@@ -147,8 +132,8 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
 
   &:disabled {
     background-color: rgba(66, 53, 47, 0.45);
-    color: rgba(255, 255, 255, 0.65);
-    border-color: rgba(66, 53, 47, 0.45);
+    color: white;
+    border: none;
     cursor: not-allowed;
   }
 }
@@ -196,7 +181,6 @@ $spacing: 4px, 8px, 12px, 16px, 24px, 32px;
 .price-details,
 .icon-details {
   display: flex;
-  gap: 0.3rem;
   align-items: center;
   mat-icon {
     height: 1rem;

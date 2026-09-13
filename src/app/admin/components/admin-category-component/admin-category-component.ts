@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,6 +8,7 @@ import { CategoryService } from '../../../features/services/category-services/ca
 import { Category } from '../../../shared/models/common.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
+import { API_URL } from '../../../constants/rest-url';
 
 @Component({
   selector: 'app-admin-category-component',
@@ -32,6 +33,9 @@ export class AdminCategoryComponent implements OnInit {
   existingCategories: Category[] = [];
   isEditCategory = false;
   updatingCategoryId = '';
+  baseUrl = API_URL.BASEURL;
+  @ViewChild('categoryImageInput')
+  categoryImageInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit(): void {
     this.createForm();
@@ -42,6 +46,7 @@ export class AdminCategoryComponent implements OnInit {
     this.categoryForm = this.fb.group({
       categoryName: ['', Validators.required],
       description: [''],
+      imageUrl: ['', Validators.required],
     });
   }
 
@@ -53,19 +58,33 @@ export class AdminCategoryComponent implements OnInit {
     });
   }
 
-  saveCategory() {
+  onImageSelected(event: any) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.categoryForm.get('imageUrl')?.setValue(input.files[0]);
+    }
+  }
+
+  submitCategory() {
     if (this.categoryForm.invalid) return;
+    const formData = new FormData();
+    const { categoryName, description, imageUrl } = this.categoryForm.value;
+    formData.append('categoryName', categoryName);
+    formData.append('description', description);
+    formData.append('imageUrl', imageUrl);
+    if (this.isEditCategory) {
+      this.updateCategory(formData);
+    } else {
+      this.saveCategory(formData);
+    }
+  }
 
-    const { categoryName, description } = this.categoryForm.value;
-    const body = {
-      categoryName,
-      description,
-    };
-
-    this.categoryService.createCategory<unknown, Category>(body).subscribe({
+  saveCategory(formData: FormData) {
+    this.categoryService.createCategory<unknown, Category>(formData).subscribe({
       next: (res: Category) => {
         this.getCategories();
-        this.categoryForm.reset();
+        this.cancelUpdate();
       },
     });
   }
@@ -80,21 +99,15 @@ export class AdminCategoryComponent implements OnInit {
     this.updatingCategoryId = category.categoryId;
   }
 
-  updateCategory() {
-    if (this.categoryForm.invalid) return;
-
-    const { categoryName, description } = this.categoryForm.value;
-    const body = {
-      categoryName,
-      description,
-      isActive: true,
-    };
-    this.categoryService.updateCategory<unknown, boolean>(body, this.updatingCategoryId).subscribe({
-      next: (res: boolean) => {
-        this.getCategories();
-        this.cancelUpdate();
-      },
-    });
+  updateCategory(formData: FormData) {
+    this.categoryService
+      .updateCategory<unknown, boolean>(formData, this.updatingCategoryId)
+      .subscribe({
+        next: (res: boolean) => {
+          this.getCategories();
+          this.cancelUpdate();
+        },
+      });
   }
 
   deleteCategory(category: Category) {
@@ -111,5 +124,6 @@ export class AdminCategoryComponent implements OnInit {
     this.categoryForm.updateValueAndValidity();
     this.isEditCategory = false;
     this.updatingCategoryId = '';
+    this.categoryImageInput?.nativeElement && (this.categoryImageInput.nativeElement.value = '');
   }
 }
