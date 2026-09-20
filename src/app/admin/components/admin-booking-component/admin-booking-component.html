@@ -14,7 +14,9 @@
           <span class="primary-color">#{{ booking.bookingNumber }}</span>
           {{ booking.client.clientName }}
         </h2>
-        <h2>${{ booking.totalPrice }}</h2>
+        <h2 class="price-details g-2">
+          <mat-icon>currency_rupee</mat-icon>{{ booking.totalPrice }}
+        </h2>
       </div>
       <div class="d-flex justify-between align-center contact mb-1">
         <div class="d-flex align-center g-2">
@@ -22,6 +24,7 @@
           <span class="icon-details">
             <mat-icon>phone</mat-icon>{{ booking.client.phoneNumber }}</span
           >
+          <span class="icon-details"> <mat-icon>location_on</mat-icon>{{ booking.location }}</span>
         </div>
         <div class="status">{{ booking.status }}</div>
       </div>
@@ -64,7 +67,9 @@
       @for (service of booking.bookingServices; track service.bookingServiceId) {
         <div class="d-flex justify-between align-center service-row">
           <span>{{ service.service.serviceName }}</span>
-          <span>${{ service.price }}</span>
+          <span class="price-details g-2"
+            ><mat-icon>currency_rupee</mat-icon>{{ service.price }}</span
+          >
         </div>
       }
     </div>
@@ -76,13 +81,13 @@
         <span class="primary-color">#{{ booking.bookingNumber }}</span>
         {{ booking.client.clientName }}
       </h2>
-      <h2>${{ booking.totalPrice }}</h2>
+      <h2 class="price-details g-2"><mat-icon>currency_rupee</mat-icon>{{ booking.totalPrice }}</h2>
     </div>
 
     <div class="contact d-flex flex-column g-1 mb-1">
       <span class="icon-details"><mat-icon>email</mat-icon> {{ booking.client.gmail }}</span>
       <span class="icon-details"> <mat-icon>phone</mat-icon> {{ booking.client.phoneNumber }}</span>
-      <!-- <div class="status">{{ booking.status }}</div> -->
+      <span class="icon-details"> <mat-icon>location_on</mat-icon>{{ booking.location }}</span>
     </div>
 
     <div>
@@ -113,7 +118,10 @@
       @for (service of booking.bookingServices; track service.bookingServiceId) {
         <div class="d-flex justify-between align-center service-row">
           <span>{{ service.service.serviceName }}</span>
-          <span>${{ service.price }}</span>
+          <span class="price-details g-2">
+            <mat-icon>currency_rupee</mat-icon>
+            {{ service.price }}</span
+          >
         </div>
       }
     </div>

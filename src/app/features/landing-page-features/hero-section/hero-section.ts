@@ -7,6 +7,7 @@ import { Category } from '../../models/common.interface';
 import { CategoryService } from '../../services/category-services/category.service';
 import { SharedService } from '../../../shared/services/shared-service';
 import { RouterModule } from '@angular/router';
+import { BookingSuccessDialog } from '../../../shared/components/booking-success-dialog/booking-success-dialog';
 
 @Component({
   selector: 'app-hero-section',
@@ -35,10 +36,22 @@ export class HeroSection implements OnInit {
 
   openBookNowDialog(isSide = false, drawer?: any) {
     if (isSide) drawer?.close();
-    this.dialog.open(BookNowDialog, {
+    const dialogRef = this.dialog.open(BookNowDialog, {
       width: '600px',
       height: '600px',
       disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((bookingNumber) => {
+      if (bookingNumber) {
+        this.dialog.open(BookingSuccessDialog, {
+          width: '400px',
+          data: {
+            bookingNumber,
+          },
+          disableClose: true,
+        });
+      }
     });
   }
 }

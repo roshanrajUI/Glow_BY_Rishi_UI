@@ -93,6 +93,7 @@ export class AdminCategoryComponent implements OnInit {
     this.categoryForm.patchValue({
       categoryName: category.categoryName,
       description: category.description,
+      imageUrl: category.imageUrl,
     });
 
     this.isEditCategory = true;

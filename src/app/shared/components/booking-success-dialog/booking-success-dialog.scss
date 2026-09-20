@@ -1,0 +1,25 @@
+// booking success popup
+.booking-popup {
+  padding: 1rem;
+  background: #fffdfb;
+  border: 1px solid #eadfd8;
+  border-radius: 4px;
+  box-shadow: 0 12px 25px rgba(80, 55, 40, 0.14);
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: #4b403a;
+  h3 {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #4a403a;
+  }
+  .sparkle {
+    margin-left: 3px;
+  }
+  p {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #746a64;
+  }
+}

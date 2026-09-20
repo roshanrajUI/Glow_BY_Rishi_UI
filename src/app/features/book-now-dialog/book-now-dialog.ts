@@ -105,7 +105,7 @@ export class BookNowDialog implements OnInit {
   }
 
   dialogClose() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   addService(event: MatCheckboxChange, selectedService: Service) {
@@ -221,9 +221,11 @@ export class BookNowDialog implements OnInit {
         gmail: this.customerDetailsForm.value?.gmail,
         otp,
       };
-      this.bookingService.verifyBookingOtp(body).subscribe({
-        next: (res: any) => {
-          this.dialogClose();
+      this.bookingService.verifyBookingOtp<unknown, boolean>(body).subscribe({
+        next: (res: Boolean) => {
+          if (res) {
+            this.dialogRef.close(this.booking.bookingNumber);
+          }
         },
       });
     }

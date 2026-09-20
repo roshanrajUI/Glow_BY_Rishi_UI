@@ -23,9 +23,8 @@
 .categories {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 2rem;
   font-family: 'Poppins', sans-serif;
-  padding: 1rem 0;
+  padding-bottom: 1rem;
 
   span {
     display: flex;
@@ -42,11 +41,9 @@
 
   @media (min-width: 768px) {
     padding-bottom: 1.5rem;
-    gap: 0.8rem;
     span {
       gap: 4px;
       font-size: 10px;
-      letter-spacing: 2px;
       color: gray;
       mat-icon {
         height: 5px;

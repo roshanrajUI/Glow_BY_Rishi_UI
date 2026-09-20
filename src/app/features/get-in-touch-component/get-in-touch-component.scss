@@ -10,7 +10,7 @@
 .get-in-touch-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 
   .reach-us-heading {
     font-size: 1.5rem;
@@ -21,6 +21,7 @@
     padding: 2rem;
     background-color: $footer_bg;
     color: $footer_text;
+    width: 50%;
 
     button {
       background-color: $white-color;
@@ -41,4 +42,11 @@
 .reach-us {
   border: 1px solid $border;
   padding: 2rem;
+  flex: 1 1 auto;
+}
+
+@media (min-width: 768px) {
+  .get-in-touch-container {
+    flex-direction: row;
+  }
 }

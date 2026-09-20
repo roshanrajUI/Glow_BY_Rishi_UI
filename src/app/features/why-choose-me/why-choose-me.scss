@@ -15,8 +15,8 @@
     background-color: $white-color;
     padding: 1.5rem;
     .reason-image {
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
       background: $card_bg;
       display: flex;
       justify-content: center;
@@ -25,20 +25,32 @@
       border-radius: 50%;
 
       mat-icon {
-        font-size: 2rem;
-        height: 2rem;
-        width: 2rem;
+        font-size: 1.5rem;
+        height: 1.5rem;
+        width: 1.5rem;
         color: $primary_color;
+        position: relative;
+        left: 1px;
       }
+    }
+
+    .reason-title {
+      font-size: 1.2rem;
     }
 
     .reason-description {
       color: $gray;
-      font-size: 1rem;
+      font-size: 12px;
     }
 
     &:hover {
       border-color: $primary_color;
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .reason-title {
+    font-size: 1.5rem;
   }
 }

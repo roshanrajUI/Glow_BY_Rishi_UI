@@ -83,7 +83,8 @@
 
     <mat-step>
       <div class="stepper-body">
-        <mat-form-field class="w-100 custom-timepicker">
+        <mat-form-field class="w-100 custom-timepicker mt-2" appearance="outline">
+          <mat-timepicker-toggle matIconPrefix [for]="picker" />
           <mat-label>Pick a time</mat-label>
           <input
             id="timepicker-input"
@@ -92,16 +93,15 @@
             aria-label="Pick a time"
             [(ngModel)]="selectedTime"
           />
-          <mat-timepicker-toggle matIconSuffix [for]="picker" />
           <mat-timepicker #picker />
         </mat-form-field>
-        <mat-form-field class="w-100">
+        <mat-form-field class="w-100" appearance="outline">
           <mat-icon matPrefix>calendar_today</mat-icon>
           <input
             type="tel"
             [value]="selectedDate() | date: 'dd-MM-yyyy'"
             matInput
-            readonly
+            disabled
             placeholder="Please select a date below"
             aria-label="selected date"
           />
@@ -141,10 +141,10 @@
             <span>{{ selectedTime() | date: 'shortTime' }}</span>
           </div>
           <hr class="my-4" />
-          <div class="d-flex-between g-3">
+          <div class="d-flex-between align-start g-3">
             <span>Estimated Total</span>
-            <span>
-              <mat-icon> rupee_currency </mat-icon>
+            <span class="price-details g-2">
+              <mat-icon> currency_rupee </mat-icon>
               {{ getTotalPrice }}
             </span>
           </div>
