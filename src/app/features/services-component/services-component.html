@@ -6,15 +6,31 @@
   </h1>
 
   <div class="service-details">
-    @for (category of sharedService.$categories(); track category.categoryId; let i = $index) {
+    @for (category of sharedService.$categories(); track category.categoryId) {
       <div class="service-card">
         <div class="service-image">
           <img [src]="baseUrl + category.imageUrl" [alt]="category.categoryName" />
         </div>
-        <h3 class="service-title">{{ category.categoryName }}</h3>
-        <p class="service-description">
-          {{ category.description }}
-        </p>
+        <h3 class="service-title">
+          {{ category.categoryName }}
+        </h3>
+        <div class="description-wrapper">
+          <p class="service-description" [class.expanded]="isExpanded(category.categoryId)">
+            {{ getDescription(category) }}
+
+            @if (!isExpanded(category.categoryId) && shouldShowMore(category.categoryId)) {
+              <a class="show-more primary-color" (click)="toggleDescription(category.categoryId)">
+                ... Show More
+              </a>
+            }
+
+            @if (isExpanded(category.categoryId)) {
+              <a class="show-more primary-color" (click)="toggleDescription(category.categoryId)">
+                Show less
+              </a>
+            }
+          </p>
+        </div>
       </div>
     }
   </div>
