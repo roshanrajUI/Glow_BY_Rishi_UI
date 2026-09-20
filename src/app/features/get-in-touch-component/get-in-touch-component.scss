@@ -21,7 +21,6 @@
     padding: 2rem;
     background-color: $footer_bg;
     color: $footer_text;
-    width: 50%;
 
     button {
       background-color: $white-color;
@@ -48,5 +47,9 @@
 @media (min-width: 768px) {
   .get-in-touch-container {
     flex-direction: row;
+  }
+
+  .slot-booking {
+    width: 50%;
   }
 }
