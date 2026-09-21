@@ -66,13 +66,28 @@ export class AdminCategoryComponent implements OnInit {
     }
   }
 
+  editCategory(category: Category) {
+    this.categoryForm.patchValue({
+      categoryName: category.categoryName,
+      description: category.description,
+      imageUrl: '',
+    });
+    const imageUrlControl = this.categoryForm.get('imageUrl');
+    imageUrlControl?.clearValidators();
+    imageUrlControl?.updateValueAndValidity();
+    this.isEditCategory = true;
+    this.updatingCategoryId = category.categoryId;
+  }
+
   submitCategory() {
     if (this.categoryForm.invalid) return;
     const formData = new FormData();
     const { categoryName, description, imageUrl } = this.categoryForm.value;
-    formData.append('categoryName', categoryName);
-    formData.append('description', description);
-    formData.append('imageUrl', imageUrl);
+    formData.append('categoryName', categoryName ?? '');
+    formData.append('description', description ?? '');
+    if (imageUrl instanceof File) {
+      formData.append('imageUrl', imageUrl);
+    }
     if (this.isEditCategory) {
       this.updateCategory(formData);
     } else {
@@ -83,21 +98,12 @@ export class AdminCategoryComponent implements OnInit {
   saveCategory(formData: FormData) {
     this.categoryService.createCategory<unknown, Category>(formData).subscribe({
       next: (res: Category) => {
-        this.getCategories();
-        this.cancelUpdate();
+        if (res) {
+          this.getCategories();
+          this.cancelUpdate();
+        }
       },
     });
-  }
-
-  editCategory(category: Category) {
-    this.categoryForm.patchValue({
-      categoryName: category.categoryName,
-      description: category.description,
-      imageUrl: category.imageUrl,
-    });
-
-    this.isEditCategory = true;
-    this.updatingCategoryId = category.categoryId;
   }
 
   updateCategory(formData: FormData) {
@@ -105,8 +111,10 @@ export class AdminCategoryComponent implements OnInit {
       .updateCategory<unknown, boolean>(formData, this.updatingCategoryId)
       .subscribe({
         next: (res: boolean) => {
-          this.getCategories();
-          this.cancelUpdate();
+          if (res) {
+            this.getCategories();
+            this.cancelUpdate();
+          }
         },
       });
   }
@@ -125,6 +133,9 @@ export class AdminCategoryComponent implements OnInit {
     this.categoryForm.updateValueAndValidity();
     this.isEditCategory = false;
     this.updatingCategoryId = '';
+    const imageUrlControl = this.categoryForm.get('imageUrl');
+    imageUrlControl?.setValidators(Validators.required);
+    imageUrlControl?.updateValueAndValidity();
     this.categoryImageInput?.nativeElement && (this.categoryImageInput.nativeElement.value = '');
   }
 }

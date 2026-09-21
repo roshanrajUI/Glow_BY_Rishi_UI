@@ -1,7 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule, DatePipe } from '@angular/common';
-import { Booking, BOOKINGSTATUS, BookingStatus } from '../../../shared/models/common.interface';
+import {
+  Booking,
+  BOOKINGSTATUS,
+  BookingStatus,
+  BookingUpdate,
+} from '../../../shared/models/common.interface';
 import { BookingService } from '../../../features/services/booking-services/booking-service';
 import { AlertService } from '../../../shared/services/alert-service';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,46 +42,51 @@ export class AdminBookingComponent implements OnInit {
   }
 
   updateBooking(bookingId: string, status: BookingStatus) {
-    const body = { bookingId, status };
+    const body: BookingUpdate = {
+      bookingId,
+      status,
+    };
+
+    if (status === 'Cancelled') {
+      body.reason = 'busy';
+    }
 
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       width: '400px',
       data: {
         heading: 'Confirmation',
-        message: `Are you sure you want to ${this.getStatusName(status)} this booking to?`,
+        message: `Are you sure you want to ${this.getStatusName(status)} this booking?`,
       },
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.bookingService
-          .updateBookingStatus<Boolean, { bookingId: string; status: BookingStatus }>(body)
-          .subscribe({
-            next: (res: Boolean) => {
-              const booking = this.allBookings.find((bk) => bk.bookingId === bookingId);
-              if (booking) {
-                booking.status = status;
+        this.bookingService.updateBookingStatus<Boolean, BookingUpdate>(body).subscribe({
+          next: (res: Boolean) => {
+            const booking = this.allBookings.find((bk) => bk.bookingId === bookingId);
+            if (booking) {
+              booking.status = status;
+            }
+            let successMessage = '';
+            if (res) {
+              switch (status) {
+                case BOOKINGSTATUS.CONFIRMED:
+                  successMessage = 'Booking Confirmed Successfully';
+                  break;
+                case BOOKINGSTATUS.COMPLETED:
+                  successMessage = 'Booking Completed Successfully';
+                  break;
+                case BOOKINGSTATUS.CANCELLED:
+                  successMessage = 'Booking Cancelled';
+                  break;
+                default:
+                  successMessage = 'Unkown Status';
+                  break;
               }
-              let successMessage = '';
-              if (res) {
-                switch (status) {
-                  case BOOKINGSTATUS.CONFIRMED:
-                    successMessage = 'Booking Confirmed Successfully';
-                    break;
-                  case BOOKINGSTATUS.COMPLETED:
-                    successMessage = 'Booking Completed Successfully';
-                    break;
-                  case BOOKINGSTATUS.CANCELLED:
-                    successMessage = 'Booking Cancelled';
-                    break;
-                  default:
-                    successMessage = 'Unkown Status';
-                    break;
-                }
-              }
-              this.alertService.showAlert('success', successMessage);
-            },
-          });
+            }
+            this.alertService.showAlert('success', successMessage);
+          },
+        });
       }
     });
   }

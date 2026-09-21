@@ -95,7 +95,9 @@ export class AdminServiceComponent implements OnInit {
     formData.append('serviceName', serviceName);
     formData.append('price', price);
     formData.append('description', description);
-    formData.append('imageUrl', imageUrl);
+    if (imageUrl instanceof File) {
+      formData.append('imageUrl', imageUrl);
+    }
     if (this.isEditService) {
       this.updateService(formData);
     } else {

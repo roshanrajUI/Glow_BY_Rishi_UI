@@ -73,3 +73,9 @@ export enum BOOKINGSTATUS {
   COMPLETED = 'Completed',
   CANCELLED = 'Cancelled',
 }
+
+export interface BookingUpdate {
+  bookingId: string;
+  status: BookingStatus;
+  reason?: string;
+}

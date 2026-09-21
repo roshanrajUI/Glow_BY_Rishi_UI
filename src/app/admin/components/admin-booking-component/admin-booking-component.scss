@@ -23,7 +23,8 @@
   }
 
   .contact {
-    span {
+    span,
+    a {
       color: #a16f66;
       font-size: 12px;
     }
@@ -94,6 +95,11 @@
 //     color: #3f302c;
 //   }
 // }
+
+a {
+  text-decoration: none;
+  color: #a16f66;
+}
 
 @media (min-width: 768px) {
   .desktop-booking-card {
