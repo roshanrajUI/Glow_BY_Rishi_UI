@@ -9,6 +9,7 @@ import { Category } from '../../../shared/models/common.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
 import { API_URL } from '../../../constants/rest-url';
+import { AlertService } from '../../../shared/services/alert-service';
 
 @Component({
   selector: 'app-admin-category-component',
@@ -28,6 +29,7 @@ export class AdminCategoryComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private categoryService: CategoryService,
+    private alertService: AlertService,
   ) {}
   categoryForm: FormGroup = new FormGroup({});
   existingCategories: Category[] = [];
@@ -99,6 +101,10 @@ export class AdminCategoryComponent implements OnInit {
     this.categoryService.createCategory<unknown, Category>(formData).subscribe({
       next: (res: Category) => {
         if (res) {
+          this.alertService.showAlert(
+            'success',
+            `Category ${this.categoryForm.get('categoryName')?.value} Added Successfully`,
+          );
           this.getCategories();
           this.cancelUpdate();
         }
@@ -112,6 +118,10 @@ export class AdminCategoryComponent implements OnInit {
       .subscribe({
         next: (res: boolean) => {
           if (res) {
+            this.alertService.showAlert(
+              'success',
+              `Category ${this.categoryForm.get('categoryName')?.value} Updated Successfully`,
+            );
             this.getCategories();
             this.cancelUpdate();
           }
@@ -122,6 +132,12 @@ export class AdminCategoryComponent implements OnInit {
   deleteCategory(category: Category) {
     this.categoryService.deleteCategory<boolean>(category.categoryId).subscribe({
       next: (res: boolean) => {
+        if (res) {
+          this.alertService.showAlert(
+            'success',
+            `Category ${category.categoryName} Deleted Successfully`,
+          );
+        }
         this.getCategories();
       },
     });

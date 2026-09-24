@@ -12,6 +12,7 @@ import { CategoryService } from '../../../features/services/category-services/ca
 import { MyServiceService } from '../../../features/services/my-service-services/my-service-service';
 import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
 import { API_URL } from '../../../constants/rest-url';
+import { AlertService } from '../../../shared/services/alert-service';
 
 @Component({
   selector: 'app-admin-service-component',
@@ -33,6 +34,7 @@ export class AdminServiceComponent implements OnInit {
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private myServiceService: MyServiceService,
+    private alertService: AlertService,
   ) {}
   categories: Category[] = [];
   services: Service[] = [];
@@ -109,6 +111,10 @@ export class AdminServiceComponent implements OnInit {
     this.myServiceService.createService<unknown, boolean>(formData).subscribe({
       next: (res: boolean) => {
         if (res) {
+          this.alertService.showAlert(
+            'success',
+            `Service ${this.serviceForm.get('serviceName')?.value} Added Successfully`,
+          );
           this.getAllServices();
           this.serviceForm.reset();
         }
@@ -122,6 +128,10 @@ export class AdminServiceComponent implements OnInit {
       .subscribe({
         next: (res: boolean) => {
           if (res) {
+            this.alertService.showAlert(
+              'success',
+              `Service ${this.serviceForm.get('serviceName')?.value} Updated Successfully`,
+            );
             this.getAllServices();
             this.isEditService = false;
             this.cancelUpdate();
@@ -133,7 +143,13 @@ export class AdminServiceComponent implements OnInit {
   deleteService(service: Service) {
     this.myServiceService.deleteService<boolean>(service.serviceId).subscribe({
       next: (res: boolean) => {
-        if (res) this.getAllServices();
+        if (res) {
+          this.alertService.showAlert(
+            'success',
+            `Service ${service.serviceName} Deleted Successfully`,
+          );
+          this.getAllServices();
+        }
       },
     });
   }

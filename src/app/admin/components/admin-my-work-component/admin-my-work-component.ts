@@ -12,6 +12,7 @@ import { Work } from '../../../features/models/common.interface';
 import { WorkService } from '../../../features/services/work-services/work-service';
 import { FieldErrorComponent } from '../../../shared/components/field-error-component/field-error-component';
 import { API_URL } from '../../../constants/rest-url';
+import { AlertService } from '../../../shared/services/alert-service';
 
 @Component({
   selector: 'app-admin-my-work-component',
@@ -33,6 +34,7 @@ export class AdminMyWorkComponent implements OnInit {
     private fb: FormBuilder,
     private myServiceService: MyServiceService,
     private workService: WorkService,
+    private alertService: AlertService,
   ) {}
 
   myWorkForm: FormGroup = new FormGroup({});
@@ -109,6 +111,7 @@ export class AdminMyWorkComponent implements OnInit {
     this.workService.createMyWork<unknown, boolean>(formData).subscribe({
       next: (res: boolean) => {
         if (res) {
+          this.alertService.showAlert('success', `Service Work Added Successfully`);
           this.cancelUpdate();
           this.getAllWorks();
         }
@@ -119,8 +122,11 @@ export class AdminMyWorkComponent implements OnInit {
   updateMyWork(formData: FormData) {
     this.workService.updateMyWork<unknown, boolean>(this.updatingMyWorkId, formData).subscribe({
       next: (res: boolean) => {
-        this.getAllWorks();
-        this.cancelUpdate();
+        if (res) {
+          this.alertService.showAlert('success', `Service Work Updated Successfully`);
+          this.getAllWorks();
+          this.cancelUpdate();
+        }
       },
     });
   }
@@ -128,7 +134,10 @@ export class AdminMyWorkComponent implements OnInit {
   deleteMyWork(myWork: Work) {
     this.workService.deleteMyWork<boolean>(myWork.workId).subscribe({
       next: (res: boolean) => {
-        if (res) this.getAllWorks();
+        if (res) {
+          this.alertService.showAlert('success', `Service Work Deleted Successfully`);
+          this.getAllWorks();
+        }
       },
     });
   }
