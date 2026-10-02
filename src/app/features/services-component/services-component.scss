@@ -20,9 +20,9 @@
 
   .service-description {
     margin-bottom: 0.5rem;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 24px;
-    max-height: 48px;
+    max-height: 120px;
     overflow: hidden;
   }
 
@@ -73,6 +73,11 @@
       img {
         margin-bottom: 0.5rem;
       }
+    }
+
+    .service-description {
+      font-size: 12px;
+      max-height: 48px;
     }
   }
 }

@@ -26,6 +26,7 @@ export class ReviewsComponent implements OnInit {
   }
 
   getBookingServiceName(booking: Booking): string {
-    return 'dummy';
+    const servicesNames = booking.bookingServices.map((bk) => bk.service.serviceName).join(',');
+    return servicesNames;
   }
 }

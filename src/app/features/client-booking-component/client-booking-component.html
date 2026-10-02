@@ -67,7 +67,7 @@
       <h2 class="customer-name mb-1 fs-lg">{{ booking.client.clientName }}</h2>
 
       <div class="booked-details fs-sm">
-        <span class="price-details g-2">
+        <span class="icon-details g-2">
           <mat-icon>calendar_today</mat-icon>
           {{ booking.bookingDate }}
         </span>
@@ -92,7 +92,7 @@
         @for (bkService of booking.bookingServices; track bkService.serviceId) {
           <div class="d-flex-between align-center service-row fs-xs">
             <span class="service-name">{{ bkService.service.serviceName }}</span>
-            <span class="price-details">
+            <span class="price-details g-0">
               <mat-icon> currency_rupee </mat-icon>
               {{ bkService.price }}
             </span>
@@ -110,7 +110,7 @@
         <span class="fs-xs">
           {{ booking.createdAt | date: 'hh:mm a' }}
         </span>
-        <span class="price-details fs-xs">
+        <span class="price-details fs-xs g-0">
           <mat-icon> currency_rupee </mat-icon>
           {{ booking.totalPrice }}
         </span>

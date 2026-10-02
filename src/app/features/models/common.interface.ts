@@ -84,6 +84,7 @@ export interface BookingServices {
   bookingId: string;
   serviceId: string;
   price: string;
+  service: Service;
 }
 
 export interface Client {

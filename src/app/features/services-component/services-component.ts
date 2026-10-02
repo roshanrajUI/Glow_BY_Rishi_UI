@@ -100,6 +100,7 @@ export class ServicesComponent implements OnInit {
     element.style.fontSize = styles.fontSize;
     element.style.fontWeight = styles.fontWeight;
     element.style.lineHeight = styles.lineHeight;
+    element.style.maxHeight = styles.maxHeight;
     element.style.letterSpacing = styles.letterSpacing;
     element.style.padding = '0';
     element.style.margin = '0';
@@ -109,9 +110,10 @@ export class ServicesComponent implements OnInit {
     document.body.appendChild(element);
 
     const lineHeight = parseFloat(styles.lineHeight);
-    const maxHeight = lineHeight * 2;
+    const height = parseFloat(styles.maxHeight);
+    const maxHeight = height === 48 ? lineHeight * 2 : lineHeight * 4;
 
-    // Fits completely in 2 lines
+    // Fits completely in 5 lines
     if (element.scrollHeight <= maxHeight) {
       this.truncatedDescriptions.set(category.categoryId, text);
       this.showMoreMap.set(category.categoryId, false);
@@ -140,5 +142,16 @@ export class ServicesComponent implements OnInit {
     this.showMoreMap.set(category.categoryId, true);
 
     element.remove();
+  }
+
+  getServiceCardMargin(serviceNumber: number): { [klass: string]: any } | null | undefined {
+    const cardNumberInRow = serviceNumber % 3;
+    if (cardNumberInRow === 2) {
+      return { 'margin-top': '3rem' };
+    } else if (cardNumberInRow === 1) {
+      return { 'margin-top': '1.5rem' };
+    } else {
+      return { 'margin-top': '0' };
+    }
   }
 }

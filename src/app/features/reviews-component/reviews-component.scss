@@ -40,4 +40,15 @@
       border-color: $primary_color;
     }
   }
+
+  .review-ratings {
+    display: flex;
+    align-items: center;
+
+    mat-icon {
+      height: 1rem;
+      width: 1rem;
+      font-size: 1rem;
+    }
+  }
 }

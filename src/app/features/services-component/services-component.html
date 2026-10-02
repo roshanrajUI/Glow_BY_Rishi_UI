@@ -6,8 +6,8 @@
   </h1>
 
   <div class="service-details">
-    @for (category of sharedService.$categories(); track category.categoryId) {
-      <div class="service-card">
+    @for (category of sharedService.$categories(); let i = $index; track category.categoryId) {
+      <div class="service-card" [ngStyle]="getServiceCardMargin(i)">
         <div class="service-image">
           <img [src]="baseUrl + category.imageUrl" [alt]="category.categoryName" />
         </div>
@@ -15,7 +15,10 @@
           {{ category.categoryName }}
         </h3>
         <div class="description-wrapper">
-          <p class="service-description" [class.expanded]="isExpanded(category.categoryId)">
+          <p
+            class="service-description desktop-service-description mobile-service-description"
+            [class.expanded]="isExpanded(category.categoryId)"
+          >
             {{ getDescription(category) }}
 
             @if (!isExpanded(category.categoryId) && shouldShowMore(category.categoryId)) {
