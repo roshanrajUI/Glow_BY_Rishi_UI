@@ -42,11 +42,9 @@ jobs:
 
       - name: Verify deployment
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://glow-by-rishi-ui.pages.dev)
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://glowbyrishi.in)
           echo "Frontend HTTP status: $STATUS"
           [ "$STATUS" = "200" ] || exit 1
-          # Once glowbyrishi.in is linked as a custom domain on the Pages
-          # project, switch this check back to https://glowbyrishi.in
 
       - name: Summary
-        run: echo "✅ Frontend deployed to https://glow-by-rishi-ui.pages.dev (custom domain pending)"
+        run: echo "✅ Frontend deployed to https://glowbyrishi.in"
