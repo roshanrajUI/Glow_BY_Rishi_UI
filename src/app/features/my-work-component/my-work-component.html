@@ -27,7 +27,7 @@
   <div class="my-work-container mt-5">
     @for (work of myAllWorks; track i; let i = $index) {
       <div class="work-item">
-        <img [src]="'../../../assets/images/service-saree.jpg'" alt="Work" class="work-image" />
+        <img [src]="baseUrl + work.imageUrl" alt="Work" class="work-image" />
         <div class="work-info">
           <h3 class="work-description fs-sm capitalize">
             <i>{{ work.description }}</i>
@@ -38,7 +38,11 @@
     }
   </div>
 
-  <p (click)="showMoreWorks()" class="fs-xs text-primary fw-semibold text-right mt-4 pointer">
+  <p
+    (click)="showMoreWorks()"
+    class="fs-xs text-primary fw-semibold text-right mt-4 pointer"
+    *ngIf="totalMyWorkCount > 10"
+  >
     Show More...
   </p>
 </div>

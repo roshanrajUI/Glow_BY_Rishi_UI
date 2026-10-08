@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Category, MyWorkRequest, MyWorks, Work } from '../models/common.interface';
 import { WorkService } from '../services/work-services/work-service';
 import { CategoryService } from '../services/category-services/category.service';
+import { API_URL } from '../../constants/rest-url';
 
 @Component({
   selector: 'app-my-work-component',
@@ -20,6 +21,7 @@ export class MyWorkComponent implements OnInit {
   myAllWorks: Work[] = [];
   selectedCategoryId = '';
   totalMyWorkCount!: number;
+  baseUrl = API_URL.BASEURL;
 
   ngOnInit() {
     this.getCategories();

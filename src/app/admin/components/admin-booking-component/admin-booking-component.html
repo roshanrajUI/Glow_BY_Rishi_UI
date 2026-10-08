@@ -36,7 +36,8 @@
       <div class="d-flex justify-between align-end mb-1">
         <div>
           <div class="booking-date mb-1">
-            {{ booking.bookingDate }}, {{ booking.bookingTime.slice(0, 5) }}
+            {{ booking.bookingDate | date: 'dd/MM/yyyy' }},
+            {{ booking.bookingTime.slice(0, 5) }}
           </div>
           <div class="mb-1 fs-xs booked-date">
             Booked
@@ -105,7 +106,7 @@
       <div class="booking-date d-flex g-2 mb-1">
         <div class="icon-details">
           <mat-icon>calendar_today</mat-icon>
-          {{ booking.bookingDate }}
+          {{ booking.bookingDate | date: 'dd/MM/yyyy' }}
         </div>
         <div class="icon-details">
           <mat-icon>schedule</mat-icon>

@@ -1,5 +1,13 @@
 @use '../../../app/partial-scss/index' as *;
 
+.desktop-services {
+  display: none;
+}
+
+.mobile-services {
+  display: block;
+}
+
 .service-details {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -59,6 +67,14 @@
 }
 
 @media (min-width: 768px) {
+  .desktop-services {
+    display: block;
+  }
+
+  .mobile-services {
+    display: none;
+  }
+
   .service-details {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -79,5 +95,11 @@
       font-size: 12px;
       max-height: 48px;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .services-container .service-card {
+    margin: 0 !important;
   }
 }

@@ -270,12 +270,16 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .stepper-count {
     font-size: 0.8rem;
   }
   .stepper-header {
     font-size: 1.5rem;
+  }
+
+  .mat-expansion-panel-header {
+    padding: 0 1rem;
   }
 }
 
